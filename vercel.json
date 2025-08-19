@@ -1,0 +1,48 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "outputDirectory": ".next",
+  "regions": ["iad1"],
+  "functions": {
+    "app/**/*.tsx": {
+      "maxDuration": 30
+    },
+    "app/**/*.ts": {
+      "maxDuration": 30
+    }
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/blog-wp/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "cavemotions.com"
+        }
+      ],
+      "destination": "/blog-wp/$1",
+      "permanent": false
+    }
+  ]
+}
