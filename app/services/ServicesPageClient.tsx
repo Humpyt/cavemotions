@@ -39,7 +39,6 @@ export default function ServicesPageClient() {
       transition: {
         delay: 0.1 * i,
         duration: 0.6,
-        ease: [0.215, 0.61, 0.355, 1],
       },
     }),
   }
@@ -262,7 +261,7 @@ export default function ServicesPageClient() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
-            <Badge className="mb-4" variant="purple">
+            <Badge className="mb-4 bg-purple-100 text-purple-800 hover:bg-purple-200" variant="secondary">
               Our Expertise
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Comprehensive Digital Solutions</h2>

@@ -39,7 +39,6 @@ export default function Footer() {
       transition: {
         delay: 0.1 * i,
         duration: 0.6,
-        ease: [0.215, 0.61, 0.355, 1],
       },
     }),
   }

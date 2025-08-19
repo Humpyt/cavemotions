@@ -41,7 +41,6 @@ export default function PortfolioClientPage({ initialCategory = "all" }: Portfol
       transition: {
         delay: 0.05 * i,
         duration: 0.5,
-        ease: [0.215, 0.61, 0.355, 1],
       },
     }),
   }

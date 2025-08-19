@@ -39,7 +39,6 @@ export default function MobileApplicationsPage() {
       transition: {
         delay: 0.1 * i,
         duration: 0.6,
-        ease: [0.215, 0.61, 0.355, 1],
       },
     }),
   }
@@ -300,7 +299,7 @@ export default function MobileApplicationsPage() {
                 <div className="flex flex-wrap gap-4 mt-8">
                   {["iOS", "Android", "React Native", "Flutter", "Progressive Web Apps", "AR/VR", "Mobile UX/UI"].map(
                     (tag, index) => (
-                      <Badge key={index} variant="purple" className="text-sm py-1 px-3">
+                      <Badge key={index} variant="secondary" className="text-sm py-1 px-3 bg-purple-100 text-purple-800 hover:bg-purple-200">
                         {tag}
                       </Badge>
                     ),
@@ -335,7 +334,7 @@ export default function MobileApplicationsPage() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
-            <Badge className="mb-4" variant="purple">
+            <Badge className="mb-4 bg-purple-100 text-purple-800 hover:bg-purple-200" variant="secondary">
               Capabilities
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Mobile Development Services</h2>
@@ -409,7 +408,7 @@ export default function MobileApplicationsPage() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
-            <Badge className="mb-4" variant="purple">
+            <Badge className="mb-4 bg-purple-100 text-purple-800 hover:bg-purple-200" variant="secondary">
               Methodology
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Mobile Development Process</h2>
@@ -495,7 +494,7 @@ export default function MobileApplicationsPage() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
-            <Badge className="mb-4" variant="purple">
+            <Badge className="mb-4 bg-purple-100 text-purple-800 hover:bg-purple-200" variant="secondary">
               Success Stories
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Case Studies</h2>
@@ -572,7 +571,7 @@ export default function MobileApplicationsPage() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
-            <Badge className="mb-4" variant="purple">
+            <Badge className="mb-4 bg-purple-100 text-purple-800 hover:bg-purple-200" variant="secondary">
               Our Stack
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Technologies We Use</h2>
@@ -634,7 +633,7 @@ export default function MobileApplicationsPage() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
-            <Badge className="mb-4" variant="purple">
+            <Badge className="mb-4 bg-purple-100 text-purple-800 hover:bg-purple-200" variant="secondary">
               Common Questions
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Frequently Asked Questions</h2>

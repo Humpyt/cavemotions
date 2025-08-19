@@ -107,7 +107,7 @@ export default function ProfilePage() {
               <h3 className="font-medium text-lg">{user?.name}</h3>
               <p className="text-sm text-muted-foreground">{user?.email}</p>
               <p className="text-sm text-muted-foreground mt-1">
-                {user?.role?.charAt(0).toUpperCase() + user?.role?.slice(1)}
+                {user?.role ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : 'User'}
               </p>
             </div>
           </CardContent>

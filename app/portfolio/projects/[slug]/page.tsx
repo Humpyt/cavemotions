@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { portfolioProjects } from "@/data/portfolio-projects"
 import GalleryLightbox from "@/components/gallery-lightbox"
 
-type Params = { params: { slug: string } }
+type Params = { params: Promise<{ slug: string }> }
 
 function getProject(slug: string) {
   const items = portfolioProjects as any[]
@@ -84,7 +84,8 @@ function getProjectContent(project: any) {
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
-  const p = getProject(params.slug)
+  const { slug } = await params
+  const p = getProject(slug)
   if (!p) return {}
   const title = `${p.title} | Portfolio | Cave Motions`
   const description = p.description || "Detailed case study for this project built by Cave Motions."
@@ -95,7 +96,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       title,
       description,
       type: "article",
-      url: `/portfolio/projects/${params.slug}`,
+      url: `/portfolio/projects/${slug}`,
       images: p.image ? [{ url: p.image }] : undefined,
     },
     twitter: {
@@ -107,8 +108,9 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   }
 }
 
-export default function ProjectDetailsPage({ params }: Params) {
-  const project = getProject(params.slug)
+export default async function ProjectDetailsPage({ params }: Params) {
+  const { slug } = await params
+  const project = getProject(slug)
   if (!project) return notFound()
 
   const content = getProjectContent(project)

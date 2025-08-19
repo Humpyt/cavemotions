@@ -309,7 +309,6 @@ export default function MediaLibraryPage() {
         </TabsContent>
 
         <TabsContent value="videos" className="space-y-4">
-          {/* Similar content as "all" but filtered for videos */} className="space-y-4">
           {/* Similar content as "all" but filtered for videos */}
         </TabsContent>
 

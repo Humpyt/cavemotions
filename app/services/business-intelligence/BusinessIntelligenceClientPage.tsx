@@ -16,7 +16,7 @@ import {
   CheckCircle,
   ChevronDown,
 } from "lucide-react"
-import { Motion } from "@/components/motion"
+import { motion } from "framer-motion"
 import ThreeDimensionalCard from "@/components/three-dimensional-card"
 import ParallaxText from "@/components/parallax-text"
 
@@ -206,7 +206,7 @@ export default function BusinessIntelligenceClientPage() {
         </div>
 
         <div className="relative z-10 container mx-auto px-4 text-center text-white">
-          <Motion initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
             <Badge variant="outline" className="mb-6 border-purple-400 text-purple-300">
               Business Intelligence Solutions
             </Badge>
@@ -232,17 +232,17 @@ export default function BusinessIntelligenceClientPage() {
                 View Case Studies
               </Button>
             </div>
-          </Motion>
+          </motion.div>
         </div>
 
         {/* Scroll Indicator */}
-        <Motion
+        <motion.div
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white"
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
         >
           <ChevronDown className="h-8 w-8" />
-        </Motion>
+        </motion.div>
       </section>
 
       {/* Marquee Section */}
@@ -262,7 +262,7 @@ export default function BusinessIntelligenceClientPage() {
       {/* Overview Section */}
       <section className="py-24 container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <Motion
+          <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -295,9 +295,9 @@ export default function BusinessIntelligenceClientPage() {
                 <div className="text-sm text-gray-600">Real-time Monitoring</div>
               </div>
             </div>
-          </Motion>
+          </motion.div>
 
-          <Motion
+          <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -334,14 +334,14 @@ export default function BusinessIntelligenceClientPage() {
                 </div>
               </div>
             </ThreeDimensionalCard>
-          </Motion>
+          </motion.div>
         </div>
       </section>
 
       {/* Features Section */}
       <section className="py-24 bg-slate-50">
         <div className="container mx-auto px-4">
-          <Motion
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -355,11 +355,11 @@ export default function BusinessIntelligenceClientPage() {
               Our business intelligence solutions cover every aspect of data analytics, from collection and processing
               to visualization and actionable insights.
             </p>
-          </Motion>
+          </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => (
-              <Motion
+              <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -381,7 +381,7 @@ export default function BusinessIntelligenceClientPage() {
                     </CardDescription>
                   </CardContent>
                 </Card>
-              </Motion>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -390,7 +390,7 @@ export default function BusinessIntelligenceClientPage() {
       {/* Process Section */}
       <section className="py-24">
         <div className="container mx-auto px-4">
-          <Motion
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -404,11 +404,11 @@ export default function BusinessIntelligenceClientPage() {
               We follow a proven methodology to ensure successful business intelligence implementation that delivers
               measurable results.
             </p>
-          </Motion>
+          </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {process.map((step, index) => (
-              <Motion
+              <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -426,7 +426,7 @@ export default function BusinessIntelligenceClientPage() {
                 </div>
                 <h3 className="text-xl font-bold mb-4 text-slate-800">{step.title}</h3>
                 <p className="text-gray-600 leading-relaxed">{step.description}</p>
-              </Motion>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -435,7 +435,7 @@ export default function BusinessIntelligenceClientPage() {
       {/* Case Studies Section */}
       <section className="py-24 bg-slate-50">
         <div className="container mx-auto px-4">
-          <Motion
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -448,11 +448,11 @@ export default function BusinessIntelligenceClientPage() {
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               See how our business intelligence solutions have transformed businesses across various industries.
             </p>
-          </Motion>
+          </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {caseStudies.map((study, index) => (
-              <Motion
+              <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -482,7 +482,7 @@ export default function BusinessIntelligenceClientPage() {
                     </div>
                   </CardContent>
                 </Card>
-              </Motion>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -491,7 +491,7 @@ export default function BusinessIntelligenceClientPage() {
       {/* FAQ Section */}
       <section className="py-24">
         <div className="container mx-auto px-4 max-w-4xl">
-          <Motion
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -504,9 +504,9 @@ export default function BusinessIntelligenceClientPage() {
             <p className="text-lg text-gray-600">
               Get answers to common questions about our business intelligence solutions.
             </p>
-          </Motion>
+          </motion.div>
 
-          <Motion
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -522,7 +522,7 @@ export default function BusinessIntelligenceClientPage() {
                 </AccordionItem>
               ))}
             </Accordion>
-          </Motion>
+          </motion.div>
         </div>
       </section>
 
@@ -547,7 +547,7 @@ export default function BusinessIntelligenceClientPage() {
         </div>
 
         <div className="relative z-10 container mx-auto px-4 text-center text-white">
-          <Motion
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -587,7 +587,7 @@ export default function BusinessIntelligenceClientPage() {
                 <span>Ongoing Support</span>
               </div>
             </div>
-          </Motion>
+          </motion.div>
         </div>
       </section>
     </div>

@@ -35,12 +35,12 @@ export default function HomePageClient() {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   }
 
   const statVariants = {
     hidden: { opacity: 0, scale: 0.8 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: "easeOut" } },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
   }
 
   return (
@@ -200,7 +200,7 @@ export default function HomePageClient() {
 
               <div className="md:w-1/2 space-y-8">
                 <div>
-                  <Badge className="mb-4" variant="purple">
+                  <Badge className="mb-4 bg-purple-100 text-purple-800 hover:bg-purple-200" variant="secondary">
                     Our Story
                   </Badge>
                   <h2 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl">
@@ -271,7 +271,7 @@ export default function HomePageClient() {
 
           <div className="container relative mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
             <div className="mb-16 text-center">
-              <Badge className="mb-4" variant="purple">
+              <Badge className="mb-4 bg-purple-100 text-purple-800 hover:bg-purple-200" variant="secondary">
                 Services
               </Badge>
               <h2 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl">Our Digital Playground</h2>
@@ -331,7 +331,7 @@ export default function HomePageClient() {
         <section className="py-24 md:py-32 overflow-hidden">
           <div className="container mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
             <div className="mb-16 text-center">
-              <Badge className="mb-4" variant="purple">
+              <Badge className="mb-4 bg-purple-100 text-purple-800 hover:bg-purple-200" variant="secondary">
                 Portfolio
               </Badge>
               <h2 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl">Featured Work</h2>

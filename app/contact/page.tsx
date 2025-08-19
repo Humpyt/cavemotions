@@ -52,7 +52,6 @@ export default function ContactPage() {
       transition: {
         delay: 0.1 * i,
         duration: 0.6,
-        ease: [0.215, 0.61, 0.355, 1],
       },
     }),
   }
@@ -432,7 +431,7 @@ export default function ContactPage() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
-            <Badge className="mb-4" variant="outline" className="bg-white/10 text-white">
+            <Badge className="mb-4 bg-white/10 text-white" variant="outline">
               Location
             </Badge>
             <h2 className="text-3xl font-bold mb-4 text-white">Find Us</h2>

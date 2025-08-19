@@ -37,12 +37,12 @@ export default function AboutPageClient() {
 
   const sectionVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
   }
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   }
 
   const fadeInUpVariants = {
@@ -53,7 +53,6 @@ export default function AboutPageClient() {
       transition: {
         delay: 0.1 * i,
         duration: 0.6,
-        ease: [0.215, 0.61, 0.355, 1],
       },
     }),
   }
@@ -185,7 +184,7 @@ export default function AboutPageClient() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6 }}
             >
-              <Badge className="mb-4" variant="purple">
+              <Badge className="mb-4 bg-purple-100 text-purple-800 hover:bg-purple-200" variant="secondary">
                 Why Choose Us
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Cave Motions?</h2>
