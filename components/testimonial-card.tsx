@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { QuoteIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { motion } from "@/components/motion"
+import { motion } from "framer-motion"
 
 interface TestimonialCardProps {
   quote: string
@@ -44,7 +44,7 @@ export default function TestimonialCard({ quote, author, role, image, className 
 
         <motion.div
           animate={isHovered ? { rotate: [0, -5, 0, 5, 0], scale: 1.1 } : { rotate: 0, scale: 1 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+          transition={{ duration: 0.5 }}
           className="mb-6"
         >
           <QuoteIcon className="h-10 w-10 text-purple-300" />

@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Brain, Code, PuzzleIcon as PuzzlePiece, Smartphone, Check, ArrowRight, type LucideIcon } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
-import { motion } from "@/components/motion"
+import { motion } from "framer-motion"
 import Link from "next/link"
 
 interface ServiceCardProps {

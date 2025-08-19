@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useState, useRef, type ReactNode } from "react"
-import { motion } from "@/components/motion"
+import { motion } from "framer-motion"
 
 interface ThreeDimensionalCardProps {
   children: ReactNode

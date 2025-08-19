@@ -41,7 +41,10 @@ export default function AdminHeader() {
           <h2 className="text-sm font-medium">
             {pathname === "/admin"
               ? "Dashboard"
-              : pathname.split("/").pop()?.charAt(0).toUpperCase() + pathname.split("/").pop()?.slice(1)}
+              : (() => {
+                  const lastSegment = pathname.split("/").pop();
+                  return lastSegment ? lastSegment.charAt(0).toUpperCase() + lastSegment.slice(1) : "Page";
+                })()}
           </h2>
         </div>
         <div className="hidden md:block">

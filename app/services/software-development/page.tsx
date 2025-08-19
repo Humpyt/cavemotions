@@ -428,7 +428,7 @@ export default function SoftwareDevelopmentPage() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
-            <Badge className="mb-4" variant="purple">
+            <Badge className="mb-4 bg-purple-100 text-purple-800 hover:bg-purple-200" variant="secondary">
               Methodology
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Software Development Process</h2>
