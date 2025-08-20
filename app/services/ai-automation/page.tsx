@@ -91,7 +91,6 @@ export const metadata: Metadata = {
 export default function AIAutomationPage() {
   return (
     <>
-      <AIAutomationClientPage />
       {/* Service Schema Markup */}
       <script
         type="application/ld+json"
@@ -329,6 +328,8 @@ export default function AIAutomationPage() {
           }),
         }}
       />
+
+      <AIAutomationClientPage />
     </>
   )
 }
