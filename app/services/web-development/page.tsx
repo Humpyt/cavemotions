@@ -230,8 +230,8 @@ export default function WebDevelopmentPage() {
                 <div className="relative">
                   <div className="overflow-hidden rounded-2xl shadow-xl">
                     <img
-                      src="/placeholder.svg?height=400&width=500&text=Web Development"
-                      alt="Web Development"
+                      src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                      alt="Pixel Perfect Web Development - Clean Code on Multiple Screens"
                       className="w-full transition-transform duration-700 hover:scale-105"
                     />
                   </div>
@@ -358,47 +358,20 @@ export default function WebDevelopmentPage() {
             {features.map((feature, index) => (
               <motion.div
                 key={index}
-                className="group bg-white rounded-xl p-8 shadow-lg relative overflow-hidden border border-gray-100"
+                className="bg-white rounded-xl p-8 shadow-lg border border-gray-100"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: 0.1 * index }}
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
               >
-                {/* Gradient border on hover */}
-                <div className="absolute inset-0 rounded-xl p-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div
-                    className={`absolute inset-0 rounded-xl bg-gradient-to-r ${feature.color} opacity-20 animate-gradient-x`}
-                  ></div>
+                <div className="w-16 h-16 flex items-center justify-center mb-6">
+                  <feature.icon className="h-12 w-12 text-gray-700" />
                 </div>
 
-                <div
-                  className={`w-16 h-16 rounded-full bg-gradient-to-br ${feature.color}/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
-                >
-                  <feature.icon className={`h-8 w-8 text-gradient bg-gradient-to-br ${feature.color}`} />
-                </div>
-
-                <h3 className="text-xl font-semibold mb-4 group-hover:text-blue-700 transition-colors">
+                <h3 className="text-xl font-semibold mb-4 text-gray-900">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600 mb-6">{feature.description}</p>
-
-                <div className="flex items-center text-sm font-medium text-blue-600">
-                  <span className="mr-2">Learn more</span>
-                  <motion.div
-                    className="h-px bg-blue-600"
-                    animate={{ width: 12 }}
-                    whileHover={{ width: 24 }}
-                    transition={{ duration: 0.3 }}
-                  ></motion.div>
-                  <motion.div
-                    animate={{ x: 0, opacity: 0 }}
-                    whileHover={{ x: 5, opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <ArrowRight className="ml-1 h-3 w-3" />
-                  </motion.div>
-                </div>
+                <p className="text-gray-600">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -419,7 +392,7 @@ export default function WebDevelopmentPage() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
-            <Badge className="mb-4 bg-purple-100 text-purple-800 hover:bg-purple-200" variant="secondary">
+            <Badge className="mb-4 bg-gray-100 text-gray-800 hover:bg-gray-200" variant="secondary">
               Methodology
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Web Development Process</h2>
@@ -466,14 +439,14 @@ export default function WebDevelopmentPage() {
               >
                 {/* Connecting line */}
                 {index < 3 && (
-                  <div className="hidden md:block absolute top-10 left-full w-full h-0.5 bg-gradient-to-r from-blue-200 to-transparent z-0"></div>
+                  <div className="hidden md:block absolute top-10 left-full w-full h-0.5 bg-gradient-to-r from-gray-300 to-transparent z-0"></div>
                 )}
 
                 <div className="relative z-10 flex flex-col items-center text-center">
-                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center text-white text-2xl font-bold mb-6">
+                  <div className="w-20 h-20 rounded-full bg-black flex items-center justify-center text-white text-2xl font-bold mb-6">
                     {process.step}
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">{process.title}</h3>
+                  <h3 className="text-xl font-semibold mb-3 text-gray-900">{process.title}</h3>
                   <p className="text-gray-600">{process.description}</p>
                 </div>
               </motion.div>
