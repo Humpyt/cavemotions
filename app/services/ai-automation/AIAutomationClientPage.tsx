@@ -91,7 +91,7 @@ export default function AIAutomationClientPage() {
       client: "Global Investment Firm",
       description:
         "Developed a predictive analytics platform that increased forecast accuracy by 37% and reduced analysis time by 78%.",
-      image: "/placeholder.svg?height=400&width=600&text=Financial AI",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
       color: "from-purple-500 to-violet-600",
     },
     {
@@ -99,7 +99,7 @@ export default function AIAutomationClientPage() {
       client: "E-commerce Retailer",
       description:
         "Implemented an AI chatbot that handles 65% of customer inquiries automatically, improving response time by 92%.",
-      image: "/placeholder.svg?height=400&width=600&text=Customer AI",
+      image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
       color: "from-blue-500 to-cyan-600",
     },
     {
@@ -107,7 +107,7 @@ export default function AIAutomationClientPage() {
       client: "Legal Services Provider",
       description:
         "Created an AI system that extracts, categorizes, and analyzes legal documents, reducing processing time by 83%.",
-      image: "/placeholder.svg?height=400&width=600&text=Document AI",
+      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
       color: "from-amber-500 to-orange-600",
     },
   ]
@@ -232,8 +232,8 @@ export default function AIAutomationClientPage() {
                   <div className="relative">
                     <div className="overflow-hidden rounded-2xl shadow-xl">
                       <img
-                        src="/placeholder.svg?height=400&width=500&text=AI Automation"
-                        alt="AI Automation solutions by Cave Motions featuring machine learning and intelligent systems"
+                        src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                        alt="AI Automation and Machine Learning - Future-Ready Intelligent Business Solutions"
                         className="w-full transition-transform duration-700 hover:scale-105"
                       />
                     </div>
@@ -359,47 +359,20 @@ export default function AIAutomationClientPage() {
               {features.map((feature, index) => (
                 <motion.div
                   key={index}
-                  className="group bg-white rounded-xl p-8 shadow-lg relative overflow-hidden border border-gray-100"
+                  className="bg-white rounded-xl p-8 shadow-lg border border-gray-100"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.6, delay: 0.1 * index }}
-                  whileHover={{ y: -5, transition: { duration: 0.2 } }}
                 >
-                  {/* Gradient border on hover */}
-                  <div className="absolute inset-0 rounded-xl p-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div
-                      className={`absolute inset-0 rounded-xl bg-gradient-to-r ${feature.color} opacity-20 animate-gradient-x`}
-                    ></div>
+                  <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-6">
+                    <feature.icon className="h-8 w-8 text-gray-700" />
                   </div>
 
-                  <div
-                    className={`w-16 h-16 rounded-full bg-gradient-to-br ${feature.color}/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
-                  >
-                    <feature.icon className={`h-8 w-8 text-gradient bg-gradient-to-br ${feature.color}`} />
-                  </div>
-
-                  <h3 className="text-xl font-semibold mb-4 group-hover:text-purple-700 transition-colors">
+                  <h3 className="text-xl font-semibold mb-4">
                     {feature.title}
                   </h3>
-                  <p className="text-gray-600 mb-6">{feature.description}</p>
-
-                  <div className="flex items-center text-sm font-medium text-purple-600">
-                    <span className="mr-2">Learn more</span>
-                    <motion.div
-                      className="h-px bg-purple-600"
-                      animate={{ width: 12 }}
-                      whileHover={{ width: 24 }}
-                      transition={{ duration: 0.3 }}
-                    ></motion.div>
-                    <motion.div
-                      animate={{ x: 0, opacity: 0 }}
-                      whileHover={{ x: 5, opacity: 1 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <ArrowRight className="ml-1 h-3 w-3" />
-                    </motion.div>
-                  </div>
+                  <p className="text-gray-600">{feature.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -467,11 +440,11 @@ export default function AIAutomationClientPage() {
                 >
                   {/* Connecting line */}
                   {index < 3 && (
-                    <div className="hidden md:block absolute top-10 left-full w-full h-0.5 bg-gradient-to-r from-purple-200 to-transparent z-0"></div>
+                    <div className="hidden md:block absolute top-10 left-full w-full h-0.5 bg-gray-300 z-0"></div>
                   )}
 
                   <div className="relative z-10 flex flex-col items-center text-center">
-                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center text-white text-2xl font-bold mb-6">
+                    <div className="w-20 h-20 rounded-full bg-black flex items-center justify-center text-white text-2xl font-bold mb-6">
                       {process.step}
                     </div>
                     <h3 className="text-xl font-semibold mb-3">{process.title}</h3>
@@ -649,12 +622,14 @@ export default function AIAutomationClientPage() {
               <p className="text-lg text-gray-600 mb-6">
                 Have more questions about our AI automation services? We're here to help.
               </p>
-              <Button className="group relative overflow-hidden bg-purple-700 hover:bg-purple-800">
-                <span className="relative z-10 flex items-center">
-                  Contact Our AI Specialists
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </span>
-                <span className="absolute inset-0 z-0 bg-gradient-to-r from-purple-600 to-violet-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+              <Button className="group relative overflow-hidden bg-purple-700 hover:bg-purple-800" asChild>
+                <Link href="/contact">
+                  <span className="relative z-10 flex items-center">
+                    Contact Our AI Specialists
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  </span>
+                  <span className="absolute inset-0 z-0 bg-gradient-to-r from-purple-600 to-violet-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+                </Link>
               </Button>
             </motion.div>
           </div>
