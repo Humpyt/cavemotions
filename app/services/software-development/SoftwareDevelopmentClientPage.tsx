@@ -116,16 +116,6 @@ export default function SoftwareDevelopmentClientPage() {
       liveUrl: "#",
       tags: ["POS System", "Order Management", "Financial Reporting"]
     },
-    {
-      title: "Enterprise Resource Planning",
-      client: "Manufacturing Company",
-      description:
-        "Custom ERP system that integrated production, inventory, and sales processes, increasing operational efficiency by 42% and providing real-time business insights for informed decision-making.",
-      image: "/images/erp-system.jpg",
-      color: "from-purple-500 to-violet-600",
-      liveUrl: "#",
-      tags: ["ERP", "System Integration", "Business Intelligence"]
-    },
   ]
 
   return (
@@ -245,8 +235,8 @@ export default function SoftwareDevelopmentClientPage() {
                 <div className="relative">
                   <div className="overflow-hidden rounded-2xl shadow-xl">
                     <img
-                      src="/placeholder.svg?height=400&width=500&text=Software Development"
-                      alt="Software Development"
+                      src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                      alt="Enterprise Software Development - Modern Code Architecture and Development"
                       className="w-full transition-transform duration-700 hover:scale-105"
                     />
                   </div>
@@ -374,47 +364,20 @@ export default function SoftwareDevelopmentClientPage() {
             {features.map((feature, index) => (
               <motion.div
                 key={index}
-                className="group bg-white rounded-xl p-8 shadow-lg relative overflow-hidden border border-gray-100"
+                className="bg-white rounded-xl p-8 shadow-lg border border-gray-100"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: 0.1 * index }}
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
               >
-                {/* Gradient border on hover */}
-                <div className="absolute inset-0 rounded-xl p-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div
-                    className={`absolute inset-0 rounded-xl bg-gradient-to-r ${feature.color} opacity-20 animate-gradient-x`}
-                  ></div>
+                <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-6">
+                  <feature.icon className="h-8 w-8 text-gray-700" />
                 </div>
 
-                <div
-                  className={`w-16 h-16 rounded-full bg-gradient-to-br ${feature.color}/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
-                >
-                  <feature.icon className={`h-8 w-8 text-gradient bg-gradient-to-br ${feature.color}`} />
-                </div>
-
-                <h3 className="text-xl font-semibold mb-4 group-hover:text-emerald-700 transition-colors">
+                <h3 className="text-xl font-semibold mb-4">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600 mb-6">{feature.description}</p>
-
-                <div className="flex items-center text-sm font-medium text-emerald-600">
-                  <span className="mr-2">Learn more</span>
-                  <motion.div
-                    className="h-px bg-emerald-600"
-                    animate={{ width: 12 }}
-                    whileHover={{ width: 24 }}
-                    transition={{ duration: 0.3 }}
-                  ></motion.div>
-                  <motion.div
-                    animate={{ x: 0, opacity: 0 }}
-                    whileHover={{ x: 5, opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <ArrowRight className="ml-1 h-3 w-3" />
-                  </motion.div>
-                </div>
+                <p className="text-gray-600">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -482,11 +445,11 @@ export default function SoftwareDevelopmentClientPage() {
               >
                 {/* Connecting line */}
                 {index < 3 && (
-                  <div className="hidden md:block absolute top-10 left-full w-full h-0.5 bg-gradient-to-r from-emerald-200 to-transparent z-0"></div>
+                  <div className="hidden md:block absolute top-10 left-full w-full h-0.5 bg-gray-300 z-0"></div>
                 )}
 
                 <div className="relative z-10 flex flex-col items-center text-center">
-                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center text-white text-2xl font-bold mb-6">
+                  <div className="w-20 h-20 rounded-full bg-black flex items-center justify-center text-white text-2xl font-bold mb-6">
                     {process.step}
                   </div>
                   <h3 className="text-xl font-semibold mb-3">{process.title}</h3>
@@ -531,7 +494,7 @@ export default function SoftwareDevelopmentClientPage() {
           </motion.div>
 
           <motion.div
-            className="grid md:grid-cols-3 gap-8"
+            className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto"
             variants={staggerContainerVariants}
             initial="hidden"
             whileInView="visible"
