@@ -36,7 +36,7 @@ const navItems = [
   { name: "Home", path: "/" },
   { name: "Services", path: "/services", hasMegaMenu: true },
   { name: "Portfolio", path: "/portfolio", hasMegaMenu: true },
-  { name: "Blog", path: "/blog", hasMegaMenu: true },
+  { name: "Blog", path: "/blog-wp", hasMegaMenu: true },
   { name: "About", path: "/about" },
   { name: "Contact", path: "/contact" },
 ]
@@ -307,7 +307,7 @@ export default function Header() {
                 <div>
                   <h4 className="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors">WordPress Blog</h4>
                   <p className="text-sm text-gray-600 mt-1">WordPress-powered content management system</p>
-                  <Badge className="mt-2 bg-blue-100 text-blue-800 text-xs">Coming Soon</Badge>
+                  <Badge className="mt-2 bg-green-100 text-green-800 text-xs">Live</Badge>
                 </div>
               </div>
             </Link>
@@ -330,7 +330,7 @@ export default function Header() {
             ].map((category) => (
               <Link
                 key={category.name}
-                href={`/blog/category/${category.name.toLowerCase().replace(' ', '-')}`}
+                href={`/blog-wp/category/${category.name.toLowerCase().replace(' ', '-')}`}
                 className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 transition-colors group"
                 onClick={() => setActiveMegaMenu(null)}
               >

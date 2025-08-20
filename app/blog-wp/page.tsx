@@ -64,16 +64,17 @@ export default async function WordPressBlogPage() {
             </p>
             
             {/* Search Bar */}
-            <div className="max-w-md mx-auto relative">
+            <form action="/blog-wp/search" method="GET" className="max-w-md mx-auto relative">
               <Search className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-              <Input 
-                placeholder="Search articles..." 
+              <Input
+                name="q"
+                placeholder="Search articles..."
                 className="pl-10 h-12 bg-white/10 border-white/20 text-white placeholder:text-white/70 focus:bg-white/20"
               />
-              <Button className="absolute right-2 top-2 h-8 px-4 bg-yellow-500 hover:bg-yellow-600 text-gray-900">
+              <Button type="submit" className="absolute right-2 top-2 h-8 px-4 bg-yellow-500 hover:bg-yellow-600 text-gray-900">
                 Search
               </Button>
-            </div>
+            </form>
           </div>
         </div>
 
