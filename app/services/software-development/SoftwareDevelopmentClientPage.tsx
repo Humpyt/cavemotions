@@ -2,14 +2,23 @@
 
 import { useEffect, useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Code, Sparkles, Globe, Smartphone, Zap, Layers, ArrowUpRight } from "lucide-react"
+import {
+  ArrowRight,
+  PuzzleIcon as PuzzlePiece,
+  Sparkles,
+  Database,
+  Server,
+  Shield,
+  Workflow,
+  ArrowUpRight,
+} from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { motion, useScroll, useTransform } from "framer-motion"
 import ThreeDimensionalCard from "@/components/three-dimensional-card"
 import ParallaxText from "@/components/parallax-text"
 import Link from "next/link"
 
-export default function WebDevelopmentClientPage() {
+export default function SoftwareDevelopmentClientPage() {
   const [scrollY, setScrollY] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
@@ -56,66 +65,66 @@ export default function WebDevelopmentClientPage() {
 
   const features = [
     {
-      icon: Globe,
-      title: "Responsive Web Design",
+      icon: Database,
+      title: "Custom Business Applications",
       description:
-        "Create websites that look and function beautifully across all devices, from desktops to smartphones and tablets.",
-      color: "from-blue-500 to-cyan-600",
-    },
-    {
-      icon: Zap,
-      title: "Performance Optimization",
-      description:
-        "Build lightning-fast websites with optimized code, efficient loading times, and smooth user experiences.",
+        "Develop tailored software solutions that address your specific business challenges and streamline operations.",
       color: "from-emerald-500 to-green-600",
     },
     {
-      icon: Layers,
-      title: "Custom Web Applications",
+      icon: Server,
+      title: "Enterprise Resource Planning",
       description:
-        "Develop tailored web applications with complex functionality to meet your specific business requirements.",
+        "Implement comprehensive ERP systems that integrate all aspects of your business into a unified platform.",
+      color: "from-purple-500 to-violet-600",
+    },
+    {
+      icon: Shield,
+      title: "Secure & Scalable Solutions",
+      description:
+        "Build robust software with security at its core, designed to scale as your business grows and evolves.",
       color: "from-amber-500 to-orange-600",
     },
     {
-      icon: Smartphone,
-      title: "Progressive Web Apps",
+      icon: Workflow,
+      title: "Workflow Automation",
       description:
-        "Create web applications that offer native-like experiences with offline capabilities and app-like interfaces.",
-      color: "from-purple-500 to-violet-600",
+        "Automate repetitive tasks and complex workflows to increase efficiency and reduce operational costs.",
+      color: "from-blue-500 to-cyan-600",
     },
   ]
 
-  // Real projects from portfolio - Web Development category
+  // Real projects from portfolio - Software Development category
   const caseStudies = [
     {
-      title: "Jarthaz Group Tours",
-      client: "Adventure Tourism Company",
+      title: "Cavemo SACCO Management System",
+      client: "Financial Services",
       description:
-        "Adventure tourism website specializing in gorilla trekking and wildlife experiences across Uganda, featuring immersive booking systems and destination showcases.",
-      image: "/images/jarthaz-tours.jpg",
-      color: "from-green-500 to-emerald-600",
-      liveUrl: "https://tours.jarthazgroup.com",
-      tags: ["Tourism", "Booking System", "Responsive Design"]
+        "A comprehensive digital management platform designed to empower SACCOs in Uganda with intuitive, secure, and scalable solutions for managing savings, loans, deposits, memberships, and financial operations.",
+      image: "/images/cavemo-sacco-featured.png",
+      color: "from-emerald-500 to-teal-600",
+      liveUrl: "#",
+      tags: ["Financial Management", "Real-time Analytics", "Mobile Money Integration"]
     },
     {
-      title: "AJYXN Real Estate",
-      client: "Real Estate Platform",
+      title: "Repair Pro",
+      client: "Service Business",
       description:
-        "Modern real estate platform with advanced property search, virtual tours, and seamless user experience for finding dream homes.",
-      image: "/images/ajyxn-website.jpg",
-      color: "from-blue-500 to-cyan-600",
-      liveUrl: "https://ajyxn.com",
-      tags: ["Real Estate", "Property Search", "Virtual Tours"]
+        "A comprehensive point-of-sale (POS) software solution designed specifically for shoe repair service businesses. Built to streamline operations and enhance efficiency with robust order management and inventory tracking.",
+      image: "/images/repair-pro-featured.jpeg",
+      color: "from-blue-500 to-indigo-600",
+      liveUrl: "#",
+      tags: ["POS System", "Order Management", "Financial Reporting"]
     },
     {
-      title: "WAIB - Innovation in Aquaculture",
-      client: "Aquaculture Bureau",
+      title: "Enterprise Resource Planning",
+      client: "Manufacturing Company",
       description:
-        "Professional website showcasing sustainable aquaculture practices and modern techniques with 5+ years of experience in sustainable fish farming.",
-      image: "/images/waib-aquaculture.png",
-      color: "from-blue-500 to-teal-600",
-      liveUrl: "https://waibug.com",
-      tags: ["Aquaculture", "Sustainability", "Professional Services"]
+        "Custom ERP system that integrated production, inventory, and sales processes, increasing operational efficiency by 42% and providing real-time business insights for informed decision-making.",
+      image: "/images/erp-system.jpg",
+      color: "from-purple-500 to-violet-600",
+      liveUrl: "#",
+      tags: ["ERP", "System Integration", "Business Intelligence"]
     },
   ]
 
@@ -129,7 +138,7 @@ export default function WebDevelopmentClientPage() {
             {Array.from({ length: 15 }).map((_, i) => (
               <motion.div
                 key={i}
-                className="absolute rounded-full bg-blue-600/10"
+                className="absolute rounded-full bg-emerald-600/10"
                 initial={{
                   width: Math.random() * 100 + 50,
                   height: Math.random() * 100 + 50,
@@ -160,7 +169,7 @@ export default function WebDevelopmentClientPage() {
           <div className="text-center">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
               <Badge className="mb-6 bg-white/10 text-white hover:bg-white/20" variant="outline">
-                <Sparkles className="mr-1 h-3 w-3" /> Web Services
+                <Sparkles className="mr-1 h-3 w-3" /> Software Services
               </Badge>
             </motion.div>
 
@@ -170,7 +179,7 @@ export default function WebDevelopmentClientPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Web Development
+              Software Development
             </motion.h1>
 
             <motion.p
@@ -179,8 +188,7 @@ export default function WebDevelopmentClientPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Create stunning, high-performance websites and web applications that engage your audience and drive
-              business growth.
+              Build custom software solutions that solve complex business challenges and scale with your organization.
             </motion.p>
           </div>
         </div>
@@ -213,7 +221,7 @@ export default function WebDevelopmentClientPage() {
       <section className="bg-black py-10 overflow-hidden border-t border-white/10">
         <div className="py-4">
           <ParallaxText baseVelocity={-2}>
-            RESPONSIVE DESIGN • PERFORMANCE • USER EXPERIENCE • ACCESSIBILITY • MODERN FRAMEWORKS •
+            CUSTOM SOLUTIONS • ENTERPRISE SYSTEMS • CLOUD APPLICATIONS • ODOO ERP • BUSINESS INTELLIGENCE •
           </ParallaxText>
         </div>
       </section>
@@ -221,8 +229,8 @@ export default function WebDevelopmentClientPage() {
       {/* Overview Section */}
       <section className="py-24 md:py-32 px-4 md:px-6 lg:px-8 relative overflow-hidden">
         {/* Background gradient blobs */}
-        <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-blue-100/50 blur-3xl opacity-30"></div>
-        <div className="absolute -bottom-40 -right-40 h-96 w-96 rounded-full bg-cyan-100/50 blur-3xl opacity-30"></div>
+        <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-emerald-100/50 blur-3xl opacity-30"></div>
+        <div className="absolute -bottom-40 -right-40 h-96 w-96 rounded-full bg-green-100/50 blur-3xl opacity-30"></div>
 
         <div className="container mx-auto max-w-6xl relative">
           <div className="flex flex-col md:flex-row items-center gap-12">
@@ -237,20 +245,20 @@ export default function WebDevelopmentClientPage() {
                 <div className="relative">
                   <div className="overflow-hidden rounded-2xl shadow-xl">
                     <img
-                      src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-                      alt="Pixel Perfect Web Development - Clean Code on Multiple Screens"
+                      src="/placeholder.svg?height=400&width=500&text=Software Development"
+                      alt="Software Development"
                       className="w-full transition-transform duration-700 hover:scale-105"
                     />
                   </div>
 
                   {/* Floating elements */}
-                  <div className="absolute -bottom-6 -left-6 h-24 w-24 rounded-xl bg-blue-100 p-3 shadow-lg">
-                    <div className="flex h-full w-full items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-cyan-700 text-white">
-                      <Code className="h-10 w-10" />
+                  <div className="absolute -bottom-6 -left-6 h-24 w-24 rounded-xl bg-emerald-100 p-3 shadow-lg">
+                    <div className="flex h-full w-full items-center justify-center rounded-lg bg-gradient-to-br from-emerald-600 to-green-700 text-white">
+                      <PuzzlePiece className="h-10 w-10" />
                     </div>
                   </div>
-                  <div className="absolute -right-6 -top-6 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-700 p-4 text-white shadow-lg">
-                    <p className="text-sm font-medium">Pixel Perfect</p>
+                  <div className="absolute -right-6 -top-6 rounded-xl bg-gradient-to-br from-emerald-500 to-green-700 p-4 text-white shadow-lg">
+                    <p className="text-sm font-medium">Enterprise-Grade</p>
                   </div>
                 </div>
               </ThreeDimensionalCard>
@@ -265,9 +273,9 @@ export default function WebDevelopmentClientPage() {
                 variants={fadeInUpVariants}
               >
                 <h2 className="text-3xl md:text-4xl font-bold relative inline-block">
-                  Crafting Digital Experiences That Inspire
+                  Custom Software for Complex Challenges
                   <motion.span
-                    className="absolute -bottom-2 left-0 h-1 w-0 bg-gradient-to-r from-blue-400 to-cyan-400"
+                    className="absolute -bottom-2 left-0 h-1 w-0 bg-gradient-to-r from-emerald-400 to-green-400"
                     initial={{ width: "0%" }}
                     whileInView={{ width: "100%" }}
                     viewport={{ once: true }}
@@ -284,9 +292,9 @@ export default function WebDevelopmentClientPage() {
                 custom={1}
                 variants={fadeInUpVariants}
               >
-                At Cave Motions, we create websites and web applications that combine stunning design with powerful
-                functionality. Our web development team crafts digital experiences that not only look beautiful but also
-                drive results for your business.
+                At Cave Motions, we develop custom software solutions that address your unique business challenges and
+                streamline your operations. Our team of experienced developers creates robust, scalable applications
+                that grow with your business and adapt to changing requirements.
               </motion.p>
 
               <motion.p
@@ -297,8 +305,9 @@ export default function WebDevelopmentClientPage() {
                 custom={2}
                 variants={fadeInUpVariants}
               >
-                From responsive websites to complex web applications, we leverage the latest technologies and best
-                practices to deliver solutions that exceed expectations and help you achieve your business goals.
+                From enterprise resource planning (ERP) systems to specialized business applications, we build software
+                that enhances efficiency, improves decision-making, and drives business growth. Our solutions are
+                designed with security, scalability, and user experience at their core.
               </motion.p>
 
               <motion.div
@@ -310,13 +319,12 @@ export default function WebDevelopmentClientPage() {
               >
                 <div className="flex flex-wrap gap-4 mt-8">
                   {[
-                    "React",
-                    "Next.js",
-                    "TypeScript",
-                    "Node.js",
-                    "Tailwind CSS",
-                    "Responsive Design",
-                    "SEO Optimization",
+                    "Odoo ERP",
+                    "Custom Applications",
+                    "Business Intelligence",
+                    "Workflow Automation",
+                    "Cloud Solutions",
+                    "System Integration",
                   ].map((tag, index) => (
                     <Badge key={index} variant="secondary" className="text-sm py-1 px-3 bg-purple-100 text-purple-800 hover:bg-purple-200">
                       {tag}
@@ -337,7 +345,7 @@ export default function WebDevelopmentClientPage() {
             className="absolute inset-0 opacity-5"
             style={{
               backgroundImage:
-                "linear-gradient(to right, rgba(59, 130, 246, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(59, 130, 246, 0.1) 1px, transparent 1px)",
+                "linear-gradient(to right, rgba(16, 185, 129, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(16, 185, 129, 0.1) 1px, transparent 1px)",
               backgroundSize: "50px 50px",
               transform: `translateY(${scrollY * 0.1}px)`,
             }}
@@ -355,9 +363,10 @@ export default function WebDevelopmentClientPage() {
             <Badge className="mb-4 bg-purple-100 text-purple-800 hover:bg-purple-200" variant="secondary">
               Capabilities
             </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Web Development Services</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Software Development Services</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Discover how our web development expertise can help you create a powerful online presence.
+              Discover how our software development expertise can help you optimize operations and drive business
+              growth.
             </p>
           </motion.div>
 
@@ -365,20 +374,47 @@ export default function WebDevelopmentClientPage() {
             {features.map((feature, index) => (
               <motion.div
                 key={index}
-                className="bg-white rounded-xl p-8 shadow-lg border border-gray-100"
+                className="group bg-white rounded-xl p-8 shadow-lg relative overflow-hidden border border-gray-100"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: 0.1 * index }}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
               >
-                <div className="w-16 h-16 flex items-center justify-center mb-6">
-                  <feature.icon className="h-12 w-12 text-gray-700" />
+                {/* Gradient border on hover */}
+                <div className="absolute inset-0 rounded-xl p-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div
+                    className={`absolute inset-0 rounded-xl bg-gradient-to-r ${feature.color} opacity-20 animate-gradient-x`}
+                  ></div>
                 </div>
 
-                <h3 className="text-xl font-semibold mb-4 text-gray-900">
+                <div
+                  className={`w-16 h-16 rounded-full bg-gradient-to-br ${feature.color}/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
+                >
+                  <feature.icon className={`h-8 w-8 text-gradient bg-gradient-to-br ${feature.color}`} />
+                </div>
+
+                <h3 className="text-xl font-semibold mb-4 group-hover:text-emerald-700 transition-colors">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <p className="text-gray-600 mb-6">{feature.description}</p>
+
+                <div className="flex items-center text-sm font-medium text-emerald-600">
+                  <span className="mr-2">Learn more</span>
+                  <motion.div
+                    className="h-px bg-emerald-600"
+                    animate={{ width: 12 }}
+                    whileHover={{ width: 24 }}
+                    transition={{ duration: 0.3 }}
+                  ></motion.div>
+                  <motion.div
+                    animate={{ x: 0, opacity: 0 }}
+                    whileHover={{ x: 5, opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <ArrowRight className="ml-1 h-3 w-3" />
+                  </motion.div>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -388,8 +424,8 @@ export default function WebDevelopmentClientPage() {
       {/* Process Section */}
       <section className="py-24 md:py-32 px-4 md:px-6 lg:px-8 relative overflow-hidden">
         {/* Background gradient blobs */}
-        <div className="absolute top-40 -right-40 h-96 w-96 rounded-full bg-blue-100/50 blur-3xl opacity-30"></div>
-        <div className="absolute bottom-40 -left-40 h-96 w-96 rounded-full bg-cyan-100/50 blur-3xl opacity-30"></div>
+        <div className="absolute top-40 -right-40 h-96 w-96 rounded-full bg-emerald-100/50 blur-3xl opacity-30"></div>
+        <div className="absolute bottom-40 -left-40 h-96 w-96 rounded-full bg-green-100/50 blur-3xl opacity-30"></div>
 
         <div className="container mx-auto max-w-6xl relative">
           <motion.div
@@ -399,13 +435,13 @@ export default function WebDevelopmentClientPage() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
-            <Badge className="mb-4 bg-gray-100 text-gray-800 hover:bg-gray-200" variant="secondary">
+            <Badge className="mb-4 bg-purple-100 text-purple-800 hover:bg-purple-200" variant="secondary">
               Methodology
             </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Web Development Process</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Software Development Process</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              We follow a structured approach to web development that ensures quality, performance, and alignment with
-              your business goals.
+              We follow a structured approach to software development that ensures quality, reliability, and alignment
+              with your business goals.
             </p>
           </motion.div>
 
@@ -413,27 +449,27 @@ export default function WebDevelopmentClientPage() {
             {[
               {
                 step: "01",
-                title: "Discovery & Planning",
+                title: "Requirements Analysis",
                 description:
-                  "We begin by understanding your business goals, target audience, and requirements to create a strategic plan.",
+                  "We work closely with you to understand your business processes, challenges, and objectives.",
               },
               {
                 step: "02",
-                title: "Design & Prototyping",
+                title: "Design & Architecture",
                 description:
-                  "Our designers create wireframes and visual designs that align with your brand and provide optimal user experiences.",
+                  "Our team designs a robust architecture and user interface that meets your specific requirements.",
               },
               {
                 step: "03",
-                title: "Development",
+                title: "Development & Testing",
                 description:
-                  "Our developers build your website or application using clean, efficient code and the latest technologies.",
+                  "We develop your software using agile methodologies and conduct thorough testing at each stage.",
               },
               {
                 step: "04",
-                title: "Testing & Launch",
+                title: "Deployment & Support",
                 description:
-                  "We thoroughly test your website across devices and browsers before launching it to the world.",
+                  "We deploy your solution and provide ongoing support and maintenance to ensure optimal performance.",
               },
             ].map((process, index) => (
               <motion.div
@@ -446,14 +482,14 @@ export default function WebDevelopmentClientPage() {
               >
                 {/* Connecting line */}
                 {index < 3 && (
-                  <div className="hidden md:block absolute top-10 left-full w-full h-0.5 bg-gradient-to-r from-gray-300 to-transparent z-0"></div>
+                  <div className="hidden md:block absolute top-10 left-full w-full h-0.5 bg-gradient-to-r from-emerald-200 to-transparent z-0"></div>
                 )}
 
                 <div className="relative z-10 flex flex-col items-center text-center">
-                  <div className="w-20 h-20 rounded-full bg-black flex items-center justify-center text-white text-2xl font-bold mb-6">
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center text-white text-2xl font-bold mb-6">
                     {process.step}
                   </div>
-                  <h3 className="text-xl font-semibold mb-3 text-gray-900">{process.title}</h3>
+                  <h3 className="text-xl font-semibold mb-3">{process.title}</h3>
                   <p className="text-gray-600">{process.description}</p>
                 </div>
               </motion.div>
@@ -470,7 +506,7 @@ export default function WebDevelopmentClientPage() {
             className="absolute inset-0 opacity-5"
             style={{
               backgroundImage:
-                "linear-gradient(to right, rgba(59, 130, 246, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(59, 130, 246, 0.1) 1px, transparent 1px)",
+                "linear-gradient(to right, rgba(16, 185, 129, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(16, 185, 129, 0.1) 1px, transparent 1px)",
               backgroundSize: "50px 50px",
               transform: `translateY(${scrollY * 0.1}px)`,
             }}
@@ -490,7 +526,7 @@ export default function WebDevelopmentClientPage() {
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Case Studies</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Explore how our web development solutions have transformed businesses across industries.
+              Explore how our software development solutions have transformed businesses across industries.
             </p>
           </motion.div>
 
@@ -516,7 +552,7 @@ export default function WebDevelopmentClientPage() {
                   />
                 </div>
                 <div className="p-6">
-                  <p className="mb-1 text-sm font-medium text-blue-600">{study.client}</p>
+                  <p className="mb-1 text-sm font-medium text-emerald-600">{study.client}</p>
                   <h3 className="mb-2 text-xl font-bold">{study.title}</h3>
                   <p className="text-gray-600 mb-4 line-clamp-2">{study.description}</p>
 
@@ -532,9 +568,6 @@ export default function WebDevelopmentClientPage() {
                     ))}
                   </div>
                 </div>
-                <div
-                  className={`absolute -right-12 -top-12 h-24 w-24 rounded-full bg-gradient-to-br ${study.color} opacity-20`}
-                ></div>
               </motion.div>
             ))}
           </motion.div>
@@ -551,7 +584,7 @@ export default function WebDevelopmentClientPage() {
             className="absolute inset-0 opacity-5"
             style={{
               backgroundImage:
-                "linear-gradient(to right, rgba(59, 130, 246, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(59, 130, 246, 0.1) 1px, transparent 1px)",
+                "linear-gradient(to right, rgba(16, 185, 129, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(16, 185, 129, 0.1) 1px, transparent 1px)",
               backgroundSize: "50px 50px",
               transform: `translateY(${scrollY * 0.1}px)`,
             }}
@@ -571,41 +604,41 @@ export default function WebDevelopmentClientPage() {
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Frequently Asked Questions</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Get answers to common questions about our web development services.
+              Get answers to common questions about our software development services.
             </p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-8">
             {[
               {
-                question: "How long does it take to build a website?",
+                question: "How long does it take to develop custom software?",
                 answer:
-                  "The timeline varies depending on the complexity of the project. A simple website might take 4-6 weeks, while more complex web applications can take 3-6 months. We'll provide a detailed timeline during our initial consultation.",
+                  "The timeline varies depending on the complexity of the project. Simple applications might take 3-4 months, while more complex enterprise systems can take 6-12 months. We'll provide a detailed timeline during our initial consultation.",
               },
               {
                 question: "Do you provide ongoing maintenance and support?",
                 answer:
-                  "Yes, we offer various maintenance and support packages to ensure your website remains secure, up-to-date, and performing optimally. Our team can handle everything from regular updates to content management and technical support.",
+                  "Yes, we offer various maintenance and support packages to ensure your software remains secure, up-to-date, and performing optimally. Our team can handle everything from regular updates to troubleshooting and technical support.",
               },
               {
-                question: "Will my website be mobile-friendly?",
+                question: "Can you integrate with our existing systems?",
                 answer:
-                  "All our websites are built with a mobile-first approach, ensuring they look and function beautifully across all devices, from smartphones and tablets to desktop computers.",
+                  "We specialize in system integration and can connect your new software with existing systems, databases, and third-party applications to create a seamless workflow across your organization.",
               },
               {
-                question: "Can you help with SEO for my website?",
+                question: "How do you ensure the security of our data?",
                 answer:
-                  "Yes, we implement SEO best practices during the development process to ensure your website is optimized for search engines. We also offer additional SEO services to help improve your search rankings and drive more organic traffic.",
+                  "Security is a top priority in our development process. We implement industry best practices for secure coding, use encryption for sensitive data, perform regular security audits, and follow compliance requirements specific to your industry.",
               },
               {
-                question: "What content management system (CMS) do you use?",
+                question: "Can you help with Odoo ERP implementation?",
                 answer:
-                  "We work with various CMS platforms depending on your specific needs. For custom web applications, we often build tailored admin interfaces. We're experienced with WordPress, Contentful, Sanity, and headless CMS solutions.",
+                  "Yes, we have extensive experience with Odoo ERP implementation and customization. We can help you set up, configure, and customize Odoo to meet your specific business requirements, as well as develop custom modules when needed.",
               },
               {
-                question: "How do you ensure website security?",
+                question: "How do you handle changes in requirements during development?",
                 answer:
-                  "Security is a top priority in our development process. We implement industry best practices for secure coding, use HTTPS encryption, perform regular security audits, and keep all software and dependencies up-to-date to protect against vulnerabilities.",
+                  "We follow agile development methodologies that accommodate changes throughout the development process. We work in sprints, regularly demonstrate progress, and gather feedback to ensure the final product meets your evolving needs.",
               },
             ].map((faq, index) => (
               <motion.div
@@ -616,7 +649,7 @@ export default function WebDevelopmentClientPage() {
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: 0.1 * index }}
               >
-                <h3 className="text-xl font-semibold mb-4 text-blue-800">{faq.question}</h3>
+                <h3 className="text-xl font-semibold mb-4 text-emerald-800">{faq.question}</h3>
                 <p className="text-gray-600">{faq.answer}</p>
               </motion.div>
             ))}
@@ -630,15 +663,15 @@ export default function WebDevelopmentClientPage() {
             transition={{ duration: 0.6 }}
           >
             <p className="text-lg text-gray-600 mb-6">
-              Have more questions about our web development services? We're here to help.
+              Have more questions about our software development services? We're here to help.
             </p>
-            <Button className="group relative overflow-hidden bg-blue-700 hover:bg-blue-800" asChild>
+            <Button className="group relative overflow-hidden bg-emerald-700 hover:bg-emerald-800" asChild>
               <Link href="/contact">
                 <span className="relative z-10 flex items-center">
-                  Contact Our Web Development Team
+                  Contact Our Software Development Team
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </span>
-                <span className="absolute inset-0 z-0 bg-gradient-to-r from-blue-600 to-cyan-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+                <span className="absolute inset-0 z-0 bg-gradient-to-r from-emerald-600 to-green-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
               </Link>
             </Button>
           </motion.div>
@@ -647,7 +680,7 @@ export default function WebDevelopmentClientPage() {
 
       {/* CTA Section */}
       <section className="relative overflow-hidden py-24 md:py-32 px-4 md:px-6 lg:px-8">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900 to-cyan-800"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-emerald-900 to-green-800"></div>
 
         {/* Animated particles */}
         <div className="absolute inset-0 overflow-hidden">
@@ -692,18 +725,20 @@ export default function WebDevelopmentClientPage() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Ready to Build Your Digital Presence?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+              Ready to Transform Your Business Operations?
+            </h2>
             <p className="text-lg opacity-90 max-w-3xl mx-auto mb-8 text-white/80">
-              Let's discuss how our web development expertise can help you create a stunning website that drives results
-              for your business.
+              Let's discuss how our custom software solutions can help you streamline processes, improve efficiency, and
+              drive growth.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="group relative overflow-hidden bg-white text-blue-900 hover:bg-white/90">
+              <Button size="lg" className="group relative overflow-hidden bg-white text-emerald-900 hover:bg-white/90">
                 <span className="relative z-10 flex items-center">
-                  Start Your Project
+                  Schedule a Consultation
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </span>
-                <span className="absolute bottom-0 left-0 h-0 w-full bg-gradient-to-r from-blue-100 to-cyan-100 transition-all duration-300 group-hover:h-full"></span>
+                <span className="absolute bottom-0 left-0 h-0 w-full bg-gradient-to-r from-emerald-100 to-green-100 transition-all duration-300 group-hover:h-full"></span>
               </Button>
               <Button
                 size="lg"
@@ -711,7 +746,7 @@ export default function WebDevelopmentClientPage() {
                 className="group relative overflow-hidden border-white/40 text-white hover:bg-white/10"
               >
                 <span className="relative z-10 flex items-center">
-                  View Our Web Portfolio
+                  Explore Our Software Portfolio
                   <ArrowUpRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </span>
                 <span className="absolute inset-0 h-full w-0 bg-white/10 transition-all duration-300 group-hover:w-full"></span>
