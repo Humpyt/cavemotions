@@ -67,7 +67,7 @@ export default function AIAutomationClientPage() {
       title: "Predictive Analytics",
       description:
         "Leverage machine learning algorithms to analyze historical data, identify patterns, and forecast future trends with remarkable accuracy.",
-      color: "from-blue-500 to-cyan-600",
+      color: "from-emerald-500 to-green-600",
     },
     {
       icon: Zap,
@@ -81,7 +81,7 @@ export default function AIAutomationClientPage() {
       title: "Custom AI Solutions",
       description:
         "Develop bespoke AI models tailored to your specific business challenges, from computer vision to natural language processing.",
-      color: "from-emerald-500 to-green-600",
+      color: "from-amber-500 to-orange-600",
     },
   ]
 
@@ -100,7 +100,7 @@ export default function AIAutomationClientPage() {
       description:
         "Implemented an AI chatbot that handles 65% of customer inquiries automatically, improving response time by 92%.",
       image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      color: "from-blue-500 to-cyan-600",
+      color: "from-emerald-500 to-teal-600",
     },
     {
       title: "Intelligent Document Processing",
@@ -108,7 +108,7 @@ export default function AIAutomationClientPage() {
       description:
         "Created an AI system that extracts, categorizes, and analyzes legal documents, reducing processing time by 83%.",
       image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      color: "from-amber-500 to-orange-600",
+      color: "from-blue-500 to-indigo-600",
     },
   ]
 
@@ -116,41 +116,19 @@ export default function AIAutomationClientPage() {
     <>
       <div className="flex flex-col min-h-screen" ref={containerRef}>
         {/* Hero Section */}
-        <section className="relative overflow-hidden bg-black py-32 md:py-40">
-          {/* Animated background elements */}
-          <div className="absolute inset-0">
-            <div className="absolute top-0 left-0 w-full h-full">
-              {Array.from({ length: 15 }).map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute rounded-full bg-purple-600/10"
-                  initial={{
-                    width: Math.random() * 100 + 50,
-                    height: Math.random() * 100 + 50,
-                    x: Math.random() * 100,
-                    y: Math.random() * 100,
-                    opacity: 0.1 + Math.random() * 0.2,
-                  }}
-                  animate={{
-                    x: `calc(${Math.random() * 100}vw - 50%)`,
-                    y: `calc(${Math.random() * 100}vh - 50%)`,
-                    opacity: [0.1 + Math.random() * 0.2, 0.2 + Math.random() * 0.3, 0.1 + Math.random() * 0.2],
-                  }}
-                  transition={{
-                    duration: 15 + Math.random() * 15,
-                    repeat: Number.POSITIVE_INFINITY,
-                    ease: "linear",
-                    repeatType: "reverse",
-                  }}
-                />
-              ))}
-            </div>
+        <section className="relative overflow-hidden bg-black py-16 md:py-20 min-h-[50vh]">
+          {/* Background Image */}
+          <div className="absolute inset-0 z-0">
+            <img
+              src="/Digital Services Background.jpg"
+              alt="Digital Services Background"
+              className="w-full h-full object-cover"
+            />
+            {/* Purple tint overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-900/80 via-violet-800/70 to-purple-900/80"></div>
           </div>
 
-          {/* Grid pattern overlay */}
-          <div className="absolute inset-0 bg-[url('/placeholder.svg?height=50&width=50&text=+')] bg-[length:50px_50px] opacity-5"></div>
-
-          <div className="container relative mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
+          <div className="container relative mx-auto max-w-6xl px-4 md:px-6 lg:px-8 z-10">
             <div className="text-center">
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
                 <Badge className="mb-6 bg-white/10 text-white hover:bg-white/20" variant="outline">
@@ -216,8 +194,8 @@ export default function AIAutomationClientPage() {
         {/* Overview Section */}
         <section className="py-24 md:py-32 px-4 md:px-6 lg:px-8 relative overflow-hidden">
           {/* Background gradient blobs */}
-          <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-purple-100/50 blur-3xl opacity-30"></div>
-          <div className="absolute -bottom-40 -right-40 h-96 w-96 rounded-full bg-violet-100/50 blur-3xl opacity-30"></div>
+          <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-black/50 blur-3xl opacity-30"></div>
+          <div className="absolute -bottom-40 -right-40 h-96 w-96 rounded-full bg-black/50 blur-3xl opacity-30"></div>
 
           <div className="container mx-auto max-w-6xl relative">
             <div className="flex flex-col md:flex-row items-center gap-12">
@@ -239,12 +217,12 @@ export default function AIAutomationClientPage() {
                     </div>
 
                     {/* Floating elements */}
-                    <div className="absolute -bottom-6 -left-6 h-24 w-24 rounded-xl bg-purple-100 p-3 shadow-lg">
-                      <div className="flex h-full w-full items-center justify-center rounded-lg bg-gradient-to-br from-purple-600 to-violet-700 text-white">
+                    <div className="absolute -bottom-6 -left-6 h-24 w-24 rounded-xl bg-gray-100 p-3 shadow-lg">
+                      <div className="flex h-full w-full items-center justify-center rounded-lg bg-black text-white">
                         <Brain className="h-10 w-10" />
                       </div>
                     </div>
-                    <div className="absolute -right-6 -top-6 rounded-xl bg-gradient-to-br from-violet-500 to-purple-700 p-4 text-white shadow-lg">
+                    <div className="absolute -right-6 -top-6 rounded-xl bg-black p-4 text-white shadow-lg">
                       <p className="text-sm font-medium">Future-Ready</p>
                     </div>
                   </div>
@@ -262,7 +240,7 @@ export default function AIAutomationClientPage() {
                   <h2 className="text-3xl md:text-4xl font-bold relative inline-block">
                     Intelligent Solutions for Modern Businesses
                     <motion.span
-                      className="absolute -bottom-2 left-0 h-1 w-0 bg-gradient-to-r from-purple-400 to-violet-400"
+                      className="absolute -bottom-2 left-0 h-1 w-0 bg-black"
                       initial={{ width: "0%" }}
                       whileInView={{ width: "100%" }}
                       viewport={{ once: true }}
@@ -382,8 +360,8 @@ export default function AIAutomationClientPage() {
         {/* Process Section */}
         <section className="py-24 md:py-32 px-4 md:px-6 lg:px-8 relative overflow-hidden">
           {/* Background gradient blobs */}
-          <div className="absolute top-40 -right-40 h-96 w-96 rounded-full bg-purple-100/50 blur-3xl opacity-30"></div>
-          <div className="absolute bottom-40 -left-40 h-96 w-96 rounded-full bg-violet-100/50 blur-3xl opacity-30"></div>
+          <div className="absolute top-40 -right-40 h-96 w-96 rounded-full bg-black/50 blur-3xl opacity-30"></div>
+          <div className="absolute bottom-40 -left-40 h-96 w-96 rounded-full bg-black/50 blur-3xl opacity-30"></div>
 
           <div className="container mx-auto max-w-6xl relative">
             <motion.div
@@ -545,8 +523,8 @@ export default function AIAutomationClientPage() {
         {/* FAQ Section */}
         <section className="py-24 md:py-32 px-4 md:px-6 lg:px-8 relative overflow-hidden">
           {/* Background gradient blobs */}
-          <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-purple-100/50 blur-3xl opacity-30"></div>
-          <div className="absolute -bottom-40 -right-40 h-96 w-96 rounded-full bg-violet-100/50 blur-3xl opacity-30"></div>
+          <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-black/50 blur-3xl opacity-30"></div>
+          <div className="absolute -bottom-40 -right-40 h-96 w-96 rounded-full bg-black/50 blur-3xl opacity-30"></div>
 
           <div className="container mx-auto max-w-6xl relative">
             <motion.div
@@ -606,7 +584,7 @@ export default function AIAutomationClientPage() {
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.6, delay: 0.1 * index }}
                 >
-                  <h3 className="text-xl font-semibold mb-4 text-purple-800">{faq.question}</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-black">{faq.question}</h3>
                   <p className="text-gray-600">{faq.answer}</p>
                 </motion.div>
               ))}
@@ -622,13 +600,13 @@ export default function AIAutomationClientPage() {
               <p className="text-lg text-gray-600 mb-6">
                 Have more questions about our AI automation services? We're here to help.
               </p>
-              <Button className="group relative overflow-hidden bg-purple-700 hover:bg-purple-800" asChild>
+              <Button className="group relative overflow-hidden bg-black hover:bg-gray-800" asChild>
                 <Link href="/contact">
                   <span className="relative z-10 flex items-center">
                     Contact Our AI Specialists
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </span>
-                  <span className="absolute inset-0 z-0 bg-gradient-to-r from-purple-600 to-violet-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+                  <span className="absolute inset-0 z-0 bg-gradient-to-r from-gray-800 to-gray-900 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
                 </Link>
               </Button>
             </motion.div>

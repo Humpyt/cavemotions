@@ -2,12 +2,14 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
-import { ArrowRight, ExternalLink, Play, Sparkles } from "lucide-react"
+import { ArrowRight, ExternalLink, Play, Sparkles, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"
 import ServiceCard from "@/components/service-card"
+import ShaderBackground from "@/components/shader-background"
+import { TestimonialsSimple } from "@/components/testimonials-simple"
 import { motion } from "framer-motion" // Import motion
 
 export default function HomePageClient() {
@@ -47,17 +49,20 @@ export default function HomePageClient() {
     <>
       <div className="flex flex-col min-h-screen">
         {/* Hero Section */}
-        <section
-          className="relative overflow-hidden bg-black py-32 md:py-40 lg:py-48"
-          style={{
-            backgroundImage: "radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.1) 0%, rgba(0, 0, 0, 0) 70%)",
-          }}
-        >
-          {/* Grid pattern overlay */}
-          <div className="absolute inset-0 bg-[url('/placeholder.svg?height=50&width=50&text=+')] bg-[length:50px_50px] opacity-5"></div>
+        <section className="relative overflow-hidden bg-black py-32 md:py-40 lg:py-48 min-h-screen">
+          {/* Spline Background */}
+          <div className="absolute top-0 left-0 w-full h-full z-0">
+            <iframe
+              src='https://my.spline.design/retrofuturismbganimation-Lb3VtL1bNaYUnirKNzn0FvaW/'
+              frameBorder='0'
+              width='100%'
+              height='100%'
+              className="w-full h-full"
+            />
+          </div>
 
           <motion.div
-            className="container relative mx-auto max-w-6xl px-4 md:px-6 lg:px-8"
+            className="container relative mx-auto max-w-6xl px-4 md:px-6 lg:px-8 z-10"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
@@ -105,11 +110,14 @@ export default function HomePageClient() {
                   size="lg"
                   variant="outline"
                   className="group relative overflow-hidden border-white/20 text-white hover:bg-white/10 bg-transparent"
+                  asChild
                 >
-                  <span className="relative z-10 flex items-center">
-                    <Play className="mr-2 h-4 w-4" /> Watch Showreel
-                  </span>
-                  <span className="absolute inset-0 z-0 bg-gradient-to-r from-purple-400 to-violet-400 opacity-0 transition-opacity duration-300 group-hover:opacity-20"></span>
+                  <Link href="/contact">
+                    <span className="relative z-10 flex items-center">
+                      <User className="mr-2 h-4 w-4" /> Contact Us
+                    </span>
+                    <span className="absolute inset-0 z-0 bg-gradient-to-r from-purple-400 to-violet-400 opacity-0 transition-opacity duration-300 group-hover:opacity-20"></span>
+                  </Link>
                 </Button>
               </motion.div>
 
@@ -119,7 +127,7 @@ export default function HomePageClient() {
                   { value: "50+", label: "Clients Worldwide" },
                   { value: "98%", label: "Client Satisfaction" },
                   { value: "120+", label: "Projects Completed" },
-                  { value: "15+", label: "Industry Awards" },
+                  { value: "8+", label: "Years in Business" },
                 ].map((stat, index) => (
                   <motion.div
                     key={index}
@@ -145,7 +153,7 @@ export default function HomePageClient() {
           </motion.div>
 
           {/* Scroll indicator */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
             <div className="flex flex-col items-center">
               <p className="mb-2 text-sm text-white/50">Scroll to explore</p>
               <div className="h-10 w-6 rounded-full border border-white/20 p-1">
@@ -180,19 +188,19 @@ export default function HomePageClient() {
                   {/* Main image */}
                   <div className="overflow-hidden rounded-2xl shadow-2xl">
                     <img
-                      src="/placeholder.svg?height=600&width=600&text=Team+Collaboration+Digital+Innovation"
-                      alt="Cave Motions team collaborating on digital innovation projects"
-                      className="w-full transition-transform duration-700 hover:scale-105"
+                      src="/images/cavemotionshome.jpeg"
+                      alt="Cave Motions digital innovation studio team in Kampala Uganda - AI automation web development software development experts"
+                      className="w-full h-[500px] object-cover transition-transform duration-700 hover:scale-105"
                     />
                   </div>
 
                   {/* Floating elements */}
-                  <div className="absolute -bottom-6 -left-6 h-32 w-32 rounded-xl bg-purple-100 p-4 shadow-lg">
-                    <div className="flex h-full w-full items-center justify-center rounded-lg bg-purple-600 text-white">
+                  <div className="absolute -bottom-6 -left-6 h-32 w-32 rounded-xl bg-gray-100 p-4 shadow-lg">
+                    <div className="flex h-full w-full items-center justify-center rounded-lg bg-black text-white">
                       <span className="text-3xl font-bold">10+</span>
                     </div>
                   </div>
-                  <div className="absolute -right-6 -top-6 rounded-xl bg-gradient-to-br from-violet-500 to-purple-700 p-6 text-white shadow-lg">
+                  <div className="absolute -right-6 -top-6 rounded-xl bg-black p-6 text-white shadow-lg">
                     <p className="text-sm font-medium">Years of Excellence</p>
                   </div>
                 </div>
@@ -212,40 +220,41 @@ export default function HomePageClient() {
                       <span className="absolute -bottom-2 left-0 h-1 w-full bg-gradient-to-r from-purple-400 to-violet-400"></span>
                     </span>
                   </h2>
-                  <p className="text-lg text-gray-600">
-                    Founded by visionary tech entrepreneur Sam Altman, Cave Motions was built on the belief that
-                    technology should be both powerful and delightful. We've assembled a team of world-class engineers,
-                    designers, and AI specialists to create digital solutions that push boundaries.
+                  <p className="text-lg text-gray-600 leading-relaxed">
+                    Founded in Kampala, Cave Motions was built on the belief that technology should be both powerful and inspiring.
+                    We've assembled a passionate team of world-class engineers, designers, and AI specialists to craft digital
+                    solutions that drive growth. Our mission is to empower businesses with creative, future-ready innovations
+                    that push boundaries and transform possibilities.
                   </p>
                 </div>
 
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                   {[
                     {
-                      title: "Innovation-First Approach",
-                      description: "We constantly explore emerging technologies to deliver cutting-edge solutions.",
+                      title: "Passionate Innovation",
+                      description: "Our team's passion fuels breakthrough solutions that redefine what's possible in digital transformation.",
                     },
                     {
-                      title: "Human-Centered Design",
-                      description: "Technology should enhance human experiences, not complicate them.",
+                      title: "World-Class Expertise",
+                      description: "Engineers, designers, and AI specialists working together to craft exceptional digital experiences.",
                     },
                     {
-                      title: "Global Perspective",
-                      description: "Our diverse team brings insights from around the world to every project.",
+                      title: "Growth-Driven Solutions",
+                      description: "Every solution we create is designed to drive measurable business growth and success.",
                     },
                     {
-                      title: "Ethical Technology",
-                      description: "We build solutions that prioritize privacy, security, and social responsibility.",
+                      title: "Future-Ready Technology",
+                      description: "We build with tomorrow in mind, ensuring your solutions evolve with emerging technologies.",
                     },
                   ].map((item, index) => (
                     <div
                       key={index}
-                      className="group rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:border-purple-200"
+                      className="group rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:border-purple-200 hover:-translate-y-1"
                     >
                       <h3 className="mb-2 text-lg font-semibold group-hover:text-purple-700 transition-colors">
                         {item.title}
                       </h3>
-                      <p className="text-gray-600">{item.description}</p>
+                      <p className="text-gray-600 text-sm leading-relaxed">{item.description}</p>
                     </div>
                   ))}
                 </div>
@@ -264,18 +273,19 @@ export default function HomePageClient() {
         </section>
 
         {/* Services Section */}
-        <section className="relative overflow-hidden bg-gray-50 py-24 md:py-32">
-          {/* Background elements */}
-          <div className="absolute -left-32 top-0 h-64 w-64 rounded-full bg-purple-100 opacity-70 blur-3xl"></div>
-          <div className="absolute -right-32 bottom-0 h-64 w-64 rounded-full bg-violet-100 opacity-70 blur-3xl"></div>
+        <section className="relative overflow-hidden bg-black py-24 md:py-32 text-white">
+          {/* Shader Background */}
+          <div className="absolute inset-0 z-0">
+            <ShaderBackground />
+          </div>
 
-          <div className="container relative mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
+          <div className="container relative mx-auto max-w-6xl px-4 md:px-6 lg:px-8 z-10">
             <div className="mb-16 text-center">
-              <Badge className="mb-4 bg-purple-100 text-purple-800 hover:bg-purple-200" variant="secondary">
+              <Badge className="mb-4 bg-white/10 hover:bg-white/20 text-white" variant="outline">
                 Services
               </Badge>
               <h2 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl">Our Digital Playground</h2>
-              <p className="mx-auto max-w-2xl text-lg text-gray-600">
+              <p className="mx-auto max-w-2xl text-lg text-white/70">
                 We combine technical expertise with creative vision to deliver exceptional digital experiences that
                 drive business growth and user engagement.
               </p>
@@ -296,7 +306,7 @@ export default function HomePageClient() {
                 description="Create stunning, responsive websites and web applications that engage and convert."
                 features={["Responsive Design", "Modern Frameworks", "Performance Optimization", "SEO Integration"]}
                 href="/services/web-development"
-                gradient="from-blue-500 to-cyan-600"
+                gradient="from-purple-500 to-violet-600"
               />
               <ServiceCard
                 icon="PuzzlePiece"
@@ -304,7 +314,7 @@ export default function HomePageClient() {
                 description="Build custom software solutions tailored to your unique business requirements."
                 features={["Custom Applications", "Enterprise Solutions", "System Integration", "Cloud Deployment"]}
                 href="/services/software-development"
-                gradient="from-emerald-500 to-green-600"
+                gradient="from-purple-500 to-violet-600"
               />
               <ServiceCard
                 icon="Smartphone"
@@ -312,12 +322,12 @@ export default function HomePageClient() {
                 description="Develop intuitive mobile apps that provide exceptional user experiences across platforms."
                 features={["iOS & Android", "Cross-Platform", "Native Performance", "App Store Optimization"]}
                 href="/services/mobile-applications"
-                gradient="from-amber-500 to-orange-600"
+                gradient="from-purple-500 to-violet-600"
               />
             </div>
 
             <div className="mt-16 text-center">
-              <Button size="lg" className="group bg-black text-white hover:bg-gray-800" asChild>
+              <Button size="lg" className="group bg-white text-black hover:bg-white/90" asChild>
                 <Link href="/services">
                   Explore All Services
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -385,7 +395,7 @@ export default function HomePageClient() {
                     {
                       title: "Cavmo Bulk SMS",
                       category: "Mobile Applications",
-                      image: "/images/cavmo-dashboard-main-new.png",
+                      image: "/images/bulksms.jpg",
                       color: "from-indigo-500 to-purple-600",
                       href: "/portfolio/projects/cavmo-bulk-sms",
                     },
@@ -399,7 +409,7 @@ export default function HomePageClient() {
                   ].map((project, index) => (
                     <div
                       key={index}
-                      className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-xl"
+                      className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-purple-500/25 hover:border-purple-200 border border-transparent"
                     >
                       <div className="aspect-[4/3] overflow-hidden">
                         <img
@@ -408,37 +418,13 @@ export default function HomePageClient() {
                           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                         />
                       </div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                        <div className="absolute bottom-0 w-full p-6 text-white">
-                          <p className="mb-2 text-sm font-medium text-white/80">{project.category}</p>
-                          <h3 className="mb-2 text-2xl font-bold">{project.title}</h3>
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            className="border-white/30 text-white hover:bg-white/10 bg-transparent"
-                            asChild
-                          >
-                            <Link href={project.href}>
-                              View Project
-                              <ArrowRight className="ml-1 h-3 w-3" />
-                            </Link>
-                          </Button>
-                        </div>
-                      </div>
                       <div className="p-6">
-                        <p className="mb-1 text-sm font-medium text-purple-600">{project.category}</p>
-                        <h3 className="mb-2 text-xl font-bold">{project.title}</h3>
-                        <Link
-                          href={project.href}
-                          className="inline-flex items-center text-sm font-medium text-gray-600 hover:text-black"
-                        >
-                          View Details
-                          <ArrowRight className="ml-1 h-3 w-3" />
-                        </Link>
+                        <p className="mb-1 text-sm font-medium text-purple-600 transition-colors duration-300 group-hover:text-purple-700">{project.category}</p>
+                        <h3 className="mb-2 text-xl font-bold transition-colors duration-300 group-hover:text-purple-800">{project.title}</h3>
                       </div>
                       <div
                         className={cn(
-                          "absolute -right-12 -top-12 h-24 w-24 rounded-full bg-gradient-to-br",
+                          "absolute -right-12 -top-12 h-24 w-24 rounded-full bg-gradient-to-br transition-all duration-500 group-hover:scale-110 group-hover:opacity-30",
                           project.color,
                           "opacity-20",
                         )}
@@ -475,7 +461,7 @@ export default function HomePageClient() {
                   ].map((project, index) => (
                     <div
                       key={index}
-                      className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-xl"
+                      className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-purple-500/25 hover:border-purple-200 border border-transparent"
                     >
                       <div className="aspect-[4/3] overflow-hidden">
                         <img
@@ -485,19 +471,13 @@ export default function HomePageClient() {
                         />
                       </div>
                       <div className="p-6">
-                        <p className="mb-1 text-sm font-medium text-purple-600">{project.category}</p>
-                        <h3 className="mb-2 text-xl font-bold">{project.title}</h3>
-                        <Link
-                          href={project.href}
-                          className="inline-flex items-center text-sm font-medium text-gray-600 hover:text-black"
-                        >
-                          View Details
-                          <ArrowRight className="ml-1 h-3 w-3" />
-                        </Link>
+                        <p className="mb-1 text-sm font-medium text-purple-600 transition-colors duration-300 group-hover:text-purple-700">{project.category}</p>
+                        <h3 className="mb-2 text-xl font-bold transition-colors duration-300 group-hover:text-purple-800">{project.title}</h3>
+
                       </div>
                       <div
                         className={cn(
-                          "absolute -right-12 -top-12 h-24 w-24 rounded-full bg-gradient-to-br",
+                          "absolute -right-12 -top-12 h-24 w-24 rounded-full bg-gradient-to-br transition-all duration-500 group-hover:scale-110 group-hover:opacity-30",
                           project.color,
                           "opacity-20",
                         )}
@@ -513,21 +493,21 @@ export default function HomePageClient() {
                     {
                       title: "Repair Pro",
                       category: "Software Development",
-                      image: "/images/repair-pro-store.jpeg",
+                      image: "/images/repair-pro-featured.jpeg",
                       color: "from-blue-500 to-indigo-600",
                       href: "/portfolio/projects/repair-pro",
                     },
                     {
                       title: "Cavmo SACCO Management System",
                       category: "Software Development",
-                      image: "/images/cavemo-sacco-dashboard.jpeg",
+                      image: "/images/cavemo-sacco-featured.png",
                       color: "from-emerald-500 to-teal-600",
                       href: "/portfolio/projects/cavemo-sacco",
                     },
                   ].map((project, index) => (
                     <div
                       key={index}
-                      className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-xl"
+                      className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-purple-500/25 hover:border-purple-200 border border-transparent"
                     >
                       <div className="aspect-[4/3] overflow-hidden">
                         <img
@@ -537,19 +517,13 @@ export default function HomePageClient() {
                         />
                       </div>
                       <div className="p-6">
-                        <p className="mb-1 text-sm font-medium text-purple-600">{project.category}</p>
-                        <h3 className="mb-2 text-xl font-bold">{project.title}</h3>
-                        <Link
-                          href={project.href}
-                          className="inline-flex items-center text-sm font-medium text-gray-600 hover:text-black"
-                        >
-                          View Details
-                          <ArrowRight className="ml-1 h-3 w-3" />
-                        </Link>
+                        <p className="mb-1 text-sm font-medium text-purple-600 transition-colors duration-300 group-hover:text-purple-700">{project.category}</p>
+                        <h3 className="mb-2 text-xl font-bold transition-colors duration-300 group-hover:text-purple-800">{project.title}</h3>
+
                       </div>
                       <div
                         className={cn(
-                          "absolute -right-12 -top-12 h-24 w-24 rounded-full bg-gradient-to-br",
+                          "absolute -right-12 -top-12 h-24 w-24 rounded-full bg-gradient-to-br transition-all duration-500 group-hover:scale-110 group-hover:opacity-30",
                           project.color,
                           "opacity-20",
                         )}
@@ -565,14 +539,14 @@ export default function HomePageClient() {
                     {
                       title: "Cavmo Bulk SMS",
                       category: "Mobile Applications",
-                      image: "/images/cavmo-dashboard-main-new.png",
+                      image: "/images/bulksms.jpg",
                       color: "from-indigo-500 to-purple-600",
                       href: "/portfolio/projects/cavmo-bulk-sms",
                     },
                   ].map((project, index) => (
                     <div
                       key={index}
-                      className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-xl"
+                      className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-purple-500/25 hover:border-purple-200 border border-transparent"
                     >
                       <div className="aspect-[4/3] overflow-hidden">
                         <img
@@ -582,19 +556,13 @@ export default function HomePageClient() {
                         />
                       </div>
                       <div className="p-6">
-                        <p className="mb-1 text-sm font-medium text-purple-600">{project.category}</p>
-                        <h3 className="mb-2 text-xl font-bold">{project.title}</h3>
-                        <Link
-                          href={project.href}
-                          className="inline-flex items-center text-sm font-medium text-gray-600 hover:text-black"
-                        >
-                          View Details
-                          <ArrowRight className="ml-1 h-3 w-3" />
-                        </Link>
+                        <p className="mb-1 text-sm font-medium text-purple-600 transition-colors duration-300 group-hover:text-purple-700">{project.category}</p>
+                        <h3 className="mb-2 text-xl font-bold transition-colors duration-300 group-hover:text-purple-800">{project.title}</h3>
+
                       </div>
                       <div
                         className={cn(
-                          "absolute -right-12 -top-12 h-24 w-24 rounded-full bg-gradient-to-br",
+                          "absolute -right-12 -top-12 h-24 w-24 rounded-full bg-gradient-to-br transition-all duration-500 group-hover:scale-110 group-hover:opacity-30",
                           project.color,
                           "opacity-20",
                         )}
@@ -617,79 +585,7 @@ export default function HomePageClient() {
         </section>
 
         {/* Testimonials */}
-        <section className="relative overflow-hidden bg-black py-24 md:py-32 text-white">
-          {/* Background elements */}
-          <div className="absolute inset-0 bg-[url('/placeholder.svg?height=20&width=20&text=+')] bg-[length:20px_20px] opacity-5"></div>
-          <div className="absolute -top-40 -right-40 h-96 w-96 rounded-full bg-purple-600/20 blur-3xl"></div>
-          <div className="absolute -bottom-40 -left-40 h-96 w-96 rounded-full bg-violet-600/20 blur-3xl"></div>
-
-          <div className="container relative mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
-            <div className="mb-16 text-center">
-              <Badge className="mb-4 bg-white/10 hover:bg-white/20" variant="outline">
-                Testimonials
-              </Badge>
-              <h2 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl">What Our Clients Say</h2>
-              <p className="mx-auto max-w-2xl text-lg text-white/70">
-                We've helped businesses of all sizes transform their digital presence and achieve remarkable results.
-                Here's what they have to say about working with us.
-              </p>
-            </div>
-
-            <div className="grid gap-8 md:grid-cols-2">
-              {[
-                {
-                  quote:
-                    "Cave Motions completely transformed our digital strategy. Their AI-powered solutions have increased our operational efficiency by 45% and customer satisfaction by 60%. They're not just vendors, they're strategic partners.",
-                  author: "Grace T.",
-                  role: "CTO, Quantum Innovations",
-                  image: "/placeholder.svg?height=100&width=100&text=Professional+Woman+Portrait",
-                },
-                {
-                  quote:
-                    "Working with Sam and the Cave Motions team has been a game-changer for our business. Their attention to detail, technical expertise, and creative approach helped us launch a platform that our users absolutely love.",
-                  author: "Daniel K.",
-                  role: "Founder, Horizon Analytics",
-                  image: "/placeholder.svg?height=100&width=100&text=Professional+Man+Portrait",
-                },
-              ].map((testimonial, index) => (
-                <div
-                  key={index}
-                  className="rounded-2xl bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm border border-white/10 p-8"
-                >
-                  <div className="mb-6 flex items-center">
-                    <div className="mr-4 h-12 w-12 overflow-hidden rounded-full">
-                      <img
-                        src={testimonial.image || "/placeholder.svg"}
-                        alt={testimonial.author}
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-semibold text-white">{testimonial.author}</h4>
-                      <p className="text-sm text-white/70">{testimonial.role}</p>
-                    </div>
-                  </div>
-                  <blockquote className="relative">
-                    <span className="absolute -left-2 -top-2 text-4xl text-white/20">"</span>
-                    <p className="relative z-10 text-white/90">{testimonial.quote}</p>
-                  </blockquote>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-16 flex flex-wrap items-center justify-center gap-8 md:gap-16">
-              {[1, 2, 3, 4, 5, 6].map((item) => (
-                <div key={item} className="grayscale transition-all duration-300 hover:grayscale-0">
-                  <img
-                    src={`/client_text.png?height=60&width=120&text=Client ${item}`}
-                    alt={`Client ${item} logo`}
-                    className="h-8 md:h-10"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <TestimonialsSimple />
 
         {/* CTA Section */}
         <section className="py-24 md:py-32">
@@ -813,6 +709,59 @@ export default function HomePageClient() {
                 },
               ],
             },
+          }),
+        }}
+      />
+
+      {/* FAQ Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What services does Cave Motions offer?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Cave Motions offers AI automation, web development, software development, mobile applications, and business intelligence solutions for businesses in Uganda and beyond."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Where is Cave Motions located?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Cave Motions is located in Bugolobi, Kampala, Uganda. We serve clients locally and internationally."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How can I get started with Cave Motions?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "You can get started by visiting our Get Started page, calling us at +256-787-022105, or emailing hello@cavemotions.com for a free consultation."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does Cave Motions work with small businesses?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, Cave Motions works with businesses of all sizes, from startups and SMEs to large enterprises. We offer scalable solutions tailored to your budget and needs."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What makes Cave Motions different from other agencies?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Cave Motions combines local market knowledge with cutting-edge technology. We specialize in AI automation, have deep understanding of the Ugandan market, and focus on delivering measurable results for our clients."
+                }
+              }
+            ]
           }),
         }}
       />

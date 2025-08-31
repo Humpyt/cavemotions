@@ -85,8 +85,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="icon" href="/images/Cavemo fav-01.png" sizes="any" />
+        <link rel="apple-touch-icon" href="/images/Cavemo fav-01.png" />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body className={`${inter.variable} font-sans antialiased`} suppressHydrationWarning>
@@ -131,6 +131,62 @@ export default function RootLayout({
               },
               description:
                 "Cave Motions is a premium digital innovation studio offering AI automation, web development, software development, and mobile application services.",
+            }),
+          }}
+        />
+
+        {/* Local Business Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "@id": "https://cavemotions.com/#localbusiness",
+              name: "Cave Motions",
+              image: "https://cavemotions.com/images/logo.png",
+              url: "https://cavemotions.com",
+              telephone: "+256-787-022105",
+              email: "hello@cavemotions.com",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "Bugolobi",
+                addressLocality: "Kampala",
+                addressRegion: "Central Region",
+                addressCountry: "Uganda",
+              },
+              geo: {
+                "@type": "GeoCoordinates",
+                latitude: "0.3476",
+                longitude: "32.6204",
+              },
+              openingHoursSpecification: {
+                "@type": "OpeningHoursSpecification",
+                dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                opens: "08:00",
+                closes: "18:00",
+              },
+              sameAs: [
+                "https://twitter.com/cavemotions",
+                "https://www.facebook.com/cavemotions",
+                "https://www.linkedin.com/company/cavemotions",
+                "https://www.instagram.com/cavemotions",
+              ],
+              priceRange: "$$",
+              description: "Leading digital innovation studio in Kampala, Uganda specializing in AI automation, web development, software development, and mobile applications.",
+              areaServed: {
+                "@type": "Country",
+                name: "Uganda",
+              },
+              serviceArea: {
+                "@type": "GeoCircle",
+                geoMidpoint: {
+                "@type": "GeoCoordinates",
+                latitude: "0.3476",
+                longitude: "32.6204",
+                },
+                geoRadius: "50000",
+              },
             }),
           }}
         />

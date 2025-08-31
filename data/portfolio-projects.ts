@@ -139,13 +139,13 @@ export const portfolioProjects = [
     category: "Mobile Applications",
     description:
       "A lightweight mobile solution that empowers users to send scheduled bulk SMS campaigns directly from their device. Features 100% native SMS delivery, flexible campaign scheduling, comprehensive contact management, and offline data storage for privacy and control.",
-    image: "/images/cavmo-dashboard-main-new.png",
+    image: "/images/bulksms.jpg",
     color: "from-indigo-500 to-purple-600",
     tags: ["mobile", "all"],
     liveUrl: "#",
     slug: "cavmo-bulk-sms",
     gallery: [
-      "/images/cavmo-dashboard-main-new.png",
+      "/images/bulksms.jpg",
       "/images/cavmo-create-campaign-new.png",
       "/images/cavmo-contacts-import-new.png",
       "/images/cavmo-select-recipients-new.png",
@@ -172,6 +172,17 @@ export const portfolioProjects = [
     color: "from-purple-500 to-pink-600",
     tags: ["web", "all"],
     liveUrl: "https://andrewkampanifoundation.com",
+  },
+  {
+    id: 24,
+    title: "Kampani's Shoes and Bags Clinic",
+    category: "Web Development",
+    description:
+      "Professional shoe and bag repair service website featuring service showcases, repair processes, and customer testimonials. Modern design highlighting craftsmanship and quality restoration services.",
+    image: "/images/cavemo 2.png",
+    color: "from-orange-500 to-red-600",
+    tags: ["web", "all"],
+    liveUrl: "https://kampashoesandbagsclinic.netlify.app/",
   },
   {
     id: 22,

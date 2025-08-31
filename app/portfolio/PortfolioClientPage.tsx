@@ -67,38 +67,15 @@ export default function PortfolioClientPage({ initialCategory = "all" }: Portfol
       <div className="flex flex-col min-h-screen" ref={containerRef}>
         {/* Hero Section */}
         <section className="relative overflow-hidden bg-black py-32 md:py-40">
-          {/* Animated background elements */}
-          <div className="absolute inset-0">
-            <div className="absolute top-0 left-0 w-full h-full">
-              {Array.from({ length: 15 }).map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute rounded-full bg-purple-600/10"
-                  initial={{
-                    width: Math.random() * 100 + 50,
-                    height: Math.random() * 100 + 50,
-                    x: Math.random() * 100,
-                    y: Math.random() * 100,
-                    opacity: 0.1 + Math.random() * 0.2,
-                  }}
-                  animate={{
-                    x: `calc(${Math.random() * 100}vw - 50%)`,
-                    y: `calc(${Math.random() * 100}vh - 50%)`,
-                    opacity: [0.1 + Math.random() * 0.2, 0.2 + Math.random() * 0.3, 0.1 + Math.random() * 0.2],
-                  }}
-                  transition={{
-                    duration: 15 + Math.random() * 15,
-                    repeat: Number.POSITIVE_INFINITY,
-                    ease: "linear",
-                    repeatType: "reverse",
-                  }}
-                />
-              ))}
-            </div>
+          {/* Background Image */}
+          <div className="absolute inset-0 z-0">
+            <img
+              src="/Digital Services Background.jpg"
+              alt="Digital Services Background"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-900/80 via-violet-800/70 to-purple-900/80" />
           </div>
-
-          {/* Grid pattern overlay */}
-          <div className="absolute inset-0 bg-[url('/placeholder.svg?height=50&width=50&text=+')] bg-[length:50px_50px] opacity-5"></div>
 
           <div className="container relative mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
             <div className="text-center">
@@ -219,34 +196,16 @@ export default function PortfolioClientPage({ initialCategory = "all" }: Portfol
                   {filteredProjects.map((project, index) => (
                     <motion.div
                       key={project.id}
-                      className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-xl"
+                      className="group relative overflow-hidden rounded-2xl bg-white shadow-lg"
                       variants={fadeInUpVariants}
                       custom={index}
-                      whileHover={{ scale: 1.02 }}
-                      transition={{ duration: 0.2 }}
                     >
                       <div className="aspect-[4/3] overflow-hidden">
                         <img
                           src={project.image || "/placeholder.svg"}
                           alt={`${project.title} - ${project.category} project by Cave Motions`}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
                         />
-                      </div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                        <div className="absolute bottom-0 w-full p-6 text-white">
-                          <p className="mb-2 text-sm font-medium text-white/80">{project.category}</p>
-                          <h3 className="mb-2 text-2xl font-bold">{project.title}</h3>
-                          <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              className="border-white/30 text-white hover:bg-white/10 bg-transparent"
-                            >
-                              View Project
-                              <ArrowRight className="ml-1 h-3 w-3" />
-                            </Button>
-                          </Link>
-                        </div>
                       </div>
                       <div className="p-6">
                         <p className="mb-1 text-sm font-medium text-purple-600">{project.category}</p>
@@ -294,7 +253,7 @@ export default function PortfolioClientPage({ initialCategory = "all" }: Portfol
                   {filteredProjects.map((project, index) => (
                     <motion.div
                       key={project.id}
-                      className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-xl"
+                      className="group relative overflow-hidden rounded-2xl bg-white shadow-lg"
                       variants={fadeInUpVariants}
                       custom={index}
                     >
@@ -302,24 +261,8 @@ export default function PortfolioClientPage({ initialCategory = "all" }: Portfol
                         <img
                           src={project.image || "/placeholder.svg"}
                           alt={`${project.title} - ${project.category} project by Cave Motions`}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
                         />
-                      </div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                        <div className="absolute bottom-0 w-full p-6 text-white">
-                          <p className="mb-2 text-sm font-medium text-white/80">{project.category}</p>
-                          <h3 className="mb-2 text-2xl font-bold">{project.title}</h3>
-                          <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              className="border-white/30 text-white hover:bg-white/10 bg-transparent"
-                            >
-                              View Project
-                              <ArrowRight className="ml-1 h-3 w-3" />
-                            </Button>
-                          </Link>
-                        </div>
                       </div>
                       <div className="p-6">
                         <p className="mb-1 text-sm font-medium text-purple-600">{project.category}</p>
@@ -367,7 +310,7 @@ export default function PortfolioClientPage({ initialCategory = "all" }: Portfol
                   {filteredProjects.map((project, index) => (
                     <motion.div
                       key={project.id}
-                      className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-xl"
+                      className="group relative overflow-hidden rounded-2xl bg-white shadow-lg"
                       variants={fadeInUpVariants}
                       custom={index}
                     >
@@ -375,24 +318,8 @@ export default function PortfolioClientPage({ initialCategory = "all" }: Portfol
                         <img
                           src={project.image || "/placeholder.svg"}
                           alt={`${project.title} - ${project.category} project by Cave Motions`}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
                         />
-                      </div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                        <div className="absolute bottom-0 w-full p-6 text-white">
-                          <p className="mb-2 text-sm font-medium text-white/80">{project.category}</p>
-                          <h3 className="mb-2 text-2xl font-bold">{project.title}</h3>
-                          <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              className="border-white/30 text-white hover:bg-white/10 bg-transparent"
-                            >
-                              View Project
-                              <ArrowRight className="ml-1 h-3 w-3" />
-                            </Button>
-                          </Link>
-                        </div>
                       </div>
                       <div className="p-6">
                         <p className="mb-1 text-sm font-medium text-purple-600">{project.category}</p>
@@ -440,7 +367,7 @@ export default function PortfolioClientPage({ initialCategory = "all" }: Portfol
                   {filteredProjects.map((project, index) => (
                     <motion.div
                       key={project.id}
-                      className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-xl"
+                      className="group relative overflow-hidden rounded-2xl bg-white shadow-lg"
                       variants={fadeInUpVariants}
                       custom={index}
                     >
@@ -448,24 +375,8 @@ export default function PortfolioClientPage({ initialCategory = "all" }: Portfol
                         <img
                           src={project.image || "/placeholder.svg"}
                           alt={`${project.title} - ${project.category} project by Cave Motions`}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
                         />
-                      </div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                        <div className="absolute bottom-0 w-full p-6 text-white">
-                          <p className="mb-2 text-sm font-medium text-white/80">{project.category}</p>
-                          <h3 className="mb-2 text-2xl font-bold">{project.title}</h3>
-                          <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              className="border-white/30 text-white hover:bg-white/10 bg-transparent"
-                            >
-                              View Project
-                              <ArrowRight className="ml-1 h-3 w-3" />
-                            </Button>
-                          </Link>
-                        </div>
                       </div>
                       <div className="p-6">
                         <p className="mb-1 text-sm font-medium text-purple-600">{project.category}</p>
@@ -513,7 +424,7 @@ export default function PortfolioClientPage({ initialCategory = "all" }: Portfol
                   {filteredProjects.map((project, index) => (
                     <motion.div
                       key={project.id}
-                      className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-xl"
+                      className="group relative overflow-hidden rounded-2xl bg-white shadow-lg"
                       variants={fadeInUpVariants}
                       custom={index}
                     >
@@ -521,24 +432,8 @@ export default function PortfolioClientPage({ initialCategory = "all" }: Portfol
                         <img
                           src={project.image || "/placeholder.svg"}
                           alt={`${project.title} - ${project.category} project by Cave Motions`}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
                         />
-                      </div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                        <div className="absolute bottom-0 w-full p-6 text-white">
-                          <p className="mb-2 text-sm font-medium text-white/80">{project.category}</p>
-                          <h3 className="mb-2 text-2xl font-bold">{project.title}</h3>
-                          <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              className="border-white/30 text-white hover:bg-white/10 bg-transparent"
-                            >
-                              View Project
-                              <ArrowRight className="ml-1 h-3 w-3" />
-                            </Button>
-                          </Link>
-                        </div>
                       </div>
                       <div className="p-6">
                         <p className="mb-1 text-sm font-medium text-purple-600">{project.category}</p>
@@ -575,6 +470,7 @@ export default function PortfolioClientPage({ initialCategory = "all" }: Portfol
                   ))}
                 </motion.div>
               </TabsContent>
+
             </Tabs>
 
             <motion.div

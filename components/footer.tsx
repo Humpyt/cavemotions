@@ -122,15 +122,14 @@ export default function Footer() {
                 { icon: Linkedin, label: "LinkedIn" },
                 { icon: Twitter, label: "Twitter" },
               ].map((social, index) => (
-                <motion.a
+                <motion.div
                   key={social.label}
-                  href="#"
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white hover:bg-purple-600 transition-colors"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white hover:bg-purple-600 transition-colors cursor-default"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                 >
                   <social.icon className="h-5 w-5" />
                   <span className="sr-only">{social.label}</span>
-                </motion.a>
+                </motion.div>
               ))}
             </div>
           </motion.div>
@@ -182,11 +181,10 @@ export default function Footer() {
             <h3 className="text-xl font-semibold">Our Services</h3>
             <ul className="space-y-4">
               {[
-                { name: "AI Automation", path: "/services" },
-                { name: "Web Development", path: "/services" },
-                { name: "Software Development", path: "/services" },
-                { name: "Mobile Applications", path: "/services" },
-                { name: "UI/UX Design", path: "/services" },
+                { name: "AI Automation", path: "/services/ai-automation" },
+                { name: "Web Development", path: "/services/web-development" },
+                { name: "Software Development", path: "/services/software-development" },
+                { name: "Mobile Applications", path: "/services/mobile-applications" },
               ].map((service, index) => (
                 <motion.li
                   key={index}

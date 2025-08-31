@@ -23,8 +23,6 @@ import {
   Star,
   ArrowRight,
   Sparkles,
-  BookOpen,
-  Tag,
   FolderOpen,
 } from "lucide-react"
 import { usePathname } from "next/navigation"
@@ -36,7 +34,7 @@ const navItems = [
   { name: "Home", path: "/" },
   { name: "Services", path: "/services", hasMegaMenu: true },
   { name: "Portfolio", path: "/portfolio", hasMegaMenu: true },
-  { name: "Blog", path: "/blog-wp", hasMegaMenu: true },
+  { name: "Blog", path: "/blog-wp" },
   { name: "About", path: "/about" },
   { name: "Contact", path: "/contact" },
 ]
@@ -268,82 +266,6 @@ export default function Header() {
     </div>
   )
 
-  // Blog mega menu content
-  const BlogMegaMenu = () => (
-    <div className="p-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Blog Options */}
-        <div>
-          <h3 className="text-lg font-semibold mb-4 text-purple-700 flex items-center">
-            <BookOpen className="h-5 w-5 mr-2" />
-            Blog Options
-          </h3>
-          <div className="space-y-4">
-            <Link
-              href="/blog"
-              className="block p-4 rounded-lg border border-gray-200 hover:border-purple-200 hover:shadow-md transition-all duration-300 group"
-              onClick={() => setActiveMegaMenu(null)}
-            >
-              <div className="flex items-start">
-                <div className="w-10 h-10 rounded-md bg-purple-100 flex items-center justify-center mr-3 group-hover:bg-purple-200 transition-colors">
-                  <Layers className="h-5 w-5 text-purple-700" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-gray-900 group-hover:text-purple-700 transition-colors">Enhanced Blog</h4>
-                  <p className="text-sm text-gray-600 mt-1">Rich content with interactive elements and comprehensive articles</p>
-                </div>
-              </div>
-            </Link>
-
-            <Link
-              href="/blog-wp"
-              className="block p-4 rounded-lg border border-gray-200 hover:border-purple-200 hover:shadow-md transition-all duration-300 group"
-              onClick={() => setActiveMegaMenu(null)}
-            >
-              <div className="flex items-start">
-                <div className="w-10 h-10 rounded-md bg-blue-100 flex items-center justify-center mr-3 group-hover:bg-blue-200 transition-colors">
-                  <Globe className="h-5 w-5 text-blue-700" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors">WordPress Blog</h4>
-                  <p className="text-sm text-gray-600 mt-1">WordPress-powered content management system</p>
-                  <Badge className="mt-2 bg-green-100 text-green-800 text-xs">Live</Badge>
-                </div>
-              </div>
-            </Link>
-          </div>
-        </div>
-
-        {/* Blog Categories */}
-        <div>
-          <h3 className="text-lg font-semibold mb-4 text-purple-700 flex items-center">
-            <Tag className="h-5 w-5 mr-2" />
-            Categories
-          </h3>
-          <div className="grid grid-cols-1 gap-2">
-            {[
-              { name: "Web Development", count: 8, color: "bg-blue-100 text-blue-800" },
-              { name: "AI Automation", count: 5, color: "bg-purple-100 text-purple-800" },
-              { name: "Mobile Development", count: 6, color: "bg-green-100 text-green-800" },
-              { name: "Digital Marketing", count: 4, color: "bg-orange-100 text-orange-800" },
-              { name: "E-commerce", count: 3, color: "bg-pink-100 text-pink-800" },
-            ].map((category) => (
-              <Link
-                key={category.name}
-                href={`/blog-wp/category/${category.name.toLowerCase().replace(' ', '-')}`}
-                className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 transition-colors group"
-                onClick={() => setActiveMegaMenu(null)}
-              >
-                <span className="text-gray-700 group-hover:text-purple-700 transition-colors">{category.name}</span>
-                <Badge className={`${category.color} text-xs`}>{category.count}</Badge>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-
   // Portfolio mega menu content
   const PortfolioMegaMenu = () => (
     <div className="p-8">
@@ -399,14 +321,14 @@ export default function Header() {
                 name: "Cavemo SACCO Management",
                 description: "Comprehensive financial management system for Ugandan SACCOs with modern web interface",
                 path: "/portfolio/category/software",
-                image: "/images/cavemo-sacco-dashboard.jpeg",
+                image: "/images/cavemo-sacco-featured.png",
                 tag: "Software Development",
               },
               {
                 name: "Cavemo Bulk SMS",
                 description: "Privacy-focused native SMS campaign solution with offline storage capabilities",
                 path: "/portfolio/projects/cavmo-bulk-sms",
-                image: "/images/cavmo-dashboard-main-new.png",
+                image: "/images/bulksms.jpg",
                 tag: "Mobile Apps",
               },
             ].map((project) => (
@@ -554,8 +476,7 @@ export default function Header() {
                 {/* Menu Header */}
                 <div className="bg-gradient-to-r from-purple-50 to-violet-50 border-b border-gray-100 py-3 px-8 flex justify-between items-center">
                   <h2 className="text-lg font-semibold text-purple-800">
-                    {activeMegaMenu === "Services" ? "Our Services" :
-                     activeMegaMenu === "Blog" ? "Blog & Insights" : "Our Portfolio"}
+                    {activeMegaMenu === "Services" ? "Our Services" : "Our Portfolio"}
                   </h2>
                   <button
                     onClick={() => setActiveMegaMenu(null)}
@@ -568,7 +489,6 @@ export default function Header() {
 
                 {/* Menu Content */}
                 {activeMegaMenu === "Services" && <ServicesMegaMenu />}
-                {activeMegaMenu === "Blog" && <BlogMegaMenu />}
                 {activeMegaMenu === "Portfolio" && <PortfolioMegaMenu />}
               </div>
             </div>

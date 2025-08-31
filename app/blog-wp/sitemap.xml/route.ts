@@ -24,7 +24,7 @@ export async function GET() {
   ${posts.map(post => `
   <url>
     <loc>${baseUrl}/blog-wp/${post.slug}</loc>
-    <lastmod>${new Date(post.modified || post.date).toISOString()}</lastmod>
+    <lastmod>${new Date(post.date).toISOString()}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>`).join('')}

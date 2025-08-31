@@ -59,14 +59,14 @@ export default function MobileApplicationsClientPage() {
       title: "Native Mobile Apps",
       description:
         "Develop high-performance native applications for iOS and Android platforms with platform-specific features.",
-      color: "from-amber-500 to-orange-600",
+      color: "from-emerald-500 to-green-600",
     },
     {
       icon: Globe,
       title: "Cross-Platform Solutions",
       description:
         "Create apps that work seamlessly across multiple platforms while maintaining a consistent user experience.",
-      color: "from-blue-500 to-cyan-600",
+      color: "from-purple-500 to-violet-600",
     },
     {
       icon: Zap,
@@ -79,7 +79,7 @@ export default function MobileApplicationsClientPage() {
       icon: Layers,
       title: "AR/VR Experiences",
       description: "Create immersive augmented and virtual reality experiences that engage users in innovative ways.",
-      color: "from-emerald-500 to-green-600",
+      color: "from-amber-500 to-orange-600",
     },
   ]
 
@@ -90,7 +90,7 @@ export default function MobileApplicationsClientPage() {
       client: "Communication Solutions",
       description:
         "A lightweight mobile solution that empowers users to send scheduled bulk SMS campaigns directly from their device. Features 100% native SMS delivery, flexible campaign scheduling, comprehensive contact management, and offline data storage for privacy and control.",
-      image: "/images/cavmo-dashboard-main-new.png",
+      image: "/images/bulksms.jpg",
       color: "from-indigo-500 to-purple-600",
       liveUrl: "#",
       tags: ["Native SMS", "Campaign Management", "Offline Storage"]
@@ -100,41 +100,19 @@ export default function MobileApplicationsClientPage() {
   return (
     <div className="flex flex-col min-h-screen" ref={containerRef}>
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-black py-32 md:py-40">
-        {/* Animated background elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 w-full h-full">
-            {Array.from({ length: 15 }).map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute rounded-full bg-amber-600/10"
-                initial={{
-                  width: Math.random() * 100 + 50,
-                  height: Math.random() * 100 + 50,
-                  x: Math.random() * 100,
-                  y: Math.random() * 100,
-                  opacity: 0.1 + Math.random() * 0.2,
-                }}
-                animate={{
-                  x: `calc(${Math.random() * 100}vw - 50%)`,
-                  y: `calc(${Math.random() * 100}vh - 50%)`,
-                  opacity: [0.1 + Math.random() * 0.2, 0.2 + Math.random() * 0.3, 0.1 + Math.random() * 0.2],
-                }}
-                transition={{
-                  duration: 15 + Math.random() * 15,
-                  repeat: Number.POSITIVE_INFINITY,
-                  ease: "linear",
-                  repeatType: "reverse",
-                }}
-              />
-            ))}
-          </div>
+      <section className="relative overflow-hidden bg-black py-16 md:py-20 min-h-[50vh]">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/Digital Services Background.jpg"
+            alt="Digital Services Background"
+            className="w-full h-full object-cover"
+          />
+          {/* Purple tint overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-900/80 via-violet-800/70 to-purple-900/80"></div>
         </div>
 
-        {/* Grid pattern overlay */}
-        <div className="absolute inset-0 bg-[url('/placeholder.svg?height=50&width=50&text=+')] bg-[length:50px_50px] opacity-5"></div>
-
-        <div className="container relative mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
+        <div className="container relative mx-auto max-w-6xl px-4 md:px-6 lg:px-8 z-10">
           <div className="text-center">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
               <Badge className="mb-6 bg-white/10 text-white hover:bg-white/20" variant="outline">
@@ -198,8 +176,8 @@ export default function MobileApplicationsClientPage() {
       {/* Overview Section */}
       <section className="py-24 md:py-32 px-4 md:px-6 lg:px-8 relative overflow-hidden">
         {/* Background gradient blobs */}
-        <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-amber-100/50 blur-3xl opacity-30"></div>
-        <div className="absolute -bottom-40 -right-40 h-96 w-96 rounded-full bg-orange-100/50 blur-3xl opacity-30"></div>
+        <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-black/50 blur-3xl opacity-30"></div>
+        <div className="absolute -bottom-40 -right-40 h-96 w-96 rounded-full bg-black/50 blur-3xl opacity-30"></div>
 
         <div className="container mx-auto max-w-6xl relative">
           <div className="flex flex-col md:flex-row items-center gap-12">
@@ -220,12 +198,12 @@ export default function MobileApplicationsClientPage() {
                 </div>
 
                 {/* Floating elements */}
-                <div className="absolute -bottom-6 -left-6 h-24 w-24 rounded-xl bg-amber-100 p-3 shadow-lg">
-                  <div className="flex h-full w-full items-center justify-center rounded-lg bg-gradient-to-br from-amber-600 to-orange-700 text-white">
+                <div className="absolute -bottom-6 -left-6 h-24 w-24 rounded-xl bg-gray-100 p-3 shadow-lg">
+                  <div className="flex h-full w-full items-center justify-center rounded-lg bg-black text-white">
                     <Smartphone className="h-10 w-10" />
                   </div>
                 </div>
-                <div className="absolute -right-6 -top-6 rounded-xl bg-gradient-to-br from-amber-500 to-orange-700 p-4 text-white shadow-lg">
+                <div className="absolute -right-6 -top-6 rounded-xl bg-black p-4 text-white shadow-lg">
                   <p className="text-sm font-medium">User-Focused</p>
                 </div>
               </div>
@@ -242,7 +220,7 @@ export default function MobileApplicationsClientPage() {
                 <h2 className="text-3xl md:text-4xl font-bold relative inline-block">
                   Mobile Experiences That Engage Users
                   <motion.span
-                    className="absolute -bottom-2 left-0 h-1 w-0 bg-gradient-to-r from-amber-400 to-orange-400"
+                    className="absolute -bottom-2 left-0 h-1 w-0 bg-black"
                     initial={{ width: "0%" }}
                     whileInView={{ width: "100%" }}
                     viewport={{ once: true }}
@@ -358,8 +336,8 @@ export default function MobileApplicationsClientPage() {
       {/* Process Section */}
       <section className="py-24 md:py-32 px-4 md:px-6 lg:px-8 relative overflow-hidden">
         {/* Background gradient blobs */}
-        <div className="absolute top-40 -right-40 h-96 w-96 rounded-full bg-amber-100/50 blur-3xl opacity-30"></div>
-        <div className="absolute bottom-40 -left-40 h-96 w-96 rounded-full bg-orange-100/50 blur-3xl opacity-30"></div>
+        <div className="absolute top-40 -right-40 h-96 w-96 rounded-full bg-black/50 blur-3xl opacity-30"></div>
+        <div className="absolute bottom-40 -left-40 h-96 w-96 rounded-full bg-black/50 blur-3xl opacity-30"></div>
 
         <div className="container mx-auto max-w-6xl relative">
           <motion.div
@@ -486,7 +464,7 @@ export default function MobileApplicationsClientPage() {
                   />
                 </div>
                 <div className="p-6">
-                  <p className="mb-1 text-sm font-medium text-amber-600">{study.client}</p>
+                  <p className="mb-1 text-sm font-medium text-purple-600">{study.client}</p>
                   <h3 className="mb-2 text-xl font-bold">{study.title}</h3>
                   <p className="text-gray-600 mb-4 line-clamp-2">{study.description}</p>
 
@@ -508,58 +486,7 @@ export default function MobileApplicationsClientPage() {
         </div>
       </section>
 
-      {/* Technologies Section */}
-      <section className="py-24 md:py-32 px-4 md:px-6 lg:px-8 relative overflow-hidden">
-        {/* Background gradient blobs */}
-        <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-amber-100/50 blur-3xl opacity-30"></div>
-        <div className="absolute -bottom-40 -right-40 h-96 w-96 rounded-full bg-orange-100/50 blur-3xl opacity-30"></div>
 
-        <div className="container mx-auto max-w-6xl relative">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-          >
-            <Badge className="mb-4 bg-purple-100 text-purple-800 hover:bg-purple-200" variant="secondary">
-              Our Stack
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Technologies We Use</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              We leverage the latest technologies and frameworks to build modern, high-performance mobile applications.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { name: "Swift", image: "/placeholder.svg?height=80&width=80&text=Swift" },
-              { name: "Kotlin", image: "/placeholder.svg?height=80&width=80&text=Kotlin" },
-              { name: "React Native", image: "/placeholder.svg?height=80&width=80&text=React Native" },
-              { name: "Flutter", image: "/placeholder.svg?height=80&width=80&text=Flutter" },
-              { name: "Firebase", image: "/placeholder.svg?height=80&width=80&text=Firebase" },
-              { name: "ARKit", image: "/placeholder.svg?height=80&width=80&text=ARKit" },
-              { name: "ARCore", image: "/placeholder.svg?height=80&width=80&text=ARCore" },
-              { name: "PWA", image: "/placeholder.svg?height=80&width=80&text=PWA" },
-            ].map((tech, index) => (
-              <motion.div
-                key={index}
-                className="flex flex-col items-center"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, delay: 0.1 * index }}
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              >
-                <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 w-full flex items-center justify-center">
-                  <img src={tech.image || "/placeholder.svg"} alt={tech.name} className="h-16 w-16 object-contain" />
-                </div>
-                <p className="mt-4 text-center font-medium">{tech.name}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* FAQ Section */}
       <section className="py-24 md:py-32 px-4 md:px-6 lg:px-8 bg-gray-50 relative overflow-hidden">
@@ -634,7 +561,7 @@ export default function MobileApplicationsClientPage() {
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: 0.1 * index }}
               >
-                <h3 className="text-xl font-semibold mb-4 text-amber-800">{faq.question}</h3>
+                <h3 className="text-xl font-semibold mb-4 text-black">{faq.question}</h3>
                 <p className="text-gray-600">{faq.answer}</p>
               </motion.div>
             ))}
@@ -650,13 +577,13 @@ export default function MobileApplicationsClientPage() {
             <p className="text-lg text-gray-600 mb-6">
               Have more questions about our mobile development services? We're here to help.
             </p>
-            <Button className="group relative overflow-hidden bg-amber-700 hover:bg-amber-800" asChild>
+            <Button className="group relative overflow-hidden bg-black hover:bg-gray-800" asChild>
               <Link href="/contact">
                 <span className="relative z-10 flex items-center">
                   Contact Our Mobile Development Team
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </span>
-                <span className="absolute inset-0 z-0 bg-gradient-to-r from-amber-600 to-orange-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+                <span className="absolute inset-0 z-0 bg-gradient-to-r from-gray-800 to-gray-900 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
               </Link>
             </Button>
           </motion.div>
@@ -665,7 +592,7 @@ export default function MobileApplicationsClientPage() {
 
       {/* CTA Section */}
       <section className="relative overflow-hidden py-24 md:py-32 px-4 md:px-6 lg:px-8">
-        <div className="absolute inset-0 bg-gradient-to-r from-amber-900 to-orange-800"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-900 to-violet-800"></div>
 
         {/* Animated particles */}
         <div className="absolute inset-0 overflow-hidden">
@@ -717,12 +644,12 @@ export default function MobileApplicationsClientPage() {
               business.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="group relative overflow-hidden bg-white text-amber-900 hover:bg-white/90">
+              <Button size="lg" className="group relative overflow-hidden bg-white text-purple-900 hover:bg-white/90">
                 <span className="relative z-10 flex items-center">
                   Start Your Mobile Project
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </span>
-                <span className="absolute bottom-0 left-0 h-0 w-full bg-gradient-to-r from-amber-100 to-orange-100 transition-all duration-300 group-hover:h-full"></span>
+                <span className="absolute bottom-0 left-0 h-0 w-full bg-gradient-to-r from-purple-100 to-violet-100 transition-all duration-300 group-hover:h-full"></span>
               </Button>
               <Button
                 size="lg"

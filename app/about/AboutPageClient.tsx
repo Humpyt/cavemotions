@@ -9,6 +9,7 @@ import ThreeDimensionalCard from "@/components/three-dimensional-card"
 import ParallaxText from "@/components/parallax-text"
 import Image from "next/image"
 import TeamSection from "@/components/team-section" // Import the new TeamSection component
+import ShaderBackground from "@/components/shader-background"
 
 export default function AboutPageClient() {
   const [scrollY, setScrollY] = useState(0)
@@ -68,15 +69,17 @@ export default function AboutPageClient() {
         ref={containerRef}
       >
         {/* Hero Section */}
-        <section
-          className="relative overflow-hidden py-24 md:py-32 lg:py-40 text-center"
-          style={{
-            backgroundImage: "url('/placeholder.svg?height=1080&width=1920&text=About+Us+Background')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-900/80 to-violet-800/70" />
+        <section className="relative overflow-hidden py-12 md:py-16 lg:py-20 text-center bg-black min-h-[50vh]">
+          {/* Background Image */}
+          <div className="absolute inset-0 z-0">
+            <img
+              src="/Digital Services Background.jpg"
+              alt="Digital Services Background"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-900/80 via-violet-800/70 to-purple-900/80" />
+          </div>
+
           <div className="container relative z-10 mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
               <Badge className="mb-6 bg-white/10 text-white hover:bg-white/20" variant="outline">
@@ -94,12 +97,12 @@ export default function AboutPageClient() {
             </motion.h1>
 
             <motion.p
-              className="text-lg md:text-xl max-w-4xl mx-auto opacity-90 text-white/70"
+              className="text-lg md:text-xl max-w-4xl mx-auto text-white/80"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Leading technology agency in Kampala, Uganda, helping businesses transform through web design, software development, AI automation, branding, and motion design since 2018.
+              Founded in Kampala, we craft future‑ready products and experiences at the intersection of design, software, and AI. We partner with bold teams to turn ideas into lovable, scalable digital realities.
             </motion.p>
           </div>
         </section>
@@ -113,53 +116,138 @@ export default function AboutPageClient() {
           </div>
         </section>
 
-        {/* Our Story Section */}
-        <motion.section
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={sectionVariants}
-          className="py-16 md:py-24 container mx-auto px-4 md:px-6 lg:px-8"
-        >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <motion.div variants={itemVariants}>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Who We Are</h2>
-              <p className="text-lg text-gray-700 mb-4">
-                Based in Bugolobi, Kampala, Cave Motions combines creativity with technology to deliver results that stand out. Since 2018, our team of designers, developers, and strategists has delivered innovative digital solutions that empower brands to grow.
-              </p>
-              <p className="text-lg text-gray-700 mb-6">
-                We specialize in:
-              </p>
-              <ul className="space-y-3 text-lg text-gray-700">
-                <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-purple-600 mr-3 shrink-0" />
-                  Custom web design in Kampala
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-purple-600 mr-3 shrink-0" />
-                  Software development
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-purple-600 mr-3 shrink-0" />
-                  AI automation for businesses
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-purple-600 mr-3 shrink-0" />
-                  Mobile Applications development
-                </li>
-              </ul>
-            </motion.div>
-            <motion.div variants={itemVariants}>
-              <Image
-                src="/placeholder.svg?height=400&width=600&text=Our+Story"
-                alt="Our Story"
-                width={600}
-                height={400}
-                className="rounded-xl shadow-xl object-cover w-full h-auto"
-              />
-            </motion.div>
+
+        {/* Who We Are Section - Enhanced */}
+        <section className="py-24 md:py-32 relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-purple-50">
+          {/* Animated background elements */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
+            <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-violet-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
+            <div className="absolute top-40 left-40 w-80 h-80 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
           </div>
-        </motion.section>
+
+          <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+              className="text-center mb-16"
+            >
+              <Badge className="mb-4 bg-purple-100 text-purple-800 hover:bg-purple-200" variant="secondary">
+                Our Story
+              </Badge>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                Who We Are
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Passionate innovators crafting digital experiences that transform businesses and inspire growth
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              {/* Content Side */}
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="space-y-8"
+              >
+                <div className="prose prose-lg max-w-none">
+                  <p className="text-lg text-gray-700 leading-relaxed">
+                    Based in the vibrant heart of Bugolobi, Kampala, Cave Motions is where creativity meets cutting-edge technology. Since 2018, we've been the digital architects behind Uganda's most innovative brands, transforming ideas into powerful digital realities.
+                  </p>
+                  <p className="text-lg text-gray-700 leading-relaxed">
+                    Our team of visionary designers, skilled developers, and strategic thinkers doesn't just build websites and apps – we craft digital experiences that captivate, engage, and drive meaningful results.
+                  </p>
+                </div>
+
+                {/* Animated Feature List */}
+                <div className="space-y-4">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-6">What We Excel At:</h3>
+                  {[
+                    { text: "Custom web design that tells your story", delay: 0.1 },
+                    { text: "Intelligent software solutions", delay: 0.2 },
+                    { text: "AI automation that transforms workflows", delay: 0.3 },
+                    { text: "Mobile applications that users love", delay: 0.4 },
+                  ].map((item, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: item.delay }}
+                      className="flex items-center group"
+                    >
+                      <div className="w-2 h-2 bg-purple-600 rounded-full mr-4 group-hover:scale-150 transition-transform duration-300"></div>
+                      <span className="text-lg text-gray-700 group-hover:text-purple-700 transition-colors duration-300">
+                        {item.text}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Call to Action */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.6 }}
+                  className="pt-6"
+                >
+                  <Button
+                    onClick={scrollToTeam}
+                    className="bg-black hover:bg-gray-800 text-white px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                  >
+                    Meet Our Team
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </motion.div>
+              </motion.div>
+
+              {/* Image Side */}
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="relative"
+              >
+                <div className="relative group">
+                  {/* Floating elements */}
+                  <div className="absolute -top-6 -left-6 w-24 h-24 bg-purple-200 rounded-full opacity-60 group-hover:scale-110 transition-transform duration-500"></div>
+                  <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-violet-200 rounded-full opacity-40 group-hover:scale-110 transition-transform duration-500 delay-100"></div>
+
+                  {/* Main image container */}
+                  <div className="relative overflow-hidden rounded-2xl shadow-2xl group-hover:shadow-3xl transition-shadow duration-500">
+                    <Image
+                      src="/images/CavemoTeam.jpg"
+                      alt="Cave Motions creative team collaborating on innovative digital solutions in Kampala Uganda - web development AI automation experts"
+                      width={600}
+                      height={400}
+                      className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+
+                    {/* Overlay gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-purple-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  </div>
+
+                  {/* Floating badge */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.8 }}
+                    className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg"
+                  >
+                    <span className="text-sm font-semibold text-purple-700">Since 2018</span>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
 
         {/* Our Philosophy */}
         <section className="py-24 md:py-32 px-4 md:px-6 lg:px-8 bg-gray-50 relative overflow-hidden">
@@ -266,136 +354,73 @@ export default function AboutPageClient() {
                 </p>
               </motion.div>
             </div>
+        {/* Values Strip */}
+        <section className="py-12 bg-white">
+          <div className="container mx-auto px-4 md:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {[
+                { title: "Craft with care", desc: "Every pixel and line of code matters." },
+                { title: "Think long‑term", desc: "Build for now—and what comes next." },
+                { title: "Move together", desc: "Collaboration over silos, always." },
+              ].map((v, i) => (
+                <motion.div
+                  key={v.title}
+                  className="rounded-xl border border-gray-100 bg-gradient-to-br from-purple-50 to-violet-50 p-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.5, delay: i * 0.05 }}
+                >
+                  <h4 className="font-semibold text-gray-900 mb-1">{v.title}</h4>
+                  <p className="text-gray-600 text-sm">{v.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
           </div>
         </motion.section>
 
         {/* Meet Our Team Section */}
         <motion.section
-          id="team-section" // Add ID for scrolling
-          ref={teamSectionRef} // Attach ref
+          id="team-section"
+          ref={teamSectionRef}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={sectionVariants}
-          className="py-16 md:py-24 text-center"
+          className="relative overflow-hidden bg-black py-24 md:py-32 text-white text-center"
         >
-          <div className="container mx-auto px-4 md:px-6 lg:px-8">
-            <Users className="h-16 w-16 text-purple-600 mx-auto mb-6" />
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">The Minds Behind the Magic</h2>
-            <p className="text-lg text-gray-700 max-w-2xl mx-auto mb-8">
-              Our diverse team brings together a wealth of experience, creativity, and technical expertise. Get to know
-              the individuals who make Cave Motions thrive.
-            </p>
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white shadow-lg"
-              onClick={scrollToTeam} // Use onClick for scrolling
-            >
-              Meet Our Team <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-            <TeamSection /> {/* Render the new TeamSection component */}
+          {/* Shader Background */}
+          <div className="absolute inset-0 z-0">
+            <ShaderBackground />
+          </div>
+
+          <div className="container relative mx-auto max-w-6xl px-4 md:px-6 lg:px-8 z-10">
+            <div className="mb-12">
+              <Badge className="mb-4 bg-white/10 hover:bg-white/20 text-white" variant="outline">
+                Team
+              </Badge>
+              <h2 className="text-4xl font-bold tracking-tight md:text-5xl mb-4">The Minds Behind the Magic</h2>
+              <p className="mx-auto max-w-2xl text-lg text-white/70 mb-8">
+                Our diverse team brings together a wealth of experience, creativity, and technical expertise. Get to know the individuals who make Cave Motions thrive.
+              </p>
+              <Button
+                size="lg"
+                className="group bg-white text-black hover:bg-white/90"
+                onClick={scrollToTeam}
+              >
+                Meet Our Team
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </Button>
+            </div>
+
+            <TeamSection />
           </div>
         </motion.section>
 
-        {/* Our Commitment */}
-        <section className="py-24 md:py-32 px-4 md:px-6 lg:px-8 relative overflow-hidden">
-          {/* Background gradient blobs */}
-          <div className="absolute top-40 -right-40 h-96 w-96 rounded-full bg-purple-100/50 blur-3xl opacity-30"></div>
-          <div className="absolute bottom-40 -left-40 h-96 w-96 rounded-full bg-violet-100/50 blur-3xl opacity-30"></div>
 
-          <div className="container mx-auto max-w-6xl relative">
-            <div className="flex flex-col md:flex-row items-center gap-12">
-              <div className="md:w-1/2 space-y-6">
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: "-100px" }}
-                  custom={0}
-                  variants={fadeInUpVariants}
-                >
-                  <h2 className="text-3xl md:text-4xl font-bold relative inline-block">
-                    Our Commitment
-                    <motion.span
-                      className="absolute -bottom-2 left-0 h-1 w-0 bg-gradient-to-r from-purple-400 to-violet-400"
-                      initial={{ width: "0%" }}
-                      whileInView={{ width: "100%" }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1, delay: 0.5 }}
-                    />
-                  </h2>
-                </motion.div>
-
-                <motion.p
-                  className="text-lg text-gray-600"
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: "-100px" }}
-                  custom={1}
-                  variants={fadeInUpVariants}
-                >
-                  At Cave Motions, you're not just another client—you're our next big adventure in digital
-                  transformation. We're committed to:
-                </motion.p>
-
-                <ul className="space-y-4">
-                  {[
-                    {
-                      title: "Delivering innovative and reliable solutions",
-                      description:
-                        "We create digital solutions that not only look good but also perform exceptionally well.",
-                      delay: 0,
-                    },
-                    {
-                      title: "Listening closely to your needs",
-                      description:
-                        "We take the time to understand your business goals and challenges before proposing solutions.",
-                      delay: 0.1,
-                    },
-                    {
-                      title: "Adding personality to every project",
-                      description: "We believe technology should have character—just like the people who use it.",
-                      delay: 0.2,
-                    },
-                  ].map((item, index) => (
-                    <motion.li
-                      key={index}
-                      className="flex items-start"
-                      initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: true, margin: "-100px" }}
-                      custom={index + 2}
-                      variants={fadeInUpVariants}
-                    >
-                      <div className="group">
-                        <CheckCircle className="h-6 w-6 text-purple-700 mr-3 shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-300" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-lg">{item.title}</h3>
-                        <p className="text-gray-600">{item.description}</p>
-                      </div>
-                    </motion.li>
-                  ))}
-                </ul>
-              </div>
-
-              <motion.div
-                className="md:w-1/2"
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8 }}
-              >
-                <ThreeDimensionalCard>
-                  <img
-                    src="/placeholder.svg?height=400&width=500&text=Our Values"
-                    alt="Cave Motions values"
-                    className="rounded-lg shadow-xl"
-                  />
-                </ThreeDimensionalCard>
-              </motion.div>
-            </div>
-          </div>
-        </section>
 
         {/* CTA Section */}
         <section className="relative overflow-hidden py-24 md:py-32 px-4 md:px-6 lg:px-8">
@@ -450,7 +475,7 @@ export default function AboutPageClient() {
               </p>
               <Button size="lg" className="group relative overflow-hidden bg-white text-purple-900 hover:bg-white/90">
                 <span className="relative z-10 flex items-center">
-                  Start Your Project
+                  Contact Us
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </span>
                 <span className="absolute bottom-0 left-0 h-0 w-full bg-gradient-to-r from-purple-100 to-purple-200 transition-all duration-300 group-hover:h-full"></span>

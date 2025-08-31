@@ -11,57 +11,37 @@ const teamMembers = [
   {
     name: "Humphrey Todo",
     title: "Team Lead / Head of Product",
-    image: "/placeholder.svg?height=200&width=200&text=Humphrey+Todo",
+    image: "/images/team/Todo Humphrey2.jpg",
     description:
-      "Humphrey leads our product vision, ensuring every solution meets market needs and exceeds client expectations.",
-    social: {
-      linkedin: "#",
-      twitter: "#",
-    },
-  },
-  {
-    name: "Isaac Obache",
-    title: "Chief Technology Officer (CTO)",
-    image: "/placeholder.svg?height=200&width=200&text=Isaac+Obache",
-    description:
-      "Isaac is the architect of our technical strategy, driving innovation and maintaining our high standards of engineering excellence.",
-    social: {
-      linkedin: "#",
-      twitter: "#",
-    },
-  },
-  {
-    name: "Jonathan Elayo",
-    title: "Head of Engineering",
-    image: "/placeholder.svg?height=200&width=200&text=Jonathan+Elayo",
-    description:
-      "Jonathan oversees our engineering teams, fostering a culture of collaboration and continuous improvement.",
-    social: {
-      linkedin: "#",
-      twitter: "#",
-    },
-  },
-  {
-    name: "Fred Oboth",
-    title: "Product Designer / UX/UI Lead",
-    image: "/placeholder.svg?height=200&width=200&text=Fred+Oboth",
-    description:
-      "Fred crafts intuitive and beautiful user experiences, ensuring our products are not just functional but delightful to use.",
-    social: {
-      linkedin: "#",
-      twitter: "#",
-    },
+      "A visionary leader with an eye for innovation, Humphrey transforms complex business challenges into elegant digital solutions. His strategic mindset and passion for technology drive Cave Motions' mission to deliver exceptional products that make a real difference in our clients' success stories.",
   },
   {
     name: "Stellahmaris Karungi",
     title: "Head of Marketing",
-    image: "/placeholder.svg?height=200&width=200&text=Stellahmaris+Karungi",
+    image: "/images/team/Stella Karungi.jpg",
     description:
-      "Stellahmaris drives our brand's presence and connects us with clients, sharing the story of Cave Motions' impact.",
-    social: {
-      linkedin: "#",
-      twitter: "#",
-    },
+      "The storyteller of our brand, Stellahmaris weaves compelling narratives that connect Cave Motions with the world. Her strategic marketing vision and authentic communication style help businesses discover how technology can transform their dreams into digital reality.",
+  },
+  {
+    name: "Isaac Obache",
+    title: "Chief Technology Officer (CTO)",
+    image: "/images/team/Isaac Obache.jpg",
+    description:
+      "The mastermind behind our technical excellence, Isaac combines deep engineering expertise with forward-thinking innovation. He architects scalable solutions that power tomorrow's digital landscape, ensuring every line of code contributes to building the future we envision.",
+  },
+  {
+    name: "Jonathan Elayo",
+    title: "Head of Engineering",
+    image: "/images/team/Jonatha Elayo.jpg",
+    description:
+      "A collaborative leader who believes great software is built by great teams, Jonathan cultivates an environment where creativity meets precision. His mentorship and technical guidance transform ambitious ideas into robust, scalable applications that exceed expectations.",
+  },
+  {
+    name: "Fred Oboth",
+    title: "Product Designer / UX/UI Lead",
+    image: "/images/team/Oboth Fred.jpg",
+    description:
+      "Where art meets functionality, Fred creates digital experiences that captivate and inspire. His design philosophy centers on human-centered innovation, crafting interfaces that feel intuitive, look stunning, and solve real problems with elegant simplicity.",
   },
 ]
 
@@ -72,7 +52,7 @@ export default function TeamSection() {
   }
 
   return (
-    <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+    <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
       {teamMembers.map((member, index) => (
         <motion.div
           key={index}
@@ -80,54 +60,40 @@ export default function TeamSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ delay: index * 0.1 }}
+          transition={{ delay: index * 0.08 }}
         >
           <Card
             className={cn(
-              "relative overflow-hidden rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl",
-              "bg-white border border-gray-200 group",
-              "transform hover:-translate-y-2",
+              "group relative h-full overflow-hidden border-0 bg-white/10 backdrop-blur-sm shadow-xl transition-all duration-700 hover:-translate-y-4 hover:shadow-2xl border border-white/10",
             )}
           >
-            <div className="relative h-48 w-full overflow-hidden">
+
+            <div className="relative h-48 w-full overflow-hidden rounded-2xl">
               <Image
                 src={member.image || "/placeholder.svg"}
                 alt={member.name}
-                layout="fill"
-                objectFit="cover"
+                fill
+                sizes="(max-width: 768px) 100vw, 25vw"
+                style={{ objectFit: "cover", objectPosition: "center top" }}
                 className="transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                 <div className="flex space-x-3">
-                  {member.social.linkedin && (
-                    <Link
-                      href={member.social.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-white hover:text-purple-300 transition-colors"
-                    >
-                      <Linkedin className="h-6 w-6" />
-                    </Link>
-                  )}
-                  {member.social.twitter && (
-                    <Link
-                      href={member.social.twitter}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-white hover:text-purple-300 transition-colors"
-                    >
-                      <Twitter className="h-6 w-6" />
-                    </Link>
-                  )}
+                  <div className="text-white/70">
+                    <Linkedin className="h-6 w-6" />
+                  </div>
+                  <div className="text-white/70">
+                    <Twitter className="h-6 w-6" />
+                  </div>
                 </div>
               </div>
             </div>
             <CardHeader className="text-center pt-4 pb-2">
-              <CardTitle className="text-xl font-bold text-gray-900">{member.name}</CardTitle>
-              <CardDescription className="text-purple-700 font-medium">{member.title}</CardDescription>
+              <CardTitle className="text-xl font-bold text-white">{member.name}</CardTitle>
+              <CardDescription className="text-white/70">{member.title}</CardDescription>
             </CardHeader>
             <CardContent className="text-center px-4 pb-6">
-              <p className="text-sm text-gray-700 line-clamp-3">{member.description}</p>
+              <p className="text-sm text-white/70 line-clamp-3">{member.description}</p>
             </CardContent>
           </Card>
         </motion.div>

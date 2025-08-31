@@ -95,27 +95,7 @@ export default function ServicesPageClient() {
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop&crop=center",
       stats: { projects: "100+", uptime: "99.9%" },
     },
-    {
-      icon: Zap,
-      title: "Performance Optimization",
-      description: "Boost your application performance with expert optimization techniques and best practices.",
-      features: ["Speed Optimization", "Database Tuning", "Code Optimization", "Infrastructure Scaling"],
-      color: "from-yellow-500 to-amber-600",
-      href: "/services/performance-optimization",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop&crop=center",
-      stats: { improvement: "300%", clients: "150+" },
-    },
-    {
-      icon: Palette,
-      title: "UI/UX Design",
-      description:
-        "Create exceptional user experiences with professional design that converts visitors into customers.",
-      features: ["User Research", "Wireframing", "Prototyping", "Design Systems"],
-      color: "from-pink-500 to-rose-600",
-      href: "/services/ui-ux-design",
-      image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop&crop=center",
-      stats: { designs: "300+", satisfaction: "96%" },
-    },
+
   ]
 
   return (
@@ -239,8 +219,7 @@ export default function ServicesPageClient() {
       <section className="bg-slate-900 py-10 overflow-hidden border-t border-white/10">
         <div className="py-4">
           <ParallaxText baseVelocity={-2}>
-            AI AUTOMATION • WEB DEVELOPMENT • MOBILE APPS • SOFTWARE SOLUTIONS • UI/UX DESIGN • PERFORMANCE OPTIMIZATION
-            •
+            AI AUTOMATION • WEB DEVELOPMENT • MOBILE APPS • SOFTWARE SOLUTIONS • BUSINESS INTELLIGENCE •
           </ParallaxText>
         </div>
       </section>

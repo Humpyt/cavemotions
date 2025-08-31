@@ -79,17 +79,20 @@ export default function BlogClientPage() {
       {/* ------------------------------------------------------------------ */}
       {/* HERO ************************************************************* */}
       {/* ------------------------------------------------------------------ */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 py-32 md:py-40">
-        {/* Decorative background image */}
-        <img
-          className="absolute inset-0 w-full h-full object-cover opacity-20"
-          src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1920&h=1080&fit=crop&crop=center"
-          alt="Abstract tech background"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 to-purple-900/80" />
+      <section className="relative overflow-hidden bg-black py-16 md:py-20 min-h-[50vh]">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/Digital Services Background.jpg"
+            alt="Digital Services Background"
+            className="w-full h-full object-cover"
+          />
+          {/* Purple tint overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-900/80 via-violet-800/70 to-purple-900/80"></div>
+        </div>
 
         {/* Content */}
-        <div className="relative container mx-auto max-w-6xl px-4 md:px-6 lg:px-8 text-center">
+        <div className="relative container mx-auto max-w-6xl px-4 md:px-6 lg:px-8 text-center z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <Badge variant="outline" className="mb-6 bg-white/10 text-white">
               <Sparkles className="mr-1 h-3 w-3" /> Digital Innovation Insights

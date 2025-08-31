@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Disallow admin and API routes
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+
+# Allow important directories
+Allow: /images/
+Allow: /public/
+
+# Sitemaps
+Sitemap: https://cavemotions.com/sitemap.xml
+Sitemap: https://cavemotions.com/blog-wp/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1

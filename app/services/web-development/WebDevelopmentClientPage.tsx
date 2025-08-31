@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { motion, useScroll, useTransform } from "framer-motion"
 import ThreeDimensionalCard from "@/components/three-dimensional-card"
 import ParallaxText from "@/components/parallax-text"
+import Breadcrumb, { BreadcrumbSchema } from "@/components/breadcrumb"
 import Link from "next/link"
 
 export default function WebDevelopmentClientPage() {
@@ -60,7 +61,7 @@ export default function WebDevelopmentClientPage() {
       title: "Responsive Web Design",
       description:
         "Create websites that look and function beautifully across all devices, from desktops to smartphones and tablets.",
-      color: "from-blue-500 to-cyan-600",
+      color: "from-emerald-500 to-green-600",
     },
     {
       icon: Zap,
@@ -103,7 +104,7 @@ export default function WebDevelopmentClientPage() {
       description:
         "Modern real estate platform with advanced property search, virtual tours, and seamless user experience for finding dream homes.",
       image: "/images/ajyxn-website.jpg",
-      color: "from-blue-500 to-cyan-600",
+      color: "from-emerald-500 to-teal-600",
       liveUrl: "https://ajyxn.com",
       tags: ["Real Estate", "Property Search", "Virtual Tours"]
     },
@@ -113,50 +114,46 @@ export default function WebDevelopmentClientPage() {
       description:
         "Professional website showcasing sustainable aquaculture practices and modern techniques with 5+ years of experience in sustainable fish farming.",
       image: "/images/waib-aquaculture.png",
-      color: "from-blue-500 to-teal-600",
+      color: "from-purple-500 to-violet-600",
       liveUrl: "https://waibug.com",
       tags: ["Aquaculture", "Sustainability", "Professional Services"]
     },
   ]
 
+  const breadcrumbItems = [
+    { label: "Services", href: "/services" },
+    { label: "Web Development" }
+  ]
+
   return (
-    <div className="flex flex-col min-h-screen" ref={containerRef}>
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-black py-32 md:py-40">
-        {/* Animated background elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 w-full h-full">
-            {Array.from({ length: 15 }).map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute rounded-full bg-blue-600/10"
-                initial={{
-                  width: Math.random() * 100 + 50,
-                  height: Math.random() * 100 + 50,
-                  x: Math.random() * 100,
-                  y: Math.random() * 100,
-                  opacity: 0.1 + Math.random() * 0.2,
-                }}
-                animate={{
-                  x: `calc(${Math.random() * 100}vw - 50%)`,
-                  y: `calc(${Math.random() * 100}vh - 50%)`,
-                  opacity: [0.1 + Math.random() * 0.2, 0.2 + Math.random() * 0.3, 0.1 + Math.random() * 0.2],
-                }}
-                transition={{
-                  duration: 15 + Math.random() * 15,
-                  repeat: Number.POSITIVE_INFINITY,
-                  ease: "linear",
-                  repeatType: "reverse",
-                }}
-              />
-            ))}
+    <>
+      <BreadcrumbSchema items={[
+        { label: "Services", href: "/services" },
+        { label: "Web Development", href: "/services/web-development" }
+      ]} />
+
+      <div className="flex flex-col min-h-screen" ref={containerRef}>
+        {/* Breadcrumb */}
+        <div className="bg-gray-50 py-4">
+          <div className="container mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
+            <Breadcrumb items={breadcrumbItems} />
           </div>
         </div>
 
-        {/* Grid pattern overlay */}
-        <div className="absolute inset-0 bg-[url('/placeholder.svg?height=50&width=50&text=+')] bg-[length:50px_50px] opacity-5"></div>
+        {/* Hero Section */}
+        <section className="relative overflow-hidden bg-black py-16 md:py-20 min-h-[50vh]">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/Digital Services Background.jpg"
+            alt="Digital Services Background"
+            className="w-full h-full object-cover"
+          />
+          {/* Purple tint overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-900/80 via-violet-800/70 to-purple-900/80"></div>
+        </div>
 
-        <div className="container relative mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
+        <div className="container relative mx-auto max-w-6xl px-4 md:px-6 lg:px-8 z-10">
           <div className="text-center">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
               <Badge className="mb-6 bg-white/10 text-white hover:bg-white/20" variant="outline">
@@ -221,8 +218,8 @@ export default function WebDevelopmentClientPage() {
       {/* Overview Section */}
       <section className="py-24 md:py-32 px-4 md:px-6 lg:px-8 relative overflow-hidden">
         {/* Background gradient blobs */}
-        <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-blue-100/50 blur-3xl opacity-30"></div>
-        <div className="absolute -bottom-40 -right-40 h-96 w-96 rounded-full bg-cyan-100/50 blur-3xl opacity-30"></div>
+        <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-black/50 blur-3xl opacity-30"></div>
+        <div className="absolute -bottom-40 -right-40 h-96 w-96 rounded-full bg-black/50 blur-3xl opacity-30"></div>
 
         <div className="container mx-auto max-w-6xl relative">
           <div className="flex flex-col md:flex-row items-center gap-12">
@@ -244,12 +241,12 @@ export default function WebDevelopmentClientPage() {
                   </div>
 
                   {/* Floating elements */}
-                  <div className="absolute -bottom-6 -left-6 h-24 w-24 rounded-xl bg-blue-100 p-3 shadow-lg">
-                    <div className="flex h-full w-full items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-cyan-700 text-white">
+                  <div className="absolute -bottom-6 -left-6 h-24 w-24 rounded-xl bg-gray-100 p-3 shadow-lg">
+                    <div className="flex h-full w-full items-center justify-center rounded-lg bg-black text-white">
                       <Code className="h-10 w-10" />
                     </div>
                   </div>
-                  <div className="absolute -right-6 -top-6 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-700 p-4 text-white shadow-lg">
+                  <div className="absolute -right-6 -top-6 rounded-xl bg-black p-4 text-white shadow-lg">
                     <p className="text-sm font-medium">Pixel Perfect</p>
                   </div>
                 </div>
@@ -267,7 +264,7 @@ export default function WebDevelopmentClientPage() {
                 <h2 className="text-3xl md:text-4xl font-bold relative inline-block">
                   Crafting Digital Experiences That Inspire
                   <motion.span
-                    className="absolute -bottom-2 left-0 h-1 w-0 bg-gradient-to-r from-blue-400 to-cyan-400"
+                    className="absolute -bottom-2 left-0 h-1 w-0 bg-black"
                     initial={{ width: "0%" }}
                     whileInView={{ width: "100%" }}
                     viewport={{ once: true }}
@@ -371,8 +368,8 @@ export default function WebDevelopmentClientPage() {
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: 0.1 * index }}
               >
-                <div className="w-16 h-16 flex items-center justify-center mb-6">
-                  <feature.icon className="h-12 w-12 text-gray-700" />
+                <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-6">
+                  <feature.icon className="h-8 w-8 text-gray-700" />
                 </div>
 
                 <h3 className="text-xl font-semibold mb-4 text-gray-900">
@@ -388,8 +385,8 @@ export default function WebDevelopmentClientPage() {
       {/* Process Section */}
       <section className="py-24 md:py-32 px-4 md:px-6 lg:px-8 relative overflow-hidden">
         {/* Background gradient blobs */}
-        <div className="absolute top-40 -right-40 h-96 w-96 rounded-full bg-blue-100/50 blur-3xl opacity-30"></div>
-        <div className="absolute bottom-40 -left-40 h-96 w-96 rounded-full bg-cyan-100/50 blur-3xl opacity-30"></div>
+        <div className="absolute top-40 -right-40 h-96 w-96 rounded-full bg-black/50 blur-3xl opacity-30"></div>
+        <div className="absolute bottom-40 -left-40 h-96 w-96 rounded-full bg-black/50 blur-3xl opacity-30"></div>
 
         <div className="container mx-auto max-w-6xl relative">
           <motion.div
@@ -616,7 +613,7 @@ export default function WebDevelopmentClientPage() {
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: 0.1 * index }}
               >
-                <h3 className="text-xl font-semibold mb-4 text-blue-800">{faq.question}</h3>
+                <h3 className="text-xl font-semibold mb-4 text-black">{faq.question}</h3>
                 <p className="text-gray-600">{faq.answer}</p>
               </motion.div>
             ))}
@@ -632,13 +629,13 @@ export default function WebDevelopmentClientPage() {
             <p className="text-lg text-gray-600 mb-6">
               Have more questions about our web development services? We're here to help.
             </p>
-            <Button className="group relative overflow-hidden bg-blue-700 hover:bg-blue-800" asChild>
+            <Button className="group relative overflow-hidden bg-black hover:bg-gray-800" asChild>
               <Link href="/contact">
                 <span className="relative z-10 flex items-center">
                   Contact Our Web Development Team
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </span>
-                <span className="absolute inset-0 z-0 bg-gradient-to-r from-blue-600 to-cyan-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+                <span className="absolute inset-0 z-0 bg-gradient-to-r from-gray-800 to-gray-900 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
               </Link>
             </Button>
           </motion.div>
@@ -647,7 +644,7 @@ export default function WebDevelopmentClientPage() {
 
       {/* CTA Section */}
       <section className="relative overflow-hidden py-24 md:py-32 px-4 md:px-6 lg:px-8">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900 to-cyan-800"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-900 to-violet-800"></div>
 
         {/* Animated particles */}
         <div className="absolute inset-0 overflow-hidden">
@@ -698,12 +695,12 @@ export default function WebDevelopmentClientPage() {
               for your business.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="group relative overflow-hidden bg-white text-blue-900 hover:bg-white/90">
+              <Button size="lg" className="group relative overflow-hidden bg-white text-purple-900 hover:bg-white/90">
                 <span className="relative z-10 flex items-center">
                   Start Your Project
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </span>
-                <span className="absolute bottom-0 left-0 h-0 w-full bg-gradient-to-r from-blue-100 to-cyan-100 transition-all duration-300 group-hover:h-full"></span>
+                <span className="absolute bottom-0 left-0 h-0 w-full bg-gradient-to-r from-purple-100 to-violet-100 transition-all duration-300 group-hover:h-full"></span>
               </Button>
               <Button
                 size="lg"
@@ -720,6 +717,7 @@ export default function WebDevelopmentClientPage() {
           </motion.div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   )
 }
