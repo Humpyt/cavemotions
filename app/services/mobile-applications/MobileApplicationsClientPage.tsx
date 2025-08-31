@@ -654,13 +654,12 @@ export default function MobileApplicationsClientPage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="group relative overflow-hidden border-white/40 text-white hover:bg-white/10"
+                className="group relative overflow-hidden border-white/40 text-white bg-transparent hover:bg-transparent"
               >
                 <span className="relative z-10 flex items-center">
                   View Our Mobile Portfolio
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </span>
-                <span className="absolute inset-0 h-full w-0 bg-white/10 transition-all duration-300 group-hover:w-full"></span>
               </Button>
             </div>
           </motion.div>

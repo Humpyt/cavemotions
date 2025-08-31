@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { motion } from "framer-motion"
 import { ArrowRight, Calendar, Clock, Search, Sparkles, TrendingUp, User } from "lucide-react"
 
@@ -82,9 +83,11 @@ export default function BlogClientPage() {
       <section className="relative overflow-hidden bg-black py-16 md:py-20 min-h-[50vh]">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
-          <img
+          <Image
             src="/Digital Services Background.jpg"
             alt="Digital Services Background"
+            fill
+            loading="lazy"
             className="w-full h-full object-cover"
           />
           {/* Purple tint overlay */}
@@ -154,9 +157,11 @@ export default function BlogClientPage() {
                 className="group overflow-hidden rounded-2xl relative"
               >
                 <Link href={`/blog/${post.slug}`}>
-                  <img
+                  <Image
                     src={post.coverImage || "/placeholder.svg?height=300&width=600"}
                     alt={post.title}
+                    fill
+                    loading="lazy"
                     className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
@@ -214,9 +219,11 @@ export default function BlogClientPage() {
                 >
                   <Link href={`/blog/${post.slug}`}>
                     <div className="relative h-40 overflow-hidden">
-                      <img
+                      <Image
                         src={post.coverImage || "/placeholder.svg?height=300&width=400"}
                         alt={post.title}
+                        fill
+                        loading="lazy"
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                       <div className="absolute bottom-3 left-3">

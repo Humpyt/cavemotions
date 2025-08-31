@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { motion, useScroll, useTransform } from "framer-motion"
 import ParallaxText from "@/components/parallax-text"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function ServicesPageClient() {
   const [scrollY, setScrollY] = useState(0)
@@ -134,9 +135,11 @@ export default function ServicesPageClient() {
 
         {/* Hero image */}
         <div className="absolute inset-0 opacity-10">
-          <img
+          <Image
             src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&h=1080&fit=crop&crop=center"
             alt="Digital Services Background"
+            fill
+            loading="lazy"
             className="w-full h-full object-cover"
           />
         </div>
@@ -269,9 +272,11 @@ export default function ServicesPageClient() {
                   <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 h-full">
                     {/* Service Image */}
                     <div className="relative h-48 overflow-hidden">
-                      <img
+                      <Image
                         src={service.image || "/placeholder.svg"}
                         alt={service.title}
+                        fill
+                        loading="lazy"
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
@@ -361,9 +366,11 @@ export default function ServicesPageClient() {
       {/* Why Choose Us Section */}
       <section className="py-24 md:py-32 px-4 md:px-6 lg:px-8 bg-slate-900 relative overflow-hidden">
         <div className="absolute inset-0">
-          <img
+          <Image
             src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=1920&h=1080&fit=crop&crop=center"
             alt="Technology Background"
+            fill
+            loading="lazy"
             className="w-full h-full object-cover opacity-10"
           />
         </div>

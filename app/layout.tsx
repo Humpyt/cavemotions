@@ -4,9 +4,15 @@ import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
+import ServiceWorkerRegistration from "@/components/service-worker-registration"
 import type { Metadata } from "next"
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
+const inter = Inter({ 
+  subsets: ["latin"], 
+  variable: "--font-inter",
+  display: "swap",
+  preload: true
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://cavemotions.com"),
@@ -87,10 +93,26 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/images/cave-fav.png" sizes="any" />
         <link rel="apple-touch-icon" href="/images/cave-fav.png" />
-        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="manifest" href="/manifest.json" />
+        {/* Font preload for better performance */}
+        <link
+          rel="preload"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+          as="style"
+        />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#7c3aed" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Cave Motions" />
       </head>
       <body className={`${inter.variable} font-sans antialiased`} suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+          <ServiceWorkerRegistration />
           <div className="flex min-h-screen flex-col">
             <Header />
             <main className="flex-grow pt-20">{children}</main>

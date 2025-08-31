@@ -226,6 +226,8 @@ export default function AboutPageClient() {
                       alt="Cave Motions creative team collaborating on innovative digital solutions in Kampala Uganda - web development AI automation experts"
                       width={600}
                       height={400}
+                      loading="lazy"
+                      sizes="(max-width: 768px) 100vw, 600px"
                       className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700"
                     />
 

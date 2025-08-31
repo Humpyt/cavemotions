@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { blogPosts } from "@/data/blog-posts"
 import {
@@ -356,9 +357,12 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
           <article ref={articleRef} className="lg:col-span-8">
             {/* Featured image with overlay info */}
             <div className="mb-10 relative rounded-xl overflow-hidden shadow-2xl group">
-              <img
+              <Image
                 src={post.coverImage || "/placeholder.svg?height=600&width=1200"}
                 alt={post.title}
+                width={1200}
+                height={400}
+                priority
                 className="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
@@ -534,9 +538,12 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
               <div className="flex items-start gap-6">
                 <div className="relative">
                   <div className="w-20 h-20 rounded-full overflow-hidden ring-4 ring-purple-100 dark:ring-purple-900/30">
-                    <img
+                    <Image
                       src={post.authorAvatar || "/placeholder.svg?height=80&width=80"}
                       alt={post.author || "Author"}
+                      width={80}
+                      height={80}
+                      loading="lazy"
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -631,9 +638,12 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
                     <Link key={index} href={`/blog/${recentPost.slug}`} className="group block">
                       <div className="flex gap-4 p-4 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-purple-300 dark:hover:border-purple-600 hover:shadow-md transition-all duration-200">
                         <div className="w-20 h-20 rounded-lg overflow-hidden shrink-0">
-                          <img
+                          <Image
                             src={recentPost.coverImage || "/placeholder.svg?height=80&width=80"}
                             alt={recentPost.title}
+                            width={80}
+                            height={80}
+                            loading="lazy"
                             className="w-full h-full object-cover transition-transform group-hover:scale-110"
                           />
                         </div>

@@ -379,8 +379,10 @@ export default function Header() {
                 <Image
                   src="/images/logo.png"
                   alt="Cave Motions Logo"
-                  width={120} // Adjusted width for smaller header
-                  height={74} // Adjusted height for smaller header (maintaining aspect ratio)
+                  width={120}
+                  height={74}
+                  priority
+                  sizes="120px"
                   className="transition-opacity duration-300 opacity-100"
                 />
               </div>

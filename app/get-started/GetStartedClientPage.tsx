@@ -1186,7 +1186,7 @@ export default function GetStartedClientPage() {
                         value={estimatedCost}
                         onChange={(e) => setEstimatedCost(e.target.value)}
                         className="mt-2 transition-colors border-gray-300 focus:border-purple-500 focus:ring-purple-500"
-                        placeholder="Enter your estimated budget (e.g., UGX 40M - 100M)"
+                        placeholder="UGX 1M - 100M"
                       />
                       <p className="text-sm text-gray-600 mt-2">
                         Please provide your estimated budget range for this project. This helps us understand your expectations and provide appropriate solutions.
