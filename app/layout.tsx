@@ -129,7 +129,7 @@ export default function RootLayout({
               "@type": "Organization",
               name: "Cave Motions",
               url: "https://cavemotions.com",
-              logo: "https://cavemotions.com/images/logo.png",
+              logo: "https://cavemotions.com/images/cavemo-logo.png",
               sameAs: [
                 "https://twitter.com/cavemotions",
                 "https://www.facebook.com/cavemotions",
@@ -166,7 +166,7 @@ export default function RootLayout({
               "@type": "LocalBusiness",
               "@id": "https://cavemotions.com/#localbusiness",
               name: "Cave Motions",
-              image: "https://cavemotions.com/images/logo.png",
+              image: "https://cavemotions.com/images/cavemo-logo.png",
               url: "https://cavemotions.com",
               telephone: "+256-787-022105",
               email: "hello@cavemotions.com",

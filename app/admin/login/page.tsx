@@ -39,7 +39,7 @@ export default function LoginPage() {
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1 flex flex-col items-center">
           <div className="w-16 h-16 mb-4">
-            <Image src="/images/logo.png" alt="Cave Motions Logo" width={64} height={64} />
+            <Image src="/images/cavemo-logo.png" alt="Cave Motions Logo" width={64} height={64} />
           </div>
           <CardTitle className="text-2xl font-bold text-center">Admin Login</CardTitle>
           <CardDescription className="text-center">Enter your credentials to access the admin panel</CardDescription>

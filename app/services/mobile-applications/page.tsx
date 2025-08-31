@@ -102,7 +102,7 @@ export default function MobileApplicationsPage() {
               "@type": "Organization",
               name: "Cave Motions",
               url: "https://cavemotions.com",
-              logo: "https://cavemotions.com/images/logo.png",
+              logo: "https://cavemotions.com/images/cavemo-logo.png",
               address: {
                 "@type": "PostalAddress",
                 streetAddress: "Bugolobi",

@@ -188,7 +188,7 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
               name: "Cave Motions",
               logo: {
                 "@type": "ImageObject",
-                url: "https://cavemotions.com/images/logo.png"
+                url: "https://cavemotions.com/images/cavemo-logo.png"
               }
             },
             mainEntityOfPage: {

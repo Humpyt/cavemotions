@@ -10,7 +10,7 @@ const STATIC_ASSETS = [
   '/',
   '/manifest.json',
   '/favicon.ico',
-  '/images/logo.png',
+  '/images/cavemo-logo.png',
   '/images/cavemotionshome.jpeg',
   // Add critical CSS and JS files
 ];
@@ -160,8 +160,8 @@ self.addEventListener('push', (event) => {
     const data = event.data.json();
     const options = {
       body: data.body,
-      icon: '/images/logo.png',
-      badge: '/images/logo.png',
+      icon: '/images/cavemo-logo.png',
+  badge: '/images/cavemo-logo.png',
       vibrate: [100, 50, 100],
       data: {
         dateOfArrival: Date.now(),

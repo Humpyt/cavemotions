@@ -100,11 +100,11 @@ export default function AdminSidebar() {
         <Link href="/admin" className="flex items-center gap-2">
           {!collapsed ? (
             <div className="flex items-center gap-2">
-              <Image src="/images/logo.png" alt="Cave Motions Logo" width={32} height={32} />
+              <Image src="/images/cavemo-logo.png" alt="Cave Motions Logo" width={32} height={32} />
               <span className="font-bold text-xl">Admin</span>
             </div>
           ) : (
-            <Image src="/images/logo.png" alt="Cave Motions Logo" width={32} height={32} />
+            <Image src="/images/cavemo-logo.png" alt="Cave Motions Logo" width={32} height={32} />
           )}
         </Link>
       </div>
