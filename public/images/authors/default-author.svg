@@ -1,0 +1,26 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="authorGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="100" fill="url(#authorGradient)"/>
+  
+  <!-- Person silhouette -->
+  <g transform="translate(100, 100)">
+    <!-- Head -->
+    <circle cx="0" cy="-20" r="25" fill="rgba(255,255,255,0.9)"/>
+    
+    <!-- Body -->
+    <path d="M-35 20 C-35 0, -25 -5, 0 -5 C25 -5, 35 0, 35 20 L35 50 L-35 50 Z" 
+          fill="rgba(255,255,255,0.9)"/>
+  </g>
+  
+  <!-- Subtle pattern overlay -->
+  <circle cx="100" cy="100" r="100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2" stroke-dasharray="5,5">
+    <animate attributeName="stroke-dashoffset" values="0;10" dur="20s" repeatCount="indefinite"/>
+  </circle>
+</svg>

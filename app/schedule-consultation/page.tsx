@@ -67,7 +67,7 @@ export default function ScheduleConsultationPage() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/Digital Services Background.jpg"
+            src="/Digital Services Background.svg"
             alt="Digital Services Background"
             className="w-full h-full object-cover"
           />

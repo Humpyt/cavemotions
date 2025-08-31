@@ -102,7 +102,7 @@ export default function WebDevelopmentPage() {
               "@type": "Organization",
               name: "Cave Motions",
               url: "https://cavemotions.com",
-              logo: "https://cavemotions.com/images/cavemo-logo.png",
+              logo: "https://cavemotions.com/images/logo.png",
               address: {
                 "@type": "PostalAddress",
                 streetAddress: "Bugolobi",

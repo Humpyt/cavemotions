@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, Brain, Sparkles, BarChart, Bot, Zap, Lightbulb, ArrowUpRight } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { motion, useScroll, useTransform } from "framer-motion"
-import DynamicThreeDimensionalCard from "@/components/dynamic-three-dimensional-card"
+import ThreeDimensionalCard from "@/components/three-dimensional-card"
 import ParallaxText from "@/components/parallax-text"
 import Link from "next/link"
 
@@ -120,9 +120,9 @@ export default function AIAutomationClientPage() {
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <img
-              src="/Digital Services Background.jpg"
-              alt="Digital Services Background"
-              className="w-full h-full object-cover"
+            src="/Digital Services Background.svg"
+            alt="Digital Services Background"
+            className="w-full h-full object-cover"
             />
             {/* Purple tint overlay */}
             <div className="absolute inset-0 bg-gradient-to-br from-purple-900/80 via-violet-800/70 to-purple-900/80"></div>
@@ -206,7 +206,7 @@ export default function AIAutomationClientPage() {
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8 }}
               >
-                <DynamicThreeDimensionalCard>
+                <ThreeDimensionalCard>
                   <div className="relative">
                     <div className="overflow-hidden rounded-2xl shadow-xl">
                       <img
@@ -226,7 +226,7 @@ export default function AIAutomationClientPage() {
                       <p className="text-sm font-medium">Future-Ready</p>
                     </div>
                   </div>
-                </DynamicThreeDimensionalCard>
+                </ThreeDimensionalCard>
               </motion.div>
 
               <div className="md:w-1/2 space-y-6">
@@ -670,12 +670,13 @@ export default function AIAutomationClientPage() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="group relative overflow-hidden border-white/40 text-white bg-transparent hover:bg-transparent"
+                  className="group relative overflow-hidden border-white/40 text-white hover:bg-white/10"
                 >
                   <span className="relative z-10 flex items-center">
                     Explore Our AI Portfolio
                     <ArrowUpRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                   </span>
+                  <span className="absolute inset-0 h-full w-0 bg-white/10 transition-all duration-300 group-hover:w-full"></span>
                 </Button>
               </div>
             </motion.div>

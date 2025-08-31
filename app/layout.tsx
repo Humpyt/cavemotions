@@ -4,15 +4,10 @@ import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import ServiceWorkerRegistration from "@/components/service-worker-registration"
+import HydrationSafeWrapper from "@/components/hydration-safe-wrapper"
 import type { Metadata } from "next"
 
-const inter = Inter({ 
-  subsets: ["latin"], 
-  variable: "--font-inter",
-  display: "swap",
-  preload: true
-})
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://cavemotions.com"),
@@ -91,34 +86,20 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/images/cave-fav.png" sizes="any" />
-        <link rel="apple-touch-icon" href="/images/cave-fav.png" />
-        <link rel="manifest" href="/manifest.json" />
-        {/* Font preload for better performance */}
-        <link
-          rel="preload"
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-          as="style"
-        />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-        />
-        <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#7c3aed" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="Cave Motions" />
+        <link rel="icon" href="/images/cave-logo.png" sizes="any" />
+        <link rel="apple-touch-icon" href="/images/cave-logo.png" />
+        <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body className={`${inter.variable} font-sans antialiased`} suppressHydrationWarning>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-          <ServiceWorkerRegistration />
-          <div className="flex min-h-screen flex-col">
-            <Header />
-            <main className="flex-grow pt-20">{children}</main>
-            <Footer />
-          </div>
-        </ThemeProvider>
+        <HydrationSafeWrapper>
+          <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+            <div className="flex min-h-screen flex-col">
+              <Header />
+              <main className="flex-grow pt-20">{children}</main>
+              <Footer />
+            </div>
+          </ThemeProvider>
+        </HydrationSafeWrapper>
 
         {/* Organization Schema */}
         <script
@@ -129,7 +110,7 @@ export default function RootLayout({
               "@type": "Organization",
               name: "Cave Motions",
               url: "https://cavemotions.com",
-              logo: "https://cavemotions.com/images/cavemo-logo.png",
+              logo: "https://cavemotions.com/images/logo.png",
               sameAs: [
                 "https://twitter.com/cavemotions",
                 "https://www.facebook.com/cavemotions",
@@ -166,7 +147,7 @@ export default function RootLayout({
               "@type": "LocalBusiness",
               "@id": "https://cavemotions.com/#localbusiness",
               name: "Cave Motions",
-              image: "https://cavemotions.com/images/cavemo-logo.png",
+              image: "https://cavemotions.com/images/logo.png",
               url: "https://cavemotions.com",
               telephone: "+256-787-022105",
               email: "hello@cavemotions.com",

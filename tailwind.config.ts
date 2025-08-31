@@ -7,28 +7,7 @@ const config = {
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
-    "./data/**/*.{ts,tsx}",
-    "./hooks/**/*.{ts,tsx}",
-    "./lib/**/*.{ts,tsx}",
-  ],
-  safelist: [
-    'dark',
-    'light',
-    {
-      pattern: /^motion-/,
-    },
-    {
-      pattern: /^framer-motion/,
-    },
-    {
-      pattern: /^radix-/,
-    },
-    {
-      pattern: /^data-/,
-    },
-    {
-      pattern: /^aria-/,
-    },
+    "*.{js,ts,jsx,tsx,mdx}",
   ],
   prefix: "",
   theme: {

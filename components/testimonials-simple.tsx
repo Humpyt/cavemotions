@@ -1,32 +1,37 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import Image from "next/image"
 import { AnimatePresence, motion } from "framer-motion"
-import { User } from "lucide-react"
 
 const testimonials = [
   {
     quote: "Cave Motions completely transformed our online presence. Their web design is sleek, modern, and exactly what our business needed to stand out in Kampala. The team was professional, fast, and incredibly creative. We now get more inquiries from our website than ever before!",
+    avatar: "/placeholder-user.jpg",
     name: "Sarah K.",
     role: "Business Owner",
   },
   {
     quote: "Working with Cave Motions was the best decision for our brand. From logo design to website development, they gave us a professional identity that speaks volumes. Their attention to detail and creativity is unmatched!",
+    avatar: "/placeholder-user.jpg",
     name: "David M.",
     role: "Entrepreneur",
   },
   {
     quote: "Cave Motions built us a custom system that streamlined our operations and saved us so much time. Their mix of creativity and technical expertise makes them the go-to agency for innovative solutions in Uganda.",
+    avatar: "/placeholder-user.jpg",
     name: "Lydia N.",
     role: "NGO Coordinator",
   },
   {
     quote: "We wanted a website that looked amazing and worked flawlessly on phones. Cave Motions delivered beyond expectations! Our clients always compliment how professional our site looks. They are truly experts in their field.",
+    avatar: "/placeholder-user.jpg",
     name: "Michael O.",
     role: "School Director",
   },
   {
-    quote: "Cave Motions didn't just design our website - they gave us a full digital strategy. From branding to social media, they helped us elevate our image and reach more customers. I highly recommend them to anyone serious about growing their business online.",
+    quote: "Cave Motions didn't just design our website—they gave us a full digital strategy. From branding to social media, they helped us elevate our image and reach more customers. I highly recommend them to anyone serious about growing their business online.",
+    avatar: "/placeholder-user.jpg",
     name: "Grace T.",
     role: "Fashion Brand Owner",
   },
@@ -96,9 +101,13 @@ export function TestimonialsSimple() {
                 transition={{ type: "spring", duration: 0.5 }}
                 className="flex items-center gap-4"
               >
-                <div className="bg-white/10 h-12 w-12 rounded-full border flex items-center justify-center">
-                  <User className="h-6 w-6 text-white/70" />
-                </div>
+                <Image
+                  src={testimonials[index].avatar}
+                  alt={testimonials[index].name + " avatar"}
+                  width={48}
+                  height={48}
+                  className="bg-white/10 h-12 w-12 rounded-full border object-cover"
+                />
                 <div className="border-white/30 mx-4 h-8 border-l" />
                 <div className="text-left">
                   <div className="text-white text-lg font-medium italic">

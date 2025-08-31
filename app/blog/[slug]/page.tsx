@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       locale: "en_US",
       images: [
         {
-          url: post.coverImage || "https://cavemotions.com/images/blog-default.jpg",
+          url: post.coverImage || "/images/blog-default.svg",
           width: 1200,
           height: 630,
           alt: post.title,
@@ -67,7 +67,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       description: post.metaDescription || post.excerpt,
       images: [
         {
-          url: post.coverImage || "https://cavemotions.com/images/blog-default.jpg",
+          url: post.coverImage || "/images/blog-default.svg",
           alt: post.title,
         },
       ],

@@ -1,0 +1,40 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="servicesOgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#00f2fe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#667eea;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#servicesOgGradient)"/>
+  
+  <!-- Content -->
+  <g transform="translate(100, 200)">
+    <text x="0" y="0" fill="rgba(255,255,255,0.95)" font-family="Arial, sans-serif" font-size="56" font-weight="bold">Our Services</text>
+    <text x="0" y="80" fill="rgba(255,255,255,0.85)" font-family="Arial, sans-serif" font-size="28">Comprehensive Digital Solutions</text>
+    <text x="0" y="130" fill="rgba(255,255,255,0.75)" font-family="Arial, sans-serif" font-size="20">Web Development • Mobile Apps • AI Automation</text>
+  </g>
+  
+  <!-- Service icons -->
+  <g transform="translate(750, 180)">
+    <!-- Web development -->
+    <rect x="0" y="0" width="60" height="40" rx="4" fill="rgba(255,255,255,0.2)"/>
+    <rect x="5" y="5" width="50" height="5" fill="rgba(255,255,255,0.3)"/>
+    <rect x="5" y="15" width="30" height="3" fill="rgba(255,255,255,0.25)"/>
+    <rect x="5" y="22" width="40" height="3" fill="rgba(255,255,255,0.25)"/>
+    
+    <!-- Mobile app -->
+    <rect x="80" y="5" width="30" height="50" rx="6" fill="rgba(255,255,255,0.2)"/>
+    <rect x="85" y="12" width="20" height="3" fill="rgba(255,255,255,0.3)"/>
+    <rect x="85" y="18" width="15" height="2" fill="rgba(255,255,255,0.25)"/>
+    <rect x="85" y="23" width="18" height="2" fill="rgba(255,255,255,0.25)"/>
+    
+    <!-- AI brain -->
+    <circle cx="160" cy="25" r="20" fill="rgba(255,255,255,0.2)"/>
+    <circle cx="155" cy="20" r="2" fill="rgba(255,255,255,0.4)"/>
+    <circle cx="165" cy="20" r="2" fill="rgba(255,255,255,0.4)"/>
+    <circle cx="160" cy="30" r="2" fill="rgba(255,255,255,0.4)"/>
+  </g>
+</svg>

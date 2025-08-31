@@ -71,7 +71,6 @@ export default function GetStartedClientPage() {
   const [currentStep, setCurrentStep] = useState(0)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
-  const [successMessage, setSuccessMessage] = useState("")
   const [selectedService, setSelectedService] = useState("")
 
   const [form, setForm] = useState({
@@ -662,7 +661,7 @@ export default function GetStartedClientPage() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/Digital Services Background.jpg"
+            src="/Digital Services Background.svg"
             alt="Digital Services Background"
             className="w-full h-full object-cover"
           />
@@ -1186,7 +1185,7 @@ export default function GetStartedClientPage() {
                         value={estimatedCost}
                         onChange={(e) => setEstimatedCost(e.target.value)}
                         className="mt-2 transition-colors border-gray-300 focus:border-purple-500 focus:ring-purple-500"
-                        placeholder="UGX 1M - 100M"
+                        placeholder="Enter your estimated budget (e.g., UGX 40M - 100M)"
                       />
                       <p className="text-sm text-gray-600 mt-2">
                         Please provide your estimated budget range for this project. This helps us understand your expectations and provide appropriate solutions.
@@ -1527,7 +1526,7 @@ export default function GetStartedClientPage() {
             </Badge>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-800">Why Choose Cave Motions?</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We don't just build software - we craft digital experiences that transform businesses and drive growth
+              We don't just build software – we craft digital experiences that transform businesses and drive growth
             </p>
           </motion.div>
 
@@ -1642,6 +1641,7 @@ export default function GetStartedClientPage() {
                   quote={testimonial.quote}
                   author={testimonial.author}
                   role={testimonial.role}
+                  image={testimonial.image}
                   className="h-full"
                 />
               </motion.div>

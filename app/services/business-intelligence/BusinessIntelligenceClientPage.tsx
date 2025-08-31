@@ -17,7 +17,7 @@ import {
   ChevronDown,
 } from "lucide-react"
 import { motion } from "framer-motion"
-import DynamicThreeDimensionalCard from "@/components/dynamic-three-dimensional-card"
+import ThreeDimensionalCard from "@/components/three-dimensional-card"
 import ParallaxText from "@/components/parallax-text"
 
 export default function BusinessIntelligenceClientPage() {
@@ -303,7 +303,7 @@ export default function BusinessIntelligenceClientPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <DynamicThreeDimensionalCard className="p-8 bg-gradient-to-br from-purple-50 to-white">
+            <ThreeDimensionalCard className="p-8 bg-gradient-to-br from-purple-50 to-white">
               <div className="space-y-6">
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
@@ -333,7 +333,7 @@ export default function BusinessIntelligenceClientPage() {
                   </div>
                 </div>
               </div>
-            </DynamicThreeDimensionalCard>
+            </ThreeDimensionalCard>
           </motion.div>
         </div>
       </section>

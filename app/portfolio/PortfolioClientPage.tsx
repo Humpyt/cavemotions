@@ -70,9 +70,9 @@ export default function PortfolioClientPage({ initialCategory = "all" }: Portfol
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <img
-              src="/Digital Services Background.jpg"
-              alt="Digital Services Background"
-              className="w-full h-full object-cover"
+            src="/Digital Services Background.svg"
+            alt="Digital Services Background"
+            className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-br from-purple-900/80 via-violet-800/70 to-purple-900/80" />
           </div>

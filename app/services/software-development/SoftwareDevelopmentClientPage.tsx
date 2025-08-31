@@ -14,7 +14,7 @@ import {
 } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { motion, useScroll, useTransform } from "framer-motion"
-import DynamicThreeDimensionalCard from "@/components/dynamic-three-dimensional-card"
+import ThreeDimensionalCard from "@/components/three-dimensional-card"
 import ParallaxText from "@/components/parallax-text"
 import Link from "next/link"
 
@@ -125,7 +125,7 @@ export default function SoftwareDevelopmentClientPage() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/Digital Services Background.jpg"
+            src="/Digital Services Background.svg"
             alt="Digital Services Background"
             className="w-full h-full object-cover"
           />
@@ -206,7 +206,7 @@ export default function SoftwareDevelopmentClientPage() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8 }}
             >
-              <DynamicThreeDimensionalCard>
+              <ThreeDimensionalCard>
                 <div className="relative">
                   <div className="overflow-hidden rounded-2xl shadow-xl">
                     <img
@@ -226,7 +226,7 @@ export default function SoftwareDevelopmentClientPage() {
                     <p className="text-sm font-medium">Enterprise-Grade</p>
                   </div>
                 </div>
-              </DynamicThreeDimensionalCard>
+              </ThreeDimensionalCard>
             </motion.div>
 
             <div className="md:w-1/2 space-y-6">

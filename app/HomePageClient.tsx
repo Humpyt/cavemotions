@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
-import Image from "next/image"
 import { ArrowRight, ExternalLink, Play, Sparkles, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -188,12 +187,9 @@ export default function HomePageClient() {
                 <div className="relative h-full w-full">
                   {/* Main image */}
                   <div className="overflow-hidden rounded-2xl shadow-2xl">
-                    <Image
+                    <img
                       src="/images/cavemotionshome.jpeg"
                       alt="Cave Motions digital innovation studio team in Kampala Uganda - AI automation web development software development experts"
-                      width={600}
-                      height={500}
-                      loading="lazy"
                       className="w-full h-[500px] object-cover transition-transform duration-700 hover:scale-105"
                     />
                   </div>
@@ -416,12 +412,9 @@ export default function HomePageClient() {
                       className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-purple-500/25 hover:border-purple-200 border border-transparent"
                     >
                       <div className="aspect-[4/3] overflow-hidden">
-                        <Image
+                        <img
                           src={project.image || "/placeholder.svg"}
                           alt={`${project.title} - ${project.category} project by Cave Motions`}
-                          width={400}
-                          height={300}
-                          loading="lazy"
                           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                         />
                       </div>
@@ -634,8 +627,8 @@ export default function HomePageClient() {
                     className="group relative overflow-hidden border-white/40 text-white hover:bg-white/10 bg-transparent"
                     asChild
                   >
-                    <Link href="/get-started">
-                      <span className="relative z-10">Get Started</span>
+                    <Link href="/our-process">
+                      <span className="relative z-10">View Our Process</span>
                       <span className="absolute inset-0 h-full w-0 bg-white/10 transition-all duration-300 group-hover:w-full"></span>
                     </Link>
                   </Button>

@@ -16,13 +16,6 @@ const teamMembers = [
       "A visionary leader with an eye for innovation, Humphrey transforms complex business challenges into elegant digital solutions. His strategic mindset and passion for technology drive Cave Motions' mission to deliver exceptional products that make a real difference in our clients' success stories.",
   },
   {
-    name: "Stellahmaris Karungi",
-    title: "Head of Marketing",
-    image: "/images/team/Stella Karungi.jpg",
-    description:
-      "The storyteller of our brand, Stellahmaris weaves compelling narratives that connect Cave Motions with the world. Her strategic marketing vision and authentic communication style help businesses discover how technology can transform their dreams into digital reality.",
-  },
-  {
     name: "Isaac Obache",
     title: "Chief Technology Officer (CTO)",
     image: "/images/team/Isaac Obache.jpg",
@@ -42,6 +35,13 @@ const teamMembers = [
     image: "/images/team/Oboth Fred.jpg",
     description:
       "Where art meets functionality, Fred creates digital experiences that captivate and inspire. His design philosophy centers on human-centered innovation, crafting interfaces that feel intuitive, look stunning, and solve real problems with elegant simplicity.",
+  },
+  {
+    name: "Stellahmaris Karungi",
+    title: "Head of Marketing",
+    image: "/images/team/Stella Karungi.jpg",
+    description:
+      "The storyteller of our brand, Stellahmaris weaves compelling narratives that connect Cave Motions with the world. Her strategic marketing vision and authentic communication style help businesses discover how technology can transform their dreams into digital reality.",
   },
 ]
 

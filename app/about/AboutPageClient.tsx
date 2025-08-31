@@ -73,9 +73,9 @@ export default function AboutPageClient() {
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <img
-              src="/Digital Services Background.jpg"
-              alt="Digital Services Background"
-              className="w-full h-full object-cover"
+            src="/Digital Services Background.svg"
+            alt="Digital Services Background"
+            className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-br from-purple-900/80 via-violet-800/70 to-purple-900/80" />
           </div>
@@ -102,7 +102,7 @@ export default function AboutPageClient() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Founded in Kampala, we craft future-ready products and experiences at the intersection of design, software, and AI. We partner with bold teams to turn ideas into lovable, scalable digital realities.
+              Founded in Kampala, we craft future‑ready products and experiences at the intersection of design, software, and AI. We partner with bold teams to turn ideas into lovable, scalable digital realities.
             </motion.p>
           </div>
         </section>
@@ -226,8 +226,6 @@ export default function AboutPageClient() {
                       alt="Cave Motions creative team collaborating on innovative digital solutions in Kampala Uganda - web development AI automation experts"
                       width={600}
                       height={400}
-                      loading="lazy"
-                      sizes="(max-width: 768px) 100vw, 600px"
                       className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700"
                     />
 
@@ -362,7 +360,7 @@ export default function AboutPageClient() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {[
                 { title: "Craft with care", desc: "Every pixel and line of code matters." },
-                { title: "Think long-term", desc: "Build for now—and what comes next." },
+                { title: "Think long‑term", desc: "Build for now—and what comes next." },
                 { title: "Move together", desc: "Collaboration over silos, always." },
               ].map((v, i) => (
                 <motion.div
