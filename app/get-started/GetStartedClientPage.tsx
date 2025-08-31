@@ -71,6 +71,7 @@ export default function GetStartedClientPage() {
   const [currentStep, setCurrentStep] = useState(0)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
+  const [successMessage, setSuccessMessage] = useState("")
   const [selectedService, setSelectedService] = useState("")
 
   const [form, setForm] = useState({
@@ -1641,7 +1642,6 @@ export default function GetStartedClientPage() {
                   quote={testimonial.quote}
                   author={testimonial.author}
                   role={testimonial.role}
-                  image={testimonial.image}
                   className="h-full"
                 />
               </motion.div>

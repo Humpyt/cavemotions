@@ -68,6 +68,7 @@ export default function ShaderBackground() {
     `
 
     function compileShader(type: number, source: string) {
+      if (!gl) throw new Error('WebGL context not available')
       const shader = gl.createShader(type)
       if (!shader) throw new Error('Failed to create shader')
       gl.shaderSource(shader, source)
