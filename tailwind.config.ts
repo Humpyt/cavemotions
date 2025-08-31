@@ -2,28 +2,34 @@ import type { Config } from "tailwindcss"
 
 const config = {
   darkMode: ["class"],
-  content: {
-    files: [
-      "./pages/**/*.{ts,tsx}",
-      "./components/**/*.{ts,tsx}",
-      "./app/**/*.{ts,tsx}",
-      "./src/**/*.{ts,tsx}",
-      "./data/**/*.{ts,tsx}",
-      "./hooks/**/*.{ts,tsx}",
-      "./lib/**/*.{ts,tsx}",
-    ],
-    options: {
-      safelist: [
-        'dark',
-        'light',
-        /^motion-/,
-        /^framer-motion/,
-        /^radix-/,
-        /^data-/,
-        /^aria-/,
-      ],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+    "./data/**/*.{ts,tsx}",
+    "./hooks/**/*.{ts,tsx}",
+    "./lib/**/*.{ts,tsx}",
+  ],
+  safelist: [
+    'dark',
+    'light',
+    {
+      pattern: /^motion-/,
     },
-  },
+    {
+      pattern: /^framer-motion/,
+    },
+    {
+      pattern: /^radix-/,
+    },
+    {
+      pattern: /^data-/,
+    },
+    {
+      pattern: /^aria-/,
+    },
+  ],
   prefix: "",
   theme: {
     container: {
