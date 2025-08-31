@@ -85,8 +85,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/images/Cavemo fav-01.png" sizes="any" />
-        <link rel="apple-touch-icon" href="/images/Cavemo fav-01.png" />
+        <link rel="icon" href="/images/cave-fav.png" sizes="any" />
+        <link rel="apple-touch-icon" href="/images/cave-fav.png" />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body className={`${inter.variable} font-sans antialiased`} suppressHydrationWarning>
