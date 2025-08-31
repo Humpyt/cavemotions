@@ -377,7 +377,7 @@ export default function Header() {
               <div className="hover:scale-105 transition-transform">
                 {/* Use Image component for the logo */}
                 <Image
-                  src="/images/Cavemo Logo3.png"
+                  src="/images/cavemo-logo.png"
                   alt="Cave Motions Logo"
                   width={120} // Adjusted width for smaller header
                   height={74} // Adjusted height for smaller header (maintaining aspect ratio)

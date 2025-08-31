@@ -102,7 +102,7 @@ export default function AboutPageClient() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Founded in Kampala, we craft future‑ready products and experiences at the intersection of design, software, and AI. We partner with bold teams to turn ideas into lovable, scalable digital realities.
+              Founded in Kampala, we craft future-ready products and experiences at the intersection of design, software, and AI. We partner with bold teams to turn ideas into lovable, scalable digital realities.
             </motion.p>
           </div>
         </section>
@@ -360,7 +360,7 @@ export default function AboutPageClient() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {[
                 { title: "Craft with care", desc: "Every pixel and line of code matters." },
-                { title: "Think long‑term", desc: "Build for now—and what comes next." },
+                { title: "Think long-term", desc: "Build for now—and what comes next." },
                 { title: "Move together", desc: "Collaboration over silos, always." },
               ].map((v, i) => (
                 <motion.div

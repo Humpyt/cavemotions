@@ -1527,7 +1527,7 @@ export default function GetStartedClientPage() {
             </Badge>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-800">Why Choose Cave Motions?</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We don't just build software – we craft digital experiences that transform businesses and drive growth
+              We don't just build software - we craft digital experiences that transform businesses and drive growth
             </p>
           </motion.div>
 
