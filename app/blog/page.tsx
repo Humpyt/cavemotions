@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import BlogClientPage from "./BlogClientPage"
+import { getAllBlogPosts } from "@/lib/blog"
 
 export const metadata: Metadata = {
   title: "Blog | Insights on AI, Web Development & Digital Innovation",
@@ -28,5 +29,9 @@ export const metadata: Metadata = {
 }
 
 export default function BlogPage() {
+  // Pre-load blog posts on server side to ensure they're available
+  const posts = getAllBlogPosts()
+  console.log(`🔍 Server-side blog posts loaded: ${posts.length} posts`)
+  
   return <BlogClientPage />
 }

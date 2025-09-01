@@ -9,28 +9,29 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
-import { getAllBlogPosts, getBlogCategories, debugBlogPosts } from "@/lib/blog"
 
 // -----------------------------------------------------------------------------
 // Types & helpers
 // -----------------------------------------------------------------------------
 
-// Get all blog posts using the helper function
-const posts = getAllBlogPosts()
-
-// Debug logging for Netlify
-if (typeof window === 'undefined') {
-  debugBlogPosts()
+interface BlogPost {
+  slug: string
+  title: string
+  excerpt: string
+  metaDescription?: string
+  keywords?: string[]
+  content: string
+  coverImage?: string
+  date: string
+  author?: string
+  authorBio?: string
+  authorAvatar?: string
+  category: string
+  tags: string[]
+  readTime?: number
+  featured?: boolean
+  tableOfContents?: string[]
 }
-
-type BlogPost = (typeof posts)[number]
-
-// All unique categories (plus “All”)
-const categories = getBlogCategories()
-
-// A couple of simple helper slices – adapt to your own logic later on
-const featuredPosts = posts.slice(0, 3)
-const trendingPosts = posts.slice(0, 4)
 
 // Animation variants
 const fadeInUpVariants = {
@@ -55,15 +56,58 @@ const staggerContainerVariants = {
 
 export default function BlogClientPage() {
   // STATE --------------------------------------------------------------------
+  const [posts, setPosts] = useState<BlogPost[]>([])
+  const [categories, setCategories] = useState<string[]>(["All"])
   const [search, setSearch] = useState("")
   const [activeCategory, setActiveCategory] = useState<string>("All")
   const [currentPage, setCurrentPage] = useState(1)
   const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const postsPerPage = 6
 
-  // Initialize loading state
+  // Load blog posts on component mount
   useEffect(() => {
-    setIsLoading(false)
+    const loadBlogPosts = async () => {
+      try {
+        setIsLoading(true)
+        setError(null)
+        
+        // Try to load from API first
+        const response = await fetch('/api/blog')
+        if (response.ok) {
+          const data = await response.json()
+          if (data.success && data.posts) {
+            setPosts(data.posts)
+            const uniqueCategories = ["All", ...new Set(data.posts.map((p: BlogPost) => p.category))]
+            setCategories(uniqueCategories)
+            console.log('✅ Blog posts loaded from API:', data.posts.length)
+            setIsLoading(false)
+            return
+          }
+        }
+        
+        // Fallback: try to import directly
+        const { getAllBlogPosts, getBlogCategories } = await import('@/lib/blog')
+        const blogPosts = getAllBlogPosts()
+        const blogCategories = getBlogCategories()
+        
+        if (blogPosts && blogPosts.length > 0) {
+          setPosts(blogPosts)
+          setCategories(blogCategories)
+          console.log('✅ Blog posts loaded directly:', blogPosts.length)
+        } else {
+          throw new Error('No blog posts found')
+        }
+        
+      } catch (err) {
+        console.error('❌ Error loading blog posts:', err)
+        setError('Failed to load blog posts. Please try again later.')
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    loadBlogPosts()
   }, [])
 
   // FILTERING -----------------------------------------------------------------
@@ -84,6 +128,10 @@ export default function BlogClientPage() {
   // Reset to page 1 whenever filters change
   useEffect(() => setCurrentPage(1), [search, activeCategory])
 
+  // Get featured and trending posts
+  const featuredPosts = posts.filter(post => post.featured).slice(0, 3)
+  const trendingPosts = posts.slice(0, 4)
+
   // Show loading state
   if (isLoading) {
     return (
@@ -102,6 +150,12 @@ export default function BlogClientPage() {
         </section>
         <section className="bg-white py-16">
           <div className="container mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
+            <div className="text-center mb-8">
+              <div className="animate-pulse">
+                <div className="h-6 bg-gray-200 rounded w-48 mx-auto mb-4"></div>
+                <div className="h-4 bg-gray-200 rounded w-32 mx-auto"></div>
+              </div>
+            </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[1, 2, 3, 4, 5, 6].map((i) => (
                 <div key={i} className="animate-pulse">
@@ -111,6 +165,33 @@ export default function BlogClientPage() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+      </div>
+    )
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div className="flex flex-col min-h-screen">
+        <section className="relative overflow-hidden bg-black py-16 md:py-20 min-h-[50vh]">
+          <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-900/80 via-violet-800/70 to-purple-900/80"></div>
+          </div>
+          <div className="relative container mx-auto max-w-6xl px-4 md:px-6 lg:px-8 text-center z-10">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+              Blog Temporarily Unavailable
+            </h1>
+            <p className="max-w-3xl mx-auto text-lg md:text-xl text-white/80 mb-8">
+              {error}
+            </p>
+            <Button 
+              onClick={() => window.location.reload()} 
+              className="bg-white text-purple-600 hover:bg-gray-100"
+            >
+              Try Again
+            </Button>
           </div>
         </section>
       </div>
@@ -161,13 +242,17 @@ export default function BlogClientPage() {
             Explore trends, best practices, and expert commentary on AI, web development, and digital transformation.
           </motion.p>
 
-          {/* Search */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
             className="mx-auto max-w-md"
           >
+            <div className="text-center mb-4">
+              <Badge className="bg-green-500 text-white">
+                {posts.length} Articles Available
+              </Badge>
+            </div>
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input
@@ -276,17 +361,17 @@ export default function BlogClientPage() {
 
                       <div className="flex items-center justify-between text-xs text-gray-500 mb-2">
                         <span className="flex items-center">
-                          <User className="mr-1 h-3 w-3" /> {post.author}
+                          <User className="mr-1 h-3 w-3" /> {post.author || "Cave Motions"}
                         </span>
                         <span className="flex items-center">
-                          <Calendar className="mr-1 h-3 w-3" /> {post.date}
+                          <Calendar className="mr-1 h-3 w-3" /> {new Date(post.date).toLocaleDateString()}
                         </span>
                       </div>
 
                       <div className="flex items-center justify-between">
                         <span className="flex items-center text-xs font-medium text-purple-600">
                           <Clock className="mr-1 h-3 w-3" />
-                          {post.readTime}
+                          {post.readTime || 5} min read
                         </span>
                         <span className="flex items-center text-xs font-medium text-purple-600 group-hover:text-purple-700">
                           Read
@@ -299,7 +384,18 @@ export default function BlogClientPage() {
               ))}
             </motion.div>
           ) : (
-            <p className="text-center text-gray-500">No articles found.</p>
+            <div className="text-center py-12">
+              <p className="text-gray-500 text-lg mb-4">No articles found matching your criteria.</p>
+              <Button 
+                variant="outline" 
+                onClick={() => {
+                  setSearch("")
+                  setActiveCategory("All")
+                }}
+              >
+                Clear Filters
+              </Button>
+            </div>
           )}
 
           {/* PAGINATION -------------------------------------------------- */}
@@ -373,8 +469,8 @@ export default function BlogClientPage() {
                         {post.title}
                       </h3>
                       <div className="flex items-center justify-between text-xs text-gray-500">
-                        <span>{post.readTime}</span>
-                        <span>{post.date}</span>
+                        <span>{post.readTime || 5} min read</span>
+                        <span>{new Date(post.date).toLocaleDateString()}</span>
                       </div>
                     </div>
                   </Link>

@@ -6,6 +6,7 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import HydrationSafeWrapper from "@/components/hydration-safe-wrapper"
 import type { Metadata } from "next"
+import Script from "next/script"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 
@@ -91,6 +92,32 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body className={`${inter.variable} font-sans antialiased`} suppressHydrationWarning>
+        {/* Prevent browser extension errors */}
+        <Script id="extension-error-handler" strategy="beforeInteractive">
+          {`
+            // Prevent extension errors from affecting the site
+            window.addEventListener('error', function(e) {
+              if (e.filename && e.filename.includes('extension://')) {
+                e.preventDefault();
+                return false;
+              }
+            });
+            
+            // Suppress extension console errors
+            const originalError = console.error;
+            console.error = function(...args) {
+              const message = args.join(' ');
+              if (message.includes('extension://') || 
+                  message.includes('chrome-extension://') ||
+                  message.includes('enable_click_download') ||
+                  message.includes('Access to storage is not allowed')) {
+                return;
+              }
+              originalError.apply(console, args);
+            };
+          `}
+        </Script>
+        
         <HydrationSafeWrapper>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
             <div className="flex min-h-screen flex-col">
