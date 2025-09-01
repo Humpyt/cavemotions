@@ -3,8 +3,8 @@
 import { useEffect, useRef } from "react"
 
 export function useAnimationFrame(callback: (time: number, delta: number) => void) {
-  const requestRef = useRef<number>()
-  const previousTimeRef = useRef<number>()
+  const requestRef = useRef<number | undefined>(undefined)
+  const previousTimeRef = useRef<number | undefined>(undefined)
 
   useEffect(() => {
     const animate = (time: number) => {
