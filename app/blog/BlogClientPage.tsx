@@ -78,7 +78,7 @@ export default function BlogClientPage() {
           const data = await response.json()
           if (data.success && data.posts) {
             setPosts(data.posts)
-            const categories = data.posts.map((p: BlogPost) => p.category).filter((cat): cat is string => typeof cat === 'string')
+            const categories = data.posts.map((p: BlogPost) => p.category).filter((cat: unknown): cat is string => typeof cat === 'string')
             const uniqueCategories: string[] = ["All", ...new Set(categories)]
             setCategories(uniqueCategories)
             console.log('✅ Blog posts loaded from API:', data.posts.length)
