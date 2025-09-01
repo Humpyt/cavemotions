@@ -1067,3 +1067,8 @@ export const blogPosts: BlogPost[] = [
     ],
   },
 ]
+
+// Verify blog posts are loaded
+if (typeof window === 'undefined') {
+  console.log(`✅ Blog posts loaded: ${blogPosts.length} posts available`)
+}

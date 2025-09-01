@@ -4,6 +4,7 @@
 
 [build.environment]
   NODE_VERSION = "18"
+  NPM_FLAGS = "--production=false"
 
 # Redirect rules (equivalent to your vercel.json redirects)
 [[redirects]]

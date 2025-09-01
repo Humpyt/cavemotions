@@ -9,19 +9,24 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
-import { blogPosts } from "@/data/blog-posts"
+import { getAllBlogPosts, getBlogCategories, debugBlogPosts } from "@/lib/blog"
 
 // -----------------------------------------------------------------------------
 // Types & helpers
 // -----------------------------------------------------------------------------
 
-type BlogPost = (typeof blogPosts)[number]
+// Get all blog posts using the helper function
+const posts = getAllBlogPosts()
 
-// Fall back to an empty array if the import goes wrong for any reason
-const posts: BlogPost[] = Array.isArray(blogPosts) ? blogPosts : []
+// Debug logging for Netlify
+if (typeof window === 'undefined') {
+  debugBlogPosts()
+}
+
+type BlogPost = (typeof posts)[number]
 
 // All unique categories (plus “All”)
-const categories = ["All", ...new Set(posts.map((p) => p.category))]
+const categories = getBlogCategories()
 
 // A couple of simple helper slices – adapt to your own logic later on
 const featuredPosts = posts.slice(0, 3)
@@ -53,7 +58,13 @@ export default function BlogClientPage() {
   const [search, setSearch] = useState("")
   const [activeCategory, setActiveCategory] = useState<string>("All")
   const [currentPage, setCurrentPage] = useState(1)
+  const [isLoading, setIsLoading] = useState(true)
   const postsPerPage = 6
+
+  // Initialize loading state
+  useEffect(() => {
+    setIsLoading(false)
+  }, [])
 
   // FILTERING -----------------------------------------------------------------
   const filtered = posts.filter((post) => {
@@ -72,6 +83,39 @@ export default function BlogClientPage() {
 
   // Reset to page 1 whenever filters change
   useEffect(() => setCurrentPage(1), [search, activeCategory])
+
+  // Show loading state
+  if (isLoading) {
+    return (
+      <div className="flex flex-col min-h-screen">
+        <section className="relative overflow-hidden bg-black py-16 md:py-20 min-h-[50vh]">
+          <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-900/80 via-violet-800/70 to-purple-900/80"></div>
+          </div>
+          <div className="relative container mx-auto max-w-6xl px-4 md:px-6 lg:px-8 text-center z-10">
+            <div className="animate-pulse">
+              <div className="h-8 bg-white/20 rounded w-48 mx-auto mb-6"></div>
+              <div className="h-16 bg-white/20 rounded w-96 mx-auto mb-6"></div>
+              <div className="h-6 bg-white/20 rounded w-80 mx-auto"></div>
+            </div>
+          </div>
+        </section>
+        <section className="bg-white py-16">
+          <div className="container mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[1, 2, 3, 4, 5, 6].map((i) => (
+                <div key={i} className="animate-pulse">
+                  <div className="h-40 bg-gray-200 rounded-xl mb-4"></div>
+                  <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+                  <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </div>
+    )
+  }
 
   // ---------------------------------------------------------------------------
   return (

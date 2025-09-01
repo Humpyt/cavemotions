@@ -1,11 +1,18 @@
 import type { Metadata } from "next"
-import { blogPosts } from "@/data/blog-posts"
+import { getAllBlogPosts, getBlogPostBySlug } from "@/lib/blog"
 import BlogPostClient from "./BlogPostClient"
+
+// Generate static params for all blog posts
+export async function generateStaticParams() {
+  return getAllBlogPosts().map((post) => ({
+    slug: post.slug,
+  }))
+}
 
 // Server component for metadata generation
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
-  const post = blogPosts.find((post) => post.slug === slug)
+  const post = getBlogPostBySlug(slug)
 
   if (!post) {
     return {

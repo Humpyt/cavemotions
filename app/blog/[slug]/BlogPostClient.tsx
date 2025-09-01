@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react"
 import Link from "next/link"
 import { motion, useScroll, useTransform } from "framer-motion"
-import { blogPosts } from "@/data/blog-posts"
+import { getBlogPostBySlug, getAllBlogPosts } from "@/lib/blog"
 import {
   Facebook,
   Twitter,
@@ -56,7 +56,7 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
 
   useEffect(() => {
     // Find the blog post by slug
-    const foundPost = blogPosts.find((post) => post.slug === slug)
+    const foundPost = getBlogPostBySlug(slug)
     if (foundPost) {
       setPost(foundPost)
     }
@@ -627,7 +627,7 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
                   <h3 className="text-lg font-bold">Recent Posts</h3>
                 </div>
                 <div className="space-y-4">
-                  {blogPosts.slice(0, 3).map((recentPost, index) => (
+                  {getAllBlogPosts().slice(0, 3).map((recentPost, index) => (
                     <Link key={index} href={`/blog/${recentPost.slug}`} className="group block">
                       <div className="flex gap-4 p-4 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-purple-300 dark:hover:border-purple-600 hover:shadow-md transition-all duration-200">
                         <div className="w-20 h-20 rounded-lg overflow-hidden shrink-0">

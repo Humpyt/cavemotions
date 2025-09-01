@@ -11,15 +11,16 @@
     "url": "https://github.com/Humpyt/cavemotions/issues"
   },
   "scripts": {
-    "build": "next build",
+    "build": "npm run verify-blog && next build",
     "dev": "next dev --port 3001",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "start": "next start",
     "type-check": "tsc --noEmit",
     "build:analyze": "ANALYZE=true npm run build",
-    "clean": "rm -rf .next out",
-    "prepare": "husky install || true"
+    "clean": "rmdir /s /q .next 2>nul & rmdir /s /q out 2>nul & echo Clean completed",
+    "prepare": "husky install || true",
+    "verify-blog": "node scripts/verify-blog.js"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",
