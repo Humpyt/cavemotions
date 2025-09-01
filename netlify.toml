@@ -12,11 +12,9 @@
   status = 200
   conditions = {Host = ["cavemotions.com"]}
 
-# Catch-all redirect for Next.js routing
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# The catch-all redirect below is not needed for Next.js applications on Netlify.
+# The @netlify/plugin-nextjs handles all routing, and this rule can interfere with
+# dynamic routes and image optimization. It has been removed to fix image loading issues.
 
 # Security headers (equivalent to your vercel.json headers)
 [[headers]]
