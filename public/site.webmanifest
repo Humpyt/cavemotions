@@ -1,0 +1,35 @@
+{
+  "name": "Cave Motions - Digital Solutions",
+  "short_name": "Cave Motions",
+  "description": "Leading digital solutions company in Uganda specializing in web development, mobile apps, AI automation, and digital marketing.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#6366f1",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["business", "technology", "productivity"],
+  "icons": [
+    {
+      "src": "/images/cave-fav.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/images/cave-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/images/og-image.jpg",
+      "sizes": "1200x630",
+      "type": "image/jpeg",
+      "form_factor": "wide"
+    }
+  ]
+}
