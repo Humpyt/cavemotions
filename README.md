@@ -62,9 +62,9 @@ cavesite/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Humpyt/cavemotions.git
-   cd cavemotions
-   ```
+git clone https://github.com/Humpyt/cavemotions.git
+cd cavemotions
+```
 
 2. **Install dependencies**
    ```bash

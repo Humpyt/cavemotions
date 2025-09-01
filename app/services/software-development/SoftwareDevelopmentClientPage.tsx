@@ -125,7 +125,7 @@ export default function SoftwareDevelopmentClientPage() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/Digital Services Background.svg"
+            src="/Digital Services Background.jpg"
             alt="Digital Services Background"
             className="w-full h-full object-cover"
           />
@@ -678,7 +678,7 @@ export default function SoftwareDevelopmentClientPage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="group relative overflow-hidden border-white/40 text-white bg-transparent hover:bg-transparent"
+                className="group relative overflow-hidden border-white/40 text-black bg-transparent hover:bg-transparent"
               >
                 <span className="relative z-10 flex items-center">
                   Explore Our Software Portfolio

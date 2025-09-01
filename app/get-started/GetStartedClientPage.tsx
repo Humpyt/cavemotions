@@ -662,7 +662,7 @@ export default function GetStartedClientPage() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/Digital Services Background.svg"
+            src="/Digital Services Background.jpg"
             alt="Digital Services Background"
             className="w-full h-full object-cover"
           />

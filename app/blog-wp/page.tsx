@@ -45,15 +45,28 @@ export default async function WordPressBlogPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-purple-600 to-indigo-700 text-white overflow-hidden pt-32 pb-20">
-        {/* Floating elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-10 -left-10 w-40 h-40 bg-purple-500 opacity-20 rounded-full"></div>
-          <div className="absolute top-20 right-10 w-20 h-20 bg-indigo-500 opacity-20 rounded-full"></div>
-          <div className="absolute bottom-10 left-1/4 w-30 h-30 bg-purple-400 opacity-20 rounded-full"></div>
+      <section className="relative text-white overflow-hidden pt-32 pb-20 min-h-[70vh] flex items-center">
+        {/* Background Image with Parallax Effect */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/Digital Services Background.jpg"
+            alt="Digital Services Background"
+            className="w-full h-full object-cover transform scale-110 transition-transform duration-1000 ease-out"
+          />
+          {/* Creative overlay with gradient and pattern */}
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-900/85 via-indigo-800/75 to-purple-900/85"></div>
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.03%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
+        </div>
+        
+        {/* Enhanced Floating elements with animation */}
+        <div className="absolute inset-0 overflow-hidden z-10">
+          <div className="absolute -top-10 -left-10 w-40 h-40 bg-gradient-to-br from-purple-400 to-pink-400 opacity-20 rounded-full animate-pulse"></div>
+          <div className="absolute top-20 right-10 w-20 h-20 bg-gradient-to-br from-indigo-400 to-blue-400 opacity-25 rounded-full animate-bounce"></div>
+          <div className="absolute bottom-10 left-1/4 w-30 h-30 bg-gradient-to-br from-purple-400 to-violet-400 opacity-20 rounded-full animate-pulse"></div>
+          <div className="absolute top-1/2 right-1/4 w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-400 opacity-15 rounded-full animate-ping"></div>
         </div>
 
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 relative z-20">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
               Technology Insights & 

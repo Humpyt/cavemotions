@@ -2,6 +2,14 @@
   "name": "cavemotions-website",
   "version": "0.1.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Humpyt/cavemotions.git"
+  },
+  "homepage": "https://cavemotions.com",
+  "bugs": {
+    "url": "https://github.com/Humpyt/cavemotions/issues"
+  },
   "scripts": {
     "build": "next build",
     "dev": "next dev --port 3001",
