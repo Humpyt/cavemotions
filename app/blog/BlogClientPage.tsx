@@ -71,26 +71,26 @@ export default function BlogClientPage() {
       try {
         setIsLoading(true)
         setError(null)
-        
+
         // Try to load from API first
         const response = await fetch('/api/blog')
         if (response.ok) {
           const data = await response.json()
           if (data.success && data.posts) {
             setPosts(data.posts)
-            const uniqueCategories = ["All", ...new Set(data.posts.map((p: BlogPost) => p.category))]
+            const uniqueCategories: string[] = ["All", ...new Set(data.posts.map((p: BlogPost) => p.category))]
             setCategories(uniqueCategories)
             console.log('✅ Blog posts loaded from API:', data.posts.length)
             setIsLoading(false)
             return
           }
         }
-        
+
         // Fallback: try to import directly
         const { getAllBlogPosts, getBlogCategories } = await import('@/lib/blog')
         const blogPosts = getAllBlogPosts()
         const blogCategories = getBlogCategories()
-        
+
         if (blogPosts && blogPosts.length > 0) {
           setPosts(blogPosts)
           setCategories(blogCategories)
@@ -98,7 +98,7 @@ export default function BlogClientPage() {
         } else {
           throw new Error('No blog posts found')
         }
-        
+
       } catch (err) {
         console.error('❌ Error loading blog posts:', err)
         setError('Failed to load blog posts. Please try again later.')
@@ -186,8 +186,8 @@ export default function BlogClientPage() {
             <p className="max-w-3xl mx-auto text-lg md:text-xl text-white/80 mb-8">
               {error}
             </p>
-            <Button 
-              onClick={() => window.location.reload()} 
+            <Button
+              onClick={() => window.location.reload()}
               className="bg-white text-purple-600 hover:bg-gray-100"
             >
               Try Again
@@ -386,8 +386,8 @@ export default function BlogClientPage() {
           ) : (
             <div className="text-center py-12">
               <p className="text-gray-500 text-lg mb-4">No articles found matching your criteria.</p>
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 onClick={() => {
                   setSearch("")
                   setActiveCategory("All")
