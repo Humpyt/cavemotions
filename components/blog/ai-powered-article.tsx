@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { 
@@ -21,21 +21,14 @@ import {
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
+import { ToastContainer, useToast } from '@/components/ui/toast-notification'
 import { cn } from '@/lib/utils'
 import { moonshotAI, LayoutRecommendation, formatRecommendationForCSS } from '@/lib/moonshot-ai'
+import { useAITheme, useResponsiveTheme } from '@/hooks/use-ai-theme'
+import '@/styles/blog-styles.css'
 
-interface BlogPost {
-  slug: string
-  title: string
-  excerpt: string
-  content: string
-  coverImage?: string
-  date: string
-  author?: string
-  category: string
-  tags: string[]
-  readTime?: number
-}
+// Use imported types
+import { BlogPost } from '@/types/blog-post'
 
 interface AIPoweredArticleProps {
   post: BlogPost
@@ -54,7 +47,7 @@ const HeroComponents = {
         
         <div className="mb-6">
           <Badge style={{ backgroundColor: 'var(--ai-accent-color)', color: 'white' }}>
-            {post.category}
+            {post.tags?.[0] || 'Article'}
           </Badge>
         </div>
         
@@ -67,15 +60,15 @@ const HeroComponents = {
         <div className="flex items-center gap-6 text-sm text-gray-500">
           <div className="flex items-center">
             <Calendar className="h-4 w-4 mr-2" />
-            {new Date(post.date).toLocaleDateString()}
+            {new Date(post.publishedAt).toLocaleDateString()}
           </div>
           <div className="flex items-center">
             <Clock className="h-4 w-4 mr-2" />
-            {post.readTime || 5} min read
+            {post.readingTime || 5} min read
           </div>
           <div className="flex items-center">
             <User className="h-4 w-4 mr-2" />
-            {post.author || 'Cave Motions'}
+            {typeof post.author === 'string' ? post.author : post.author?.name || 'Cave Motions'}
           </div>
         </div>
       </div>
@@ -106,7 +99,7 @@ const HeroComponents = {
           </Link>
           
           <Badge className="mb-6" style={{ backgroundColor: cssVars['--ai-accent-color'] }}>
-            {post.category}
+            {post.tags?.[0] || 'Article'}
           </Badge>
           
           <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
@@ -118,15 +111,15 @@ const HeroComponents = {
           <div className="flex flex-wrap items-center gap-8 text-white/80">
             <div className="flex items-center">
               <Calendar className="h-5 w-5 mr-2" />
-              {new Date(post.date).toLocaleDateString()}
+              {new Date(post.publishedAt).toLocaleDateString()}
             </div>
             <div className="flex items-center">
               <Clock className="h-5 w-5 mr-2" />
-              {post.readTime || 5} min read
+              {post.readingTime || 5} min read
             </div>
             <div className="flex items-center">
               <User className="h-5 w-5 mr-2" />
-              {post.author || 'Cave Motions'}
+              {typeof post.author === 'string' ? post.author : post.author?.name || 'Cave Motions'}
             </div>
           </div>
         </div>
@@ -154,7 +147,7 @@ const HeroComponents = {
           </Link>
           
           <Badge className="mb-6 bg-white/20 text-white border-none">
-            {post.category}
+            {post.tags?.[0] || 'Article'}
           </Badge>
           
           <h1 className="text-4xl md:text-6xl font-bold mb-8 leading-tight">
@@ -168,15 +161,15 @@ const HeroComponents = {
           <div className="flex flex-wrap items-center gap-6 text-white/80">
             <div className="flex items-center">
               <Calendar className="h-4 w-4 mr-2" />
-              {new Date(post.date).toLocaleDateString()}
+              {new Date(post.publishedAt).toLocaleDateString()}
             </div>
             <div className="flex items-center">
               <Clock className="h-4 w-4 mr-2" />
-              {post.readTime || 5} min read
+              {post.readingTime || 5} min read
             </div>
             <div className="flex items-center">
               <User className="h-4 w-4 mr-2" />
-              {post.author || 'Cave Motions'}
+              {typeof post.author === 'string' ? post.author : post.author?.name || 'Cave Motions'}
             </div>
           </div>
         </div>
@@ -252,7 +245,7 @@ const ContentLayouts = {
 
 // Interactive elements
 const InteractiveElements = {
-  'progress-bar': ({ progress }: { progress: number }) => (
+  progressBar: ({ progress }: { progress: number }) => (
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -262,20 +255,38 @@ const InteractiveElements = {
     </motion.div>
   ),
 
-  'social-share': ({ post, cssVars }: { post: BlogPost, cssVars: Record<string, string> }) => (
+  socialShare: ({ post, cssVars }: { post: BlogPost, cssVars: Record<string, string> }) => (
     <div className="flex items-center gap-3 py-4 border-y dark:border-gray-700">
       <span className="text-sm font-medium">Share this article:</span>
       <div className="flex gap-2">
-        <Button variant="outline" size="sm" className="gap-2">
+        <Button 
+          variant="outline" 
+          size="sm" 
+          className="gap-2"
+          onClick={() => handleShare()}
+          title="Share this article"
+        >
           <Share2 className="h-4 w-4" />
           Share
         </Button>
-        <Button variant="outline" size="sm">
+        <Button 
+          variant="outline" 
+          size="sm"
+          onClick={() => handleBookmark()}
+          className={isBookmarked ? 'bg-blue-50 border-blue-300 text-blue-700' : ''}
+          title="Bookmark this article"
+        >
           <BookmarkPlus className="h-4 w-4" />
         </Button>
-        <Button variant="outline" size="sm" className="gap-2">
+        <Button 
+          variant="outline" 
+          size="sm" 
+          className={`gap-2 ${isLiked ? 'bg-red-50 border-red-300 text-red-700' : ''}`}
+          onClick={() => handleLike()}
+          title="Like this article"
+        >
           <ThumbsUp className="h-4 w-4" />
-          <span>24</span>
+          <span>{likeCount}</span>
         </Button>
       </div>
     </div>
@@ -283,14 +294,45 @@ const InteractiveElements = {
 }
 
 export default function AIPoweredArticle({ post, relatedPosts = [] }: AIPoweredArticleProps) {
+  console.log('🔵 AIPoweredArticle component initialized with post:', post?.title)
+  console.log('🔵 Post data:', { title: post?.title, tags: post?.tags, slug: post?.slug })
+  
   const [recommendation, setRecommendation] = useState<LayoutRecommendation | null>(null)
   const [scrollProgress, setScrollProgress] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
+  const [isLiked, setIsLiked] = useState(false)
+  const [likeCount, setLikeCount] = useState(24)
+  const [isBookmarked, setIsBookmarked] = useState(false)
+  
+  // Toast notifications
+  const { toasts, removeToast, success, info } = useToast()
+  
+  // Use our new AI theme hook
+  const { 
+    theme, 
+    layoutClasses, 
+    components, 
+    animationClasses,
+  } = useAITheme({
+    id: post.slug,
+    title: post.title,
+    slug: post.slug,
+    content: post.content,
+    excerpt: post.excerpt,
+    publishedAt: post.publishedAt,
+    tags: post.tags,
+    category: post.tags?.[0] || 'General',
+    readTime: post.readingTime
+  })
+  
+  // Add responsive adjustments
+  const { responsiveTheme, isMobile } = useResponsiveTheme(theme)
 
   useEffect(() => {
     // Generate AI-powered layout recommendation
     const generateLayout = async () => {
       try {
+        console.log('🚀 Starting AI layout generation for:', post.title)
         const layoutRecommendation = await moonshotAI.generateLayoutRecommendation({
           title: post.title,
           excerpt: post.excerpt,
@@ -301,9 +343,20 @@ export default function AIPoweredArticle({ post, relatedPosts = [] }: AIPoweredA
         })
         
         setRecommendation(layoutRecommendation)
-        console.log('🤖 AI Layout Recommendation:', layoutRecommendation)
+        console.log('🤖 AI Layout Recommendation Generated:', layoutRecommendation)
       } catch (error) {
-        console.error('Failed to generate AI layout:', error)
+        console.error('❌ Failed to generate AI layout:', error)
+        // Force fallback recommendation to ensure we still get AI styling
+        const fallbackRecommendation = moonshotAI.getFallbackRecommendation({
+          title: post.title,
+          excerpt: post.excerpt,
+          content: post.content,
+          category: post.category,
+          tags: post.tags,
+          readTime: post.readTime
+        })
+        setRecommendation(fallbackRecommendation)
+        console.log('🔧 Using fallback recommendation:', fallbackRecommendation)
       } finally {
         setIsLoading(false)
       }
@@ -325,6 +378,80 @@ export default function AIPoweredArticle({ post, relatedPosts = [] }: AIPoweredA
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Social interaction handlers
+  const handleLike = () => {
+    setIsLiked(!isLiked)
+    setLikeCount(prev => isLiked ? prev - 1 : prev + 1)
+    // Save to localStorage
+    localStorage.setItem(`liked_${post.slug}`, (!isLiked).toString())
+    // Show feedback
+    if (!isLiked) {
+      success('Article liked!')
+    } else {
+      info('Like removed')
+    }
+  }
+
+  const handleBookmark = () => {
+    setIsBookmarked(!isBookmarked)
+    // Save to localStorage
+    const bookmarked = JSON.parse(localStorage.getItem('bookmarkedPosts') || '[]')
+    if (!isBookmarked) {
+      bookmarked.push({ slug: post.slug, title: post.title, date: new Date().toISOString() })
+      success('Article bookmarked!')
+    } else {
+      const index = bookmarked.findIndex((item: any) => item.slug === post.slug)
+      if (index > -1) bookmarked.splice(index, 1)
+      info('Bookmark removed')
+    }
+    localStorage.setItem('bookmarkedPosts', JSON.stringify(bookmarked))
+  }
+
+  const handleShare = async () => {
+    const shareData = {
+      title: post.title,
+      text: post.excerpt,
+      url: window.location.href
+    }
+
+    if (navigator.share && navigator.canShare(shareData)) {
+      try {
+        await navigator.share(shareData)
+      } catch (err) {
+        console.log('Error sharing:', err)
+        fallbackShare()
+      }
+    } else {
+      fallbackShare()
+    }
+  }
+
+  const fallbackShare = () => {
+    // Copy URL to clipboard
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      success('Article URL copied to clipboard!')
+    }).catch(() => {
+      // Fallback for older browsers
+      const textArea = document.createElement('textarea')
+      textArea.value = window.location.href
+      document.body.appendChild(textArea)
+      textArea.select()
+      document.execCommand('copy')
+      document.body.removeChild(textArea)
+      success('Article URL copied to clipboard!')
+    })
+  }
+
+  // Load saved states on component mount
+  useEffect(() => {
+    const liked = localStorage.getItem(`liked_${post.slug}`) === 'true'
+    setIsLiked(liked)
+    
+    const bookmarked = JSON.parse(localStorage.getItem('bookmarkedPosts') || '[]')
+    const isPostBookmarked = bookmarked.some((item: any) => item.slug === post.slug)
+    setIsBookmarked(isPostBookmarked)
+  }, [post.slug])
+
   if (isLoading || !recommendation) {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 animate-pulse">
@@ -345,138 +472,191 @@ export default function AIPoweredArticle({ post, relatedPosts = [] }: AIPoweredA
   }
 
   const cssVars = formatRecommendationForCSS(recommendation, post.category)
-  const HeroComponent = HeroComponents[recommendation.heroStyle] || HeroComponents.gradient
-  const ContentLayout = ContentLayouts[recommendation.layoutType] || ContentLayouts.standard
+  const HeroComponent = (HeroComponents as any)[recommendation.heroStyle] || HeroComponents.gradient
+  const ContentLayout = (ContentLayouts as any)[recommendation.layoutType] || ContentLayouts.standard
 
+  // Enhanced AI-powered styling system based on Moonshot AI recommendations
   return (
-    <div className="min-h-screen" style={{ backgroundColor: cssVars['--ai-background'] }}>
+    <div className="blog-container min-h-screen" style={{ backgroundColor: cssVars['--ai-background'] }}>
       {/* AI-Generated Progress Bar */}
       {recommendation.interactiveElements.includes('progress-bar') && (
-        <InteractiveElements.progress-bar progress={scrollProgress} />
+        <InteractiveElements.progressBar progress={scrollProgress} />
       )}
 
       {/* AI-Generated Hero Section */}
       <HeroComponent post={post} cssVars={cssVars} />
-
-      {/* Main Content */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-7xl mx-auto">
-          {/* Article Content */}
-          <article className="lg:col-span-8">
+      
+      {/* AI-Optimized Article Container */}
+      <div className="article-container">
+        <div className={cn(
+          "article-grid",
+          theme.layout.contentLayout === 'sidebar' && !isMobile ? 'grid-cols-3fr-1fr' : 'grid-cols-1'
+        )}>
+          
+          {/* Main Article Content */}
+          <article className={cn(layoutClasses.content, "py-16", animationClasses[0])}>
             {/* Featured Image */}
             {post.coverImage && (
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 className={cn(
-                  "mb-10 overflow-hidden",
-                  recommendation.visualElements.cardStyle === 'modern' && "rounded-2xl shadow-2xl",
-                  recommendation.visualElements.cardStyle === 'minimal' && "rounded-lg",
-                  recommendation.visualElements.cardStyle === 'glass' && "rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20"
+                  "mb-10 overflow-hidden rounded-2xl",
+                  layoutClasses.card
                 )}
               >
                 <img
                   src={post.coverImage}
                   alt={post.title}
-                  className="w-full h-auto object-cover"
+                  className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
                 />
               </motion.div>
             )}
 
-            {/* Social Share */}
-            {recommendation.interactiveElements.includes('social-share') && (
-              <InteractiveElements.social-share post={post} cssVars={cssVars} />
+            {/* AI-Enhanced Social Share */}
+            {components.showSocialShare && (
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="social-share"
+              >
+                <span className="text-sm font-medium">Share this article:</span>
+                <div className="flex gap-2">
+                  <button 
+                    onClick={() => handleShare()} 
+                    className="share-button"
+                    title="Share this article"
+                  >
+                    <Share2 className="h-4 w-4" />
+                    Share
+                  </button>
+                  <button 
+                    onClick={() => handleBookmark()} 
+                    className={`share-button ${isBookmarked ? 'bookmarked' : ''}`}
+                    title="Bookmark this article"
+                  >
+                    <BookmarkPlus className="h-4 w-4" />
+                    {isBookmarked ? 'Saved' : 'Save'}
+                  </button>
+                  <button 
+                    onClick={() => handleLike()} 
+                    className={`share-button ${isLiked ? 'liked' : ''}`}
+                    title="Like this article"
+                  >
+                    <ThumbsUp className="h-4 w-4" />
+                    <span>{likeCount}</span>
+                  </button>
+                </div>
+              </motion.div>
             )}
 
-            {/* AI-Generated Content Layout */}
+            {/* AI-Generated Table of Contents */}
+            {components.showTableOfContents && (
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="table-of-contents"
+              >
+                <h3 className="toc-title">
+                  <ScrollText className="h-5 w-5" />
+                  Table of Contents
+                </h3>
+                <ul className="toc-list">
+                  <li className="toc-item">
+                    <ChevronRight className="h-4 w-4" />
+                    Introduction
+                  </li>
+                  <li className="toc-item">
+                    <ChevronRight className="h-4 w-4" />
+                    Key Benefits & Features
+                  </li>
+                  <li className="toc-item">
+                    <ChevronRight className="h-4 w-4" />
+                    Implementation Guide
+                  </li>
+                  <li className="toc-item">
+                    <ChevronRight className="h-4 w-4" />
+                    Best Practices
+                  </li>
+                  <li className="toc-item">
+                    <ChevronRight className="h-4 w-4" />
+                    Conclusion
+                  </li>
+                </ul>
+              </motion.div>
+            )}
+
+            {/* AI-Styled Content with Professional Typography */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="mt-8"
+              className="mt-8 article-content"
             >
               <ContentLayout content={post.content} recommendation={recommendation} />
             </motion.div>
 
-            {/* Tags */}
-            {recommendation.readabilityFeatures.includes('tags') && post.tags.length > 0 && (
+
+
+            {/* AI-Enhanced Tags */}
+            {post.tags && post.tags.length > 0 && (
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="mt-12 pt-8 border-t dark:border-gray-700"
+                className="tag-cloud"
               >
-                <h3 className="text-lg font-semibold mb-4">Tags</h3>
+                <h3 className="blog-h4 mb-4">Related Topics</h3>
                 <div className="flex flex-wrap gap-2">
                   {post.tags.map((tag) => (
-                    <Badge 
+                    <a 
                       key={tag} 
-                      variant="secondary" 
-                      className="hover:opacity-80 cursor-pointer transition-opacity"
-                      style={{ backgroundColor: `${cssVars['--ai-accent-color']}20` }}
+                      href={`/blog/tag/${tag}`}
+                      className="tag"
                     >
                       #{tag}
-                    </Badge>
+                    </a>
                   ))}
                 </div>
               </motion.div>
             )}
 
-            {/* Author Bio */}
-            {recommendation.interactiveElements.includes('author-bio') && (
+            {/* AI-Enhanced Author Bio */}
+            {components.showAuthorBio && (
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
-                className="mt-12"
+                className="author-bio"
               >
-                <div 
-                  className={cn(
-                    "p-6",
-                    recommendation.visualElements.cardStyle === 'modern' && "bg-gray-100 dark:bg-gray-800 rounded-2xl",
-                    recommendation.visualElements.cardStyle === 'glass' && "bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-200 dark:border-gray-700",
-                    recommendation.visualElements.cardStyle === 'minimal' && "border-l-4 pl-6 border-gray-300 dark:border-gray-600"
-                  )}
-                  style={{ 
-                    borderLeftColor: recommendation.visualElements.cardStyle === 'minimal' ? cssVars['--ai-accent-color'] : undefined 
-                  }}
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="w-16 h-16 bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-600 dark:to-gray-700 rounded-full flex items-center justify-center">
-                      <User className="h-8 w-8 text-gray-500 dark:text-gray-300" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold">{post.author || 'Cave Motions Team'}</h3>
-                      <p className="text-gray-600 dark:text-gray-400 mt-2">
-                        Expert developer and technology consultant at Cave Motions, helping businesses transform through innovative digital solutions.
-                      </p>
-                    </div>
-                  </div>
+                <div className="author-avatar">
+                  <User className="h-8 w-8 text-white" />
+                </div>
+                <div className="author-info">
+                  <h3>{typeof post.author === 'string' ? post.author : post.author?.name || 'Cave Motions Team'}</h3>
+                  <p>
+                    Expert web designers and frontend developers at Cave Motions. We specialize in creating modern, professional blogs with clean typography, balanced white space, and consistent color palettes. Our professional styling ensures optimal user experience and SEO performance.
+                  </p>
                 </div>
               </motion.div>
             )}
           </article>
 
-          {/* Sidebar */}
-          <aside className="lg:col-span-4">
-            <div className="sticky top-24 space-y-8">
-              {/* Reading Stats */}
-              {recommendation.readabilityFeatures.includes('estimated-time') && (
-                <div 
-                  className={cn(
-                    "p-6",
-                    recommendation.visualElements.cardStyle === 'modern' && "bg-white dark:bg-gray-800 rounded-2xl shadow-lg",
-                    recommendation.visualElements.cardStyle === 'glass' && "bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-2xl border border-gray-200 dark:border-gray-700"
-                  )}
-                >
-                  <h3 className="font-semibold mb-4">Article Stats</h3>
+          {/* Enhanced Sidebar */}
+          {theme.layout.contentLayout === 'sidebar' && !isMobile && (
+            <aside className="article-sidebar">
+              <div className="space-y-8">
+                {/* Reading Stats */}
+                <div className={cn(layoutClasses.card, "p-6", animationClasses[0])}>
+                  <h3 className="blog-h4 mb-4">Article Stats</h3>
                   <div className="space-y-3 text-sm">
                     <div className="flex items-center justify-between">
                       <span className="flex items-center">
                         <Clock className="h-4 w-4 mr-2" />
                         Reading Time
                       </span>
-                      <span className="font-medium">{post.readTime || 5} min</span>
+                      <span className="font-medium">{post.readingTime || 5} min</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="flex items-center">
@@ -494,84 +674,83 @@ export default function AIPoweredArticle({ post, relatedPosts = [] }: AIPoweredA
                     </div>
                   </div>
                 </div>
-              )}
 
-              {/* Related Articles */}
-              {recommendation.interactiveElements.includes('related-articles') && relatedPosts.length > 0 && (
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.8 }}
-                  className={cn(
-                    "p-6",
-                    recommendation.visualElements.cardStyle === 'modern' && "bg-white dark:bg-gray-800 rounded-2xl shadow-lg",
-                    recommendation.visualElements.cardStyle === 'glass' && "bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-2xl border border-gray-200 dark:border-gray-700"
-                  )}
-                >
-                  <h3 className="font-semibold mb-4 flex items-center">
-                    <TrendingUp className="h-5 w-5 mr-2" style={{ color: cssVars['--ai-accent-color'] }} />
-                    Related Articles
-                  </h3>
-                  <div className="space-y-4">
-                    {relatedPosts.slice(0, 3).map((relatedPost) => (
-                      <Link key={relatedPost.slug} href={`/blog/${relatedPost.slug}`} className="group block">
-                        <div className="flex gap-3">
-                          {relatedPost.coverImage && (
-                            <div className="w-16 h-16 rounded-lg overflow-hidden shrink-0">
-                              <img
-                                src={relatedPost.coverImage}
-                                alt={relatedPost.title}
-                                className="w-full h-full object-cover transition-transform group-hover:scale-105"
-                              />
+
+
+                {/* Related Articles */}
+                {components.showRelatedArticles && relatedPosts.length > 0 && (
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.8 }}
+                    className={cn(layoutClasses.card, "p-6", animationClasses[0])}
+                  >
+                    <h3 className="blog-h4 mb-4 flex items-center">
+                      <TrendingUp className="h-5 w-5 mr-2" />
+                      Related Articles
+                    </h3>
+                    <div className="space-y-4">
+                      {relatedPosts.slice(0, 3).map((relatedPost) => (
+                        <Link key={relatedPost.slug} href={`/blog/${relatedPost.slug}`} className="group block">
+                          <div className="flex gap-3">
+                            {relatedPost.coverImage && (
+                              <div className="w-16 h-16 rounded-lg overflow-hidden shrink-0">
+                                <img
+                                  src={relatedPost.coverImage}
+                                  alt={relatedPost.title}
+                                  className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                                />
+                              </div>
+                            )}
+                            <div className="flex-1 min-w-0">
+                              <h4 className="font-medium text-sm line-clamp-2 group-hover:opacity-80 transition-opacity">
+                                {relatedPost.title}
+                              </h4>
+                              <p className="text-xs text-gray-500 mt-1">
+                                {new Date(relatedPost.publishedAt).toLocaleDateString()}
+                              </p>
                             </div>
-                          )}
-                          <div className="flex-1 min-w-0">
-                            <h4 className="font-medium text-sm line-clamp-2 group-hover:opacity-80 transition-opacity">
-                              {relatedPost.title}
-                            </h4>
-                            <p className="text-xs text-gray-500 mt-1">
-                              {new Date(relatedPost.date).toLocaleDateString()}
-                            </p>
                           </div>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-
-              {/* Newsletter */}
-              {recommendation.interactiveElements.includes('newsletter') && (
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 1 }}
-                  className="rounded-2xl p-6 text-white relative overflow-hidden"
-                  style={{ background: `linear-gradient(135deg, ${cssVars['--ai-primary-color']}, ${cssVars['--ai-secondary-color']})` }}
-                >
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
-                  <div className="relative z-10">
-                    <h3 className="font-semibold mb-2">Stay Updated</h3>
-                    <p className="text-white/90 mb-4 text-sm">
-                      Get AI-powered insights delivered to your inbox.
-                    </p>
-                    <div className="space-y-2">
-                      <input 
-                        type="email"
-                        placeholder="Your email address" 
-                        className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder:text-white/70 focus:outline-none focus:ring-2 focus:ring-white/50"
-                      />
-                      <Button className="w-full bg-white text-gray-900 hover:bg-gray-100">
-                        Subscribe
-                      </Button>
+                        </Link>
+                      ))}
                     </div>
-                  </div>
-                </motion.div>
-              )}
-            </div>
-          </aside>
+                  </motion.div>
+                )}
+
+                {/* Newsletter */}
+                {components.showNewsletterSignup && (
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 1 }}
+                    className="newsletter-signup"
+                  >
+                    <div className="newsletter-content">
+                      <h3 className="newsletter-title">Stay Updated</h3>
+                      <p className="newsletter-description">
+                        Get design insights and web development tips delivered to your inbox.
+                      </p>
+                      <div className="newsletter-form">
+                        <input 
+                          type="email"
+                          placeholder="Your email address" 
+                          className="newsletter-input"
+                        />
+                        <button className="newsletter-button">
+                          Subscribe
+                        </button>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </div>
+            </aside>
+          )}
         </div>
       </div>
+      
+      {/* Toast Notifications */}
+      <ToastContainer toasts={toasts} onRemove={removeToast} />
     </div>
   )
 }
