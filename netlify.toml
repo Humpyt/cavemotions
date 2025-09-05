@@ -5,6 +5,10 @@
 [build.environment]
   NODE_VERSION = "18"
   NPM_FLAGS = "--production=false"
+  # WordPress API configuration (set these in Netlify UI)
+  # WORDPRESS_API_URL = "https://blog.cavemotions.com/wp-json/wp/v2"
+  # NEXT_PUBLIC_WORDPRESS_API_URL = "https://blog.cavemotions.com/wp-json/wp/v2"
+  # NEXT_PUBLIC_SITE_URL = "https://cavemotions.com"
 
 # Redirect rules (equivalent to your vercel.json redirects)
 [[redirects]]

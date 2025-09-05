@@ -1,11 +1,12 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { getPosts, getFeaturedPosts, getCategories } from '@/lib/wordpress'
+import { getPosts, getFeaturedPosts, getCategories, checkWordPressConnection } from '@/lib/wordpress'
 import { formatDate, calculateReadingTime, extractPlainText } from '@/lib/wordpress'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Search, Calendar, Clock, User, TrendingUp, ArrowRight } from 'lucide-react'
+import { WordPressErrorBoundary, WordPressBlogFallback } from '@/components/blog/wordpress-error-boundary'
+import { Search, Calendar, Clock, User, TrendingUp, ArrowRight, AlertTriangle } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Blog | Cave Motions - Expert Insights on Technology & Business',
@@ -35,15 +36,73 @@ export const metadata: Metadata = {
 }
 
 export default async function WordPressBlogPage() {
-  // Fetch data from WordPress
-  const [posts, featuredPosts, categories] = await Promise.all([
-    getPosts(1, 12),
-    getFeaturedPosts(),
-    getCategories()
-  ])
+  // Enhanced error handling for Netlify builds
+  let posts: any[] = []
+  let featuredPosts: any[] = []
+  let categories: any[] = []
+  let isConnected = false
+  
+  try {
+    // Check WordPress connection with timeout for build environments
+    isConnected = await Promise.race([
+      checkWordPressConnection(),
+      new Promise<boolean>((resolve) => setTimeout(() => resolve(false), 8000))
+    ])
+    
+    if (isConnected) {
+      // Fetch data from WordPress with enhanced error handling
+      const results = await Promise.allSettled([
+        getPosts(1, 12),
+        getFeaturedPosts(),
+        getCategories()
+      ])
+      
+      posts = results[0].status === 'fulfilled' ? results[0].value : []
+      featuredPosts = results[1].status === 'fulfilled' ? results[1].value : []
+      categories = results[2].status === 'fulfilled' ? results[2].value : []
+      
+      // Log results for debugging on Netlify
+      console.log('WordPress data fetched:', {
+        postsCount: posts.length,
+        featuredCount: featuredPosts.length,
+        categoriesCount: categories.length
+      })
+    }
+  } catch (error) {
+    console.error('WordPress blog page error:', error)
+    isConnected = false
+  }
+  
+  // If no connection or no data, show fallback
+  if (!isConnected || (posts.length === 0 && featuredPosts.length === 0)) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+        <div className="container mx-auto px-4 pt-32 pb-20">
+          <div className="max-w-2xl mx-auto text-center">
+            <AlertTriangle className="h-16 w-16 text-orange-500 mx-auto mb-6" />
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+              Blog Content Loading
+            </h1>
+            <p className="text-gray-600 dark:text-gray-400 mb-8">
+              Our blog content is being loaded. Please try our enhanced blog for immediate access to our latest articles.
+            </p>
+            <div className="flex gap-4 justify-center">
+              <Button asChild size="lg">
+                <Link href="/blog">View Enhanced Blog</Link>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <Link href="/blog-wp" onClick={() => window.location.reload()}>Retry</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+    <WordPressErrorBoundary fallback={<WordPressBlogFallback />}>
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
       {/* Hero Section */}
       <section className="relative text-white overflow-hidden pt-32 pb-20 min-h-[70vh] flex items-center">
         {/* Background Image with Parallax Effect */}
@@ -273,6 +332,7 @@ export default async function WordPressBlogPage() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </WordPressErrorBoundary>
   )
 }

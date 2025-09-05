@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import HydrationSafeWrapper from "@/components/hydration-safe-wrapper"
+import { ErrorSuppressor } from "@/components/blog/error-suppressor"
 import type { Metadata } from "next"
 import Script from "next/script"
 
@@ -120,6 +121,7 @@ export default function RootLayout({
         
         <HydrationSafeWrapper>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+            <ErrorSuppressor />
             <div className="flex min-h-screen flex-col">
               <Header />
               <main className="flex-grow pt-20">{children}</main>

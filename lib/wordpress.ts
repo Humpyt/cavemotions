@@ -19,7 +19,51 @@ export interface WordPressBlogPost {
   keywords?: string[]
 }
 
-const WORDPRESS_API_URL = process.env.WORDPRESS_API_URL || 'https://your-wordpress-site.com/wp-json/wp/v2'
+// WordPress API URL with Netlify-specific handling
+const WORDPRESS_API_URL = process.env.WORDPRESS_API_URL || 
+  process.env.NEXT_PUBLIC_WORDPRESS_API_URL || 
+  'https://blog.cavemotions.com/wp-json/wp/v2'
+
+// Log the API URL being used (for debugging on Netlify)
+if (typeof window === 'undefined') {
+  console.log('WordPress API URL:', WORDPRESS_API_URL)
+}
+
+// Enhanced error handling and logging
+function logError(context: string, error: any) {
+  console.error(`WordPress API Error [${context}]:`, error)
+  // In production, you might want to send this to a logging service
+}
+
+// Check if WordPress API is available with enhanced Netlify support
+export async function checkWordPressConnection(): Promise<boolean> {
+  try {
+    // Use a simple GET request instead of HEAD for better compatibility
+    const response = await fetch(`${WORDPRESS_API_URL}/posts?per_page=1`, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'User-Agent': 'CaveMotions-Website/1.0'
+      },
+      next: { revalidate: 60 },
+      // Add timeout for Netlify builds
+      signal: AbortSignal.timeout(10000)
+    })
+    
+    if (!response.ok) {
+      console.warn(`WordPress API returned ${response.status}: ${response.statusText}`)
+      return false
+    }
+    
+    // Verify the response is valid JSON
+    const data = await response.json()
+    return Array.isArray(data)
+  } catch (error) {
+    logError('Connection Check', error)
+    return false
+  }
+}
 
 export interface WordPressPost {
   id: number
@@ -77,56 +121,69 @@ export interface WordPressTag {
   count: number
 }
 
-// Fetch all posts
+// Fetch all posts with enhanced error handling
 export async function getPosts(page: number = 1, perPage: number = 10): Promise<WordPressPost[]> {
   try {
     const response = await fetch(
       `${WORDPRESS_API_URL}/posts?page=${page}&per_page=${perPage}&_embed=true`,
       {
         next: { revalidate: 300 }, // Revalidate every 5 minutes
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
       }
     )
     
     if (!response.ok) {
-      throw new Error('Failed to fetch posts')
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`)
     }
     
-    return await response.json()
+    const posts = await response.json()
+    return Array.isArray(posts) ? posts : []
   } catch (error) {
-    console.error('Error fetching posts:', error)
+    logError('getPosts', error)
     return []
   }
 }
 
-// Fetch a single post by slug
+// Fetch a single post by slug with enhanced error handling
 export async function getPostBySlug(slug: string): Promise<WordPressPost | null> {
   try {
     const response = await fetch(
       `${WORDPRESS_API_URL}/posts?slug=${slug}&_embed=true`,
       {
         next: { revalidate: 300 },
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
       }
     )
     
     if (!response.ok) {
-      throw new Error('Failed to fetch post')
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`)
     }
     
     const posts = await response.json()
-    return posts.length > 0 ? posts[0] : null
+    return Array.isArray(posts) && posts.length > 0 ? posts[0] : null
   } catch (error) {
-    console.error('Error fetching post:', error)
+    logError('getPostBySlug', error)
     return null
   }
 }
 
-// Fetch featured posts
+// Fetch featured posts with enhanced error handling
 export async function getFeaturedPosts(): Promise<WordPressPost[]> {
   try {
     const response = await fetch(
       `${WORDPRESS_API_URL}/posts?sticky=true&_embed=true`,
       {
         next: { revalidate: 300 },
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
       }
     )
     
