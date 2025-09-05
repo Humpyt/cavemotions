@@ -243,19 +243,19 @@ const ContentLayouts = {
   )
 }
 
-// Interactive elements
-const InteractiveElements = {
-  progressBar: ({ progress }: { progress: number }) => (
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm border-b"
-    >
-      <Progress value={progress} className="h-1" />
-    </motion.div>
-  ),
-
-  socialShare: ({ post, cssVars }: { post: BlogPost, cssVars: Record<string, string> }) => (
+// InteractiveElements.socialShare component
+const SocialShareComponent = ({ post, isLiked, setIsLiked, likeCount, setLikeCount, isBookmarked, setIsBookmarked, handleShare, handleBookmark, handleLike }: {
+  post: BlogPost;
+  isLiked: boolean;
+  setIsLiked: (liked: boolean) => void;
+  likeCount: number;
+  setLikeCount: (count: number | ((prev: number) => number)) => void;
+  isBookmarked: boolean;
+  setIsBookmarked: (bookmarked: boolean) => void;
+  handleShare: () => void;
+  handleBookmark: () => void;
+  handleLike: () => void;
+}) => (
     <div className="flex items-center gap-3 py-4 border-y dark:border-gray-700">
       <span className="text-sm font-medium">Share this article:</span>
       <div className="flex gap-2">
@@ -290,6 +290,44 @@ const InteractiveElements = {
         </Button>
       </div>
     </div>
+);
+
+// Interactive elements
+const InteractiveElements = {
+  progressBar: ({ progress }: { progress: number }) => (
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm border-b"
+    >
+      <Progress value={progress} className="h-1" />
+    </motion.div>
+  ),
+
+  socialShare: ({ post, isLiked, setIsLiked, likeCount, setLikeCount, isBookmarked, setIsBookmarked, handleShare, handleBookmark, handleLike }: {
+    post: BlogPost;
+    isLiked: boolean;
+    setIsLiked: (liked: boolean) => void;
+    likeCount: number;
+    setLikeCount: (count: number | ((prev: number) => number)) => void;
+    isBookmarked: boolean;
+    setIsBookmarked: (bookmarked: boolean) => void;
+    handleShare: () => void;
+    handleBookmark: () => void;
+    handleLike: () => void;
+  }) => (
+    <SocialShareComponent 
+      post={post}
+      isLiked={isLiked}
+      setIsLiked={setIsLiked}
+      likeCount={likeCount}
+      setLikeCount={setLikeCount}
+      isBookmarked={isBookmarked}
+      setIsBookmarked={setIsBookmarked}
+      handleShare={handleShare}
+      handleBookmark={handleBookmark}
+      handleLike={handleLike}
+    />
   )
 }
 
@@ -313,17 +351,7 @@ export default function AIPoweredArticle({ post, relatedPosts = [] }: AIPoweredA
     layoutClasses, 
     components, 
     animationClasses,
-  } = useAITheme({
-    id: post.slug,
-    title: post.title,
-    slug: post.slug,
-    content: post.content,
-    excerpt: post.excerpt,
-    publishedAt: post.publishedAt,
-    tags: post.tags,
-    category: post.tags?.[0] || 'General',
-    readTime: post.readingTime
-  })
+  } = useAITheme(post)
   
   // Add responsive adjustments
   const { responsiveTheme, isMobile } = useResponsiveTheme(theme)
@@ -337,9 +365,9 @@ export default function AIPoweredArticle({ post, relatedPosts = [] }: AIPoweredA
           title: post.title,
           excerpt: post.excerpt,
           content: post.content,
-          category: post.category,
-          tags: post.tags,
-          readTime: post.readTime
+          category: post.tags?.[0] || 'General',
+          tags: post.tags || [],
+          readTime: post.readingTime || 5
         })
         
         setRecommendation(layoutRecommendation)
@@ -351,9 +379,9 @@ export default function AIPoweredArticle({ post, relatedPosts = [] }: AIPoweredA
           title: post.title,
           excerpt: post.excerpt,
           content: post.content,
-          category: post.category,
-          tags: post.tags,
-          readTime: post.readTime
+          category: post.tags?.[0] || 'General',
+          tags: post.tags || [],
+          readTime: post.readingTime || 5
         })
         setRecommendation(fallbackRecommendation)
         console.log('🔧 Using fallback recommendation:', fallbackRecommendation)
@@ -471,7 +499,7 @@ export default function AIPoweredArticle({ post, relatedPosts = [] }: AIPoweredA
     )
   }
 
-  const cssVars = formatRecommendationForCSS(recommendation, post.category)
+  const cssVars = formatRecommendationForCSS(recommendation, post.tags?.[0] || 'General')
   const HeroComponent = (HeroComponents as any)[recommendation.heroStyle] || HeroComponents.gradient
   const ContentLayout = (ContentLayouts as any)[recommendation.layoutType] || ContentLayouts.standard
 
@@ -520,33 +548,18 @@ export default function AIPoweredArticle({ post, relatedPosts = [] }: AIPoweredA
                 animate={{ opacity: 1, y: 0 }}
                 className="social-share"
               >
-                <span className="text-sm font-medium">Share this article:</span>
-                <div className="flex gap-2">
-                  <button 
-                    onClick={() => handleShare()} 
-                    className="share-button"
-                    title="Share this article"
-                  >
-                    <Share2 className="h-4 w-4" />
-                    Share
-                  </button>
-                  <button 
-                    onClick={() => handleBookmark()} 
-                    className={`share-button ${isBookmarked ? 'bookmarked' : ''}`}
-                    title="Bookmark this article"
-                  >
-                    <BookmarkPlus className="h-4 w-4" />
-                    {isBookmarked ? 'Saved' : 'Save'}
-                  </button>
-                  <button 
-                    onClick={() => handleLike()} 
-                    className={`share-button ${isLiked ? 'liked' : ''}`}
-                    title="Like this article"
-                  >
-                    <ThumbsUp className="h-4 w-4" />
-                    <span>{likeCount}</span>
-                  </button>
-                </div>
+                <SocialShareComponent 
+                  post={post}
+                  isLiked={isLiked}
+                  setIsLiked={setIsLiked}
+                  likeCount={likeCount}
+                  setLikeCount={setLikeCount}
+                  isBookmarked={isBookmarked}
+                  setIsBookmarked={setIsBookmarked}
+                  handleShare={handleShare}
+                  handleBookmark={handleBookmark}
+                  handleLike={handleLike}
+                />
               </motion.div>
             )}
 
