@@ -1,4 +1,24 @@
-// WordPress API integration for headless CMS
+// WordPress API integration for headless CMS with AI-powered styling
+import { BlogPost } from '@/types/blog-post'
+
+// WordPress-compatible BlogPost interface for AI integration
+export interface WordPressBlogPost {
+  id?: string
+  slug: string
+  title: string
+  excerpt: string
+  content: string
+  coverImage?: string
+  publishedAt: string
+  author?: string
+  category: string
+  tags: string[]
+  readTime: number
+  featured?: boolean
+  metaDescription?: string
+  keywords?: string[]
+}
+
 const WORDPRESS_API_URL = process.env.WORDPRESS_API_URL || 'https://your-wordpress-site.com/wp-json/wp/v2'
 
 export interface WordPressPost {
@@ -224,15 +244,21 @@ export async function searchPosts(query: string): Promise<WordPressPost[]> {
 
 // Helper function to extract plain text from WordPress content
 export function extractPlainText(htmlContent: string): string {
+  if (!htmlContent || typeof htmlContent !== 'string') {
+    return ''
+  }
   return htmlContent.replace(/<[^>]*>/g, '').trim()
 }
 
 // Helper function to calculate reading time
 export function calculateReadingTime(content: string): number {
+  if (!content || typeof content !== 'string') {
+    return 1 // Default to 1 minute for empty content
+  }
   const plainText = extractPlainText(content)
   const wordsPerMinute = 200
-  const wordCount = plainText.split(/\s+/).length
-  return Math.ceil(wordCount / wordsPerMinute)
+  const wordCount = plainText.split(/\s+/).filter(word => word.length > 0).length
+  return Math.max(1, Math.ceil(wordCount / wordsPerMinute)) // Minimum 1 minute
 }
 
 // Helper function to format WordPress date
@@ -243,4 +269,132 @@ export function formatDate(dateString: string): string {
     month: 'long',
     day: 'numeric'
   })
+}
+
+// ============================================================================
+// AI INTEGRATION - WordPress to BlogPost Adapter
+// ============================================================================
+
+/**
+ * Convert WordPress post to BlogPost format for AI-powered styling
+ * This adapter enables Moonshot AI integration with WordPress content
+ */
+export function convertWordPressPostToBlogPost(wpPost: WordPressPost): WordPressBlogPost {
+  const author = wpPost._embedded?.author?.[0]
+  const featuredImage = wpPost._embedded?.['wp:featuredmedia']?.[0]
+  const categories = wpPost._embedded?.['wp:term']?.[0] || []
+  const tags = wpPost._embedded?.['wp:term']?.[1] || []
+  
+  // Safely handle potentially undefined content
+  const contentRendered = wpPost.content?.rendered || ''
+  const excerptRendered = wpPost.excerpt?.rendered || ''
+  const titleRendered = wpPost.title?.rendered || 'Untitled'
+  
+  // Extract plain text for AI analysis with safety checks
+  const plainContent = extractPlainText(contentRendered)
+  const plainExcerpt = extractPlainText(excerptRendered)
+  
+  // Determine category for AI theme selection
+  const primaryCategory = categories[0]?.name || 'General'
+  
+  // Convert WordPress post to BlogPost interface
+  const blogPost: WordPressBlogPost = {
+    id: wpPost.id?.toString() || wpPost.slug || 'unknown',
+    slug: wpPost.slug || 'untitled',
+    title: titleRendered,
+    excerpt: plainExcerpt || 'No excerpt available',
+    content: contentRendered, // Keep HTML for rendering
+    coverImage: featuredImage?.source_url || '/images/blog-default.svg',
+    publishedAt: wpPost.date || new Date().toISOString(),
+    author: author?.name || 'Cave Motions',
+    category: primaryCategory,
+    tags: tags.map(tag => tag.name || '').filter(Boolean),
+    readTime: calculateReadingTime(contentRendered),
+    featured: false, // WordPress uses sticky posts for featured
+    metaDescription: (plainExcerpt || titleRendered).substring(0, 160),
+    keywords: tags.map(tag => tag.name || '').filter(Boolean)
+  }
+  
+  console.log('🔄 WordPress → BlogPost conversion:', {
+    title: blogPost.title,
+    category: blogPost.category,
+    tags: blogPost.tags,
+    readTime: blogPost.readTime,
+    hasContent: !!contentRendered,
+    hasExcerpt: !!excerptRendered
+  })
+  
+  return blogPost
+}
+
+/**
+ * Convert multiple WordPress posts to BlogPost format
+ */
+export function convertWordPressPostsToBlogPosts(wpPosts: WordPressPost[]): WordPressBlogPost[] {
+  return wpPosts.map(convertWordPressPostToBlogPost)
+}
+
+/**
+ * Get WordPress post in BlogPost format for AI analysis
+ */
+export async function getBlogPostFromWordPress(slug: string): Promise<WordPressBlogPost | null> {
+  const wpPost = await getPostBySlug(slug)
+  if (!wpPost) return null
+  
+  return convertWordPressPostToBlogPost(wpPost)
+}
+
+/**
+ * Get multiple WordPress posts in BlogPost format
+ */
+export async function getBlogPostsFromWordPress(page: number = 1, perPage: number = 10): Promise<WordPressBlogPost[]> {
+  const wpPosts = await getPosts(page, perPage)
+  return convertWordPressPostsToBlogPosts(wpPosts)
+}
+
+/**
+ * Get related WordPress posts based on category, converted to BlogPost format
+ */
+export async function getRelatedWordPressPosts(currentPost: WordPressPost, limit: number = 3): Promise<WordPressBlogPost[]> {
+  const categories = currentPost._embedded?.['wp:term']?.[0] || []
+  if (categories.length === 0) return []
+  
+  const primaryCategory = categories[0]
+  const categoryPosts = await getPostsByCategory(primaryCategory.slug)
+  
+  // Filter out current post and limit results
+  const relatedPosts = categoryPosts
+    .filter(post => post.id !== currentPost.id)
+    .slice(0, limit)
+  
+  return convertWordPressPostsToBlogPosts(relatedPosts)
+}
+
+/**
+ * Extract AI-friendly content summary for theme analysis
+ */
+export function extractContentSummaryForAI(wpPost: WordPressPost): {
+  title: string
+  excerpt: string
+  content: string
+  category: string
+  tags: string[]
+  readTime: number
+} {
+  const categories = wpPost._embedded?.['wp:term']?.[0] || []
+  const tags = wpPost._embedded?.['wp:term']?.[1] || []
+  
+  // Safely handle potentially undefined content
+  const contentRendered = wpPost.content?.rendered || ''
+  const excerptRendered = wpPost.excerpt?.rendered || ''
+  const titleRendered = wpPost.title?.rendered || 'Untitled'
+  
+  return {
+    title: titleRendered,
+    excerpt: extractPlainText(excerptRendered),
+    content: extractPlainText(contentRendered),
+    category: categories[0]?.name || 'General',
+    tags: tags.map(tag => tag.name || '').filter(Boolean),
+    readTime: calculateReadingTime(contentRendered)
+  }
 }

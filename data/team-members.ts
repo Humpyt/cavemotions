@@ -11,6 +11,17 @@ export const teamMembers = [
     },
   },
   {
+    name: "Stellahmaris Karungi",
+    title: "Head of Marketing",
+    image: "/placeholder.svg?height=200&width=200&text=Stellahmaris",
+    description:
+      "Stellahmaris leads our marketing strategies, connecting us with our audience and amplifying our brand message.",
+    social: {
+      linkedin: "#",
+      twitter: "#",
+    },
+  },
+  {
     name: "Isaac Obache",
     title: "Chief Technology Officer (CTO)",
     image: "/placeholder.svg?height=200&width=200&text=Isaac",
@@ -44,11 +55,11 @@ export const teamMembers = [
     },
   },
   {
-    name: "Stellahmaris Karungi",
-    title: "Head of Marketing",
-    image: "/placeholder.svg?height=200&width=200&text=Stellahmaris",
+    name: "Peter Okello",
+    title: "Operations Manager",
+    image: "/placeholder.svg?height=200&width=200&text=Peter",
     description:
-      "Stellahmaris leads our marketing strategies, connecting us with our audience and amplifying our brand message.",
+      "Peter ensures seamless project delivery and operational excellence, maintaining high standards while optimizing processes for maximum efficiency.",
     social: {
       linkedin: "#",
       twitter: "#",

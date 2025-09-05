@@ -55,10 +55,10 @@ export const metadata: Metadata = {
       "Cave Motions is a premium digital innovation studio offering AI automation, web development, software development, and mobile application services.",
     images: [
       {
-        url: "https://cavemotions.com/images/og-image.jpg",
+        url: "https://cavemotions.com/images/og-image-main.svg",
         width: 1200,
         height: 630,
-        alt: "Cave Motions - Digital Innovation Studio",
+        alt: "Cave Motions - Digital Innovation Studio in Kampala, Uganda",
       },
     ],
   },
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     title: "Cave Motions | Premium Digital Innovation Studio",
     description:
       "Cave Motions is a premium digital innovation studio offering AI automation, web development, software development, and mobile application services.",
-    images: ["https://cavemotions.com/images/twitter-image.jpg"],
+    images: ["https://cavemotions.com/images/twitter-image-main.svg"],
     creator: "@cavemotions",
   },
   alternates: {

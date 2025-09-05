@@ -19,6 +19,7 @@ import {
 import { motion } from "framer-motion"
 import ThreeDimensionalCard from "@/components/three-dimensional-card"
 import ParallaxText from "@/components/parallax-text"
+import Breadcrumb, { BreadcrumbSchema } from "@/components/breadcrumb"
 
 export default function BusinessIntelligenceClientPage() {
   const [scrollY, setScrollY] = useState(0)
@@ -134,8 +135,25 @@ export default function BusinessIntelligenceClientPage() {
     },
   ]
 
+  const breadcrumbItems = [
+    { label: "Services", href: "/services" },
+    { label: "Business Intelligence" }
+  ]
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-purple-50">
+    <>
+      <BreadcrumbSchema items={[
+        { label: "Services", href: "/services" },
+        { label: "Business Intelligence", href: "/services/business-intelligence" }
+      ]} />
+
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-purple-50">
+        {/* Breadcrumb */}
+        <div className="bg-gray-50 py-4">
+          <div className="container mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
+            <Breadcrumb items={breadcrumbItems} />
+          </div>
+        </div>
       {/* Schema Markup */}
       <script
         type="application/ld+json"
@@ -590,6 +608,7 @@ export default function BusinessIntelligenceClientPage() {
           </motion.div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   )
 }

@@ -170,7 +170,7 @@ export default function EditHomePage() {
                       </div>
                     </div>
                     <div className="relative h-20 w-32 rounded-md overflow-hidden">
-                      <img src="/placeholder.svg" alt="About" className="h-full w-full object-cover" />
+                      <img src="/placeholder.svg" alt="About section preview image" className="h-full w-full object-cover" />
                       <Button variant="destructive" size="icon" className="absolute top-1 right-1 h-5 w-5 rounded-full">
                         <Trash2 className="h-3 w-3" />
                       </Button>

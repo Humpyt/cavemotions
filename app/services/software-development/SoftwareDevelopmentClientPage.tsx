@@ -17,6 +17,7 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import ThreeDimensionalCard from "@/components/three-dimensional-card"
 import ParallaxText from "@/components/parallax-text"
 import Link from "next/link"
+import Breadcrumb, { BreadcrumbSchema } from "@/components/breadcrumb"
 
 export default function SoftwareDevelopmentClientPage() {
   const [scrollY, setScrollY] = useState(0)
@@ -118,8 +119,25 @@ export default function SoftwareDevelopmentClientPage() {
     },
   ]
 
+  const breadcrumbItems = [
+    { label: "Services", href: "/services" },
+    { label: "Software Development" }
+  ]
+
   return (
-    <div className="flex flex-col min-h-screen" ref={containerRef}>
+    <>
+      <BreadcrumbSchema items={[
+        { label: "Services", href: "/services" },
+        { label: "Software Development", href: "/services/software-development" }
+      ]} />
+
+      <div className="flex flex-col min-h-screen" ref={containerRef}>
+        {/* Breadcrumb */}
+        <div className="bg-gray-50 py-4">
+          <div className="container mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
+            <Breadcrumb items={breadcrumbItems} />
+          </div>
+        </div>
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-black py-16 md:py-20 min-h-[50vh]">
         {/* Background Image */}
@@ -689,6 +707,7 @@ export default function SoftwareDevelopmentClientPage() {
           </motion.div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   )
 }

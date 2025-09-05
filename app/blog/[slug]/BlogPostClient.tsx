@@ -10,15 +10,19 @@ interface BlogPostClientProps {
 }
 
 export default function BlogPostClient({ slug }: BlogPostClientProps) {
+  console.log('🔴 BlogPostClient component loaded with slug:', slug)
   const [post, setPost] = useState<any>(null)
   const [relatedPosts, setRelatedPosts] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    console.log('🔍 BlogPostClient: Looking for slug:', slug)
     // Find the blog post by slug
     const foundPost = getBlogPostBySlug(slug)
+    console.log('🔍 BlogPostClient: Found post:', foundPost?.title || 'NOT FOUND')
     if (foundPost) {
       setPost(foundPost)
+      console.log('🔍 BlogPostClient: Post set with category:', foundPost.category)
       
       // Get related posts (same category, excluding current post)
       const allPosts = getAllBlogPosts()
@@ -26,6 +30,7 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
         .filter(p => p.category === foundPost.category && p.slug !== foundPost.slug)
         .slice(0, 3)
       setRelatedPosts(related)
+      console.log('🔍 BlogPostClient: Related posts:', related.length)
     }
     setLoading(false)
   }, [slug])

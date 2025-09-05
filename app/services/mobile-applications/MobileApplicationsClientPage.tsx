@@ -7,6 +7,7 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import ParallaxText from "@/components/parallax-text"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Breadcrumb, { BreadcrumbSchema } from "@/components/breadcrumb"
 
 export default function MobileApplicationsClientPage() {
   const [scrollY, setScrollY] = useState(0)
@@ -97,8 +98,25 @@ export default function MobileApplicationsClientPage() {
     },
   ]
 
+  const breadcrumbItems = [
+    { label: "Services", href: "/services" },
+    { label: "Mobile Applications" }
+  ]
+
   return (
-    <div className="flex flex-col min-h-screen" ref={containerRef}>
+    <>
+      <BreadcrumbSchema items={[
+        { label: "Services", href: "/services" },
+        { label: "Mobile Applications", href: "/services/mobile-applications" }
+      ]} />
+
+      <div className="flex flex-col min-h-screen" ref={containerRef}>
+        {/* Breadcrumb */}
+        <div className="bg-gray-50 py-4">
+          <div className="container mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
+            <Breadcrumb items={breadcrumbItems} />
+          </div>
+        </div>
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-black py-16 md:py-20 min-h-[50vh]">
         {/* Background Image */}
@@ -665,6 +683,7 @@ export default function MobileApplicationsClientPage() {
           </motion.div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   )
 }

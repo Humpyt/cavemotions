@@ -627,8 +627,8 @@ export default function HomePageClient() {
                     className="group relative overflow-hidden border-white/40 text-white hover:bg-white/10 bg-transparent"
                     asChild
                   >
-                    <Link href="/our-process">
-                      <span className="relative z-10">View Our Process</span>
+                    <Link href="/contact">
+                      <span className="relative z-10">Contact Us</span>
                       <span className="absolute inset-0 h-full w-0 bg-white/10 transition-all duration-300 group-hover:w-full"></span>
                     </Link>
                   </Button>
