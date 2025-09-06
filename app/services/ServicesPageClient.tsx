@@ -7,6 +7,8 @@ import { Badge } from "@/components/ui/badge"
 import { motion, useScroll, useTransform } from "framer-motion"
 import ParallaxText from "@/components/parallax-text"
 import Link from "next/link"
+import FreshnessIndicator from "@/components/freshness-indicator"
+import { ServiceStructuredData } from "@/components/structured-data"
 
 export default function ServicesPageClient() {
   const [scrollY, setScrollY] = useState(0)
@@ -100,6 +102,12 @@ export default function ServicesPageClient() {
 
   return (
     <div className="flex flex-col min-h-screen" ref={containerRef}>
+      <ServiceStructuredData data={{
+        name: "AI Automation, Web Development & Software Services",
+        description: "Comprehensive digital services including AI automation, web development, mobile app development, and custom software solutions in Uganda and East Africa",
+        serviceType: "Digital Innovation Services",
+        category: "Technology Services"
+      }} />
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 py-32 md:py-40">
         {/* Animated background elements */}
@@ -155,7 +163,7 @@ export default function ServicesPageClient() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Digital Innovation Services
+              AI Automation, Web Development & Software Services in Uganda
             </motion.h1>
 
             <motion.p
@@ -164,8 +172,8 @@ export default function ServicesPageClient() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Transform your business with our comprehensive suite of cutting-edge digital solutions designed to drive
-              growth and innovation.
+              Transform your business in Uganda and East Africa with our comprehensive suite of cutting-edge AI automation, web development, and software solutions designed to drive
+              growth and digital innovation across all industries.
             </motion.p>
 
             <motion.div
@@ -243,10 +251,10 @@ export default function ServicesPageClient() {
             <Badge className="mb-4 bg-purple-100 text-purple-800 hover:bg-purple-200" variant="secondary">
               Our Expertise
             </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Comprehensive Digital Solutions</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Comprehensive Digital Solutions - AI, Web & Software Development</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              From AI automation to mobile development, we offer end-to-end digital services that transform businesses
-              and drive innovation.
+              From AI automation to mobile app development, we offer end-to-end digital services in Kampala, Uganda, that transform businesses across East Africa
+              and drive sustainable innovation through expert software development and web solutions.
             </p>
           </motion.div>
 
@@ -382,7 +390,7 @@ export default function ServicesPageClient() {
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Trusted by Industry Leaders</h2>
             <p className="text-lg text-white/80 max-w-3xl mx-auto">
               We combine cutting-edge technology with proven methodologies to deliver exceptional results that exceed
-              expectations.
+              expectations. <Link href="/about" className="text-purple-300 hover:text-purple-200 underline">Learn more about our team</Link> and <Link href="/contact" className="text-purple-300 hover:text-purple-200 underline">get in touch</Link> to start your project.
             </p>
           </motion.div>
 
@@ -419,6 +427,19 @@ export default function ServicesPageClient() {
                 </div>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Freshness Indicator */}
+      <section className="py-8 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-center">
+            <FreshnessIndicator 
+              lastModified="2024-01-15T10:00:00Z" 
+              showUpdateBadge={true}
+              className="justify-center"
+            />
           </div>
         </div>
       </section>

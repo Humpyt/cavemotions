@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import Link from "next/link"
 import { ArrowRight, ExternalLink, Play, Sparkles, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -11,6 +11,7 @@ import ServiceCard from "@/components/service-card"
 import ShaderBackground from "@/components/shader-background"
 import { TestimonialsSimple } from "@/components/testimonials-simple"
 import { motion } from "framer-motion" // Import motion
+import FreshnessIndicator from "@/components/freshness-indicator"
 
 export default function HomePageClient() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -46,7 +47,7 @@ export default function HomePageClient() {
   }
 
   return (
-    <>
+    <div>
       <div className="flex flex-col min-h-screen">
         {/* Hero Section */}
         <section className="relative overflow-hidden bg-black py-32 md:py-40 lg:py-48 min-h-screen">
@@ -78,18 +79,18 @@ export default function HomePageClient() {
                 variants={itemVariants}
                 className="mb-6 bg-gradient-to-r from-white to-white/80 bg-clip-text text-4xl font-extrabold tracking-tight text-transparent md:text-6xl lg:text-7xl"
               >
-                Where Creativity Meets <br className="hidden md:block" />
+                Premium Digital Innovation Studio in Uganda <br className="hidden md:block" />
                 <span className="relative">
                   <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
-                    Intelligent Code
+                    AI Automation & Web Development
                   </span>
                   <span className="absolute -bottom-2 left-0 h-1 w-full bg-gradient-to-r from-purple-400 via-violet-400 to-fuchsia-400"></span>
                 </span>
               </motion.h1>
 
               <motion.p variants={itemVariants} className="mb-10 max-w-2xl text-lg text-white/70 md:text-xl">
-                Cave Motions blends cutting-edge AI, creative design, and technical excellence to help forward-thinking
-                businesses transform their digital presence.
+                Cave Motions blends cutting-edge AI automation, creative design, and technical excellence to help forward-thinking
+                businesses in Uganda and across East Africa transform their digital presence with world-class software development solutions.
               </motion.p>
 
               <motion.div variants={itemVariants} className="flex flex-col gap-4 sm:flex-row">
@@ -212,18 +213,18 @@ export default function HomePageClient() {
                     Our Story
                   </Badge>
                   <h2 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl">
-                    Pioneering the Future of{" "}
+                    About Cave Motions -{" "}
                     <span className="relative">
                       <span className="bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent">
-                        Digital Innovation
+                        Uganda's Leading Digital Innovation Studio
                       </span>
                       <span className="absolute -bottom-2 left-0 h-1 w-full bg-gradient-to-r from-purple-400 to-violet-400"></span>
                     </span>
                   </h2>
                   <p className="text-lg text-gray-600 leading-relaxed">
                     Founded in Kampala, Cave Motions was built on the belief that technology should be both powerful and inspiring.
-                    We've assembled a passionate team of world-class engineers, designers, and AI specialists to craft digital
-                    solutions that drive growth. Our mission is to empower businesses with creative, future-ready innovations
+                    We've assembled a passionate team of world-class engineers, designers, and <Link href="/services" className="text-purple-600 hover:text-purple-800 underline">AI specialists</Link> to craft digital
+                    solutions that drive growth. Our mission is to empower businesses with creative, future-ready <Link href="/services" className="text-purple-600 hover:text-purple-800 underline">web development and software solutions</Link>
                     that push boundaries and transform possibilities.
                   </p>
                 </div>
@@ -284,10 +285,10 @@ export default function HomePageClient() {
               <Badge className="mb-4 bg-white/10 hover:bg-white/20 text-white" variant="outline">
                 Services
               </Badge>
-              <h2 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl">Our Digital Playground</h2>
+              <h2 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl">Our Services - AI Automation, Web Development & Software Solutions</h2>
               <p className="mx-auto max-w-2xl text-lg text-white/70">
                 We combine technical expertise with creative vision to deliver exceptional digital experiences that
-                drive business growth and user engagement.
+                drive business growth and user engagement for companies across Uganda, East Africa, and beyond.
               </p>
             </div>
 
@@ -344,7 +345,7 @@ export default function HomePageClient() {
               <Badge className="mb-4 bg-purple-100 text-purple-800 hover:bg-purple-200" variant="secondary">
                 Portfolio
               </Badge>
-              <h2 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl">Featured Work</h2>
+              <h2 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl">Our Portfolio - Web Development & Software Projects in Uganda</h2>
               <p className="mx-auto max-w-2xl text-lg text-gray-600">
                 Explore our most innovative projects that have helped businesses transform their digital presence and
                 achieve remarkable results.
@@ -587,6 +588,19 @@ export default function HomePageClient() {
         {/* Testimonials */}
         <TestimonialsSimple />
 
+        {/* Freshness Indicator */}
+        <section className="py-8 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="flex justify-center">
+              <FreshnessIndicator 
+                lastModified="2024-01-15T10:00:00Z" 
+                showUpdateBadge={true}
+                className="justify-center"
+              />
+            </div>
+          </div>
+        </section>
+
         {/* CTA Section */}
         <section className="py-24 md:py-32">
           <div className="container mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
@@ -601,7 +615,7 @@ export default function HomePageClient() {
                   Let's Collaborate
                 </Badge>
                 <h2 className="mb-6 text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">
-                  Ready to Transform Your Digital Presence?
+                  Ready to Transform Your Digital Presence with AI & Web Development?
                 </h2>
                 <p className="mb-10 max-w-2xl text-lg text-white/80">
                   Whether you're looking to launch a new product, optimize your operations with AI, or reimagine your
@@ -765,6 +779,6 @@ export default function HomePageClient() {
           }),
         }}
       />
-    </>
+    </div>
   )
 }

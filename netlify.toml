@@ -10,6 +10,13 @@
   # NEXT_PUBLIC_WORDPRESS_API_URL = "https://blog.cavemotions.com/wp-json/wp/v2"
   # NEXT_PUBLIC_SITE_URL = "https://cavemotions.com"
 
+# WWW canonicalization - redirect www to non-www
+[[redirects]]
+  from = "https://www.cavemotions.com/*"
+  to = "https://cavemotions.com/:splat"
+  status = 301
+  force = true
+
 # Redirect rules (equivalent to your vercel.json redirects)
 [[redirects]]
   from = "/blog-wp/*"

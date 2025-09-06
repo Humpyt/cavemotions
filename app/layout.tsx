@@ -6,6 +6,7 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import HydrationSafeWrapper from "@/components/hydration-safe-wrapper"
 import { ErrorSuppressor } from "@/components/blog/error-suppressor"
+import { OrganizationStructuredData, WebsiteStructuredData } from "@/components/structured-data"
 import type { Metadata } from "next"
 import Script from "next/script"
 
@@ -18,14 +19,18 @@ export const metadata: Metadata = {
     template: "%s | Cave Motions",
   },
   description:
-    "Cave Motions is a premium digital innovation studio offering AI automation, web development, software development, and mobile application services.",
+    "Cave Motions is Uganda's premier digital innovation studio in Kampala, offering AI automation, web development, software development, and mobile application services across East Africa.",
   keywords: [
-    "digital innovation",
-    "AI automation",
-    "web development",
-    "software development",
-    "mobile applications",
-    "UI/UX design",
+    "digital innovation Uganda",
+    "AI automation Kampala",
+    "web development Uganda",
+    "software development East Africa",
+    "mobile applications Uganda",
+    "UI/UX design Kampala",
+    "tech company Uganda",
+    "digital transformation East Africa",
+    "custom software Uganda",
+    "web design Kampala"
   ],
   authors: [{ name: "Cave Motions Team" }],
   creator: "Cave Motions",
@@ -53,7 +58,7 @@ export const metadata: Metadata = {
     siteName: "Cave Motions",
     title: "Cave Motions | Premium Digital Innovation Studio",
     description:
-      "Cave Motions is a premium digital innovation studio offering AI automation, web development, software development, and mobile application services.",
+      "Cave Motions is Uganda's premier digital innovation studio in Kampala, offering AI automation, web development, software development, and mobile application services across East Africa.",
     images: [
       {
         url: "https://cavemotions.com/images/og-image-main.svg",
@@ -67,7 +72,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Cave Motions | Premium Digital Innovation Studio",
     description:
-      "Cave Motions is a premium digital innovation studio offering AI automation, web development, software development, and mobile application services.",
+      "Cave Motions is Uganda's premier digital innovation studio in Kampala, offering AI automation, web development, software development, and mobile application services across East Africa.",
     images: ["https://cavemotions.com/images/twitter-image-main.svg"],
     creator: "@cavemotions",
   },
@@ -93,6 +98,8 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body className={`${inter.variable} font-sans antialiased`} suppressHydrationWarning>
+        <OrganizationStructuredData />
+        <WebsiteStructuredData />
         {/* Prevent browser extension errors */}
         <Script id="extension-error-handler" strategy="beforeInteractive">
           {`

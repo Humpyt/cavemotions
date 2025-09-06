@@ -10,6 +10,8 @@ import ParallaxText from "@/components/parallax-text"
 import Image from "next/image"
 import TeamSection from "@/components/team-section" // Import the new TeamSection component
 import ShaderBackground from "@/components/shader-background"
+import Link from "next/link"
+import FreshnessIndicator from "@/components/freshness-indicator"
 
 export default function AboutPageClient() {
   const [scrollY, setScrollY] = useState(0)
@@ -93,7 +95,7 @@ export default function AboutPageClient() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              About Cave Motions
+              About Cave Motions - Leading Software Development Agency in Uganda
             </motion.h1>
 
             <motion.p
@@ -102,7 +104,7 @@ export default function AboutPageClient() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Founded in Kampala, we craft future‑ready products and experiences at the intersection of design, software, and AI. We partner with bold teams to turn ideas into lovable, scalable digital realities.
+              Founded in Kampala, Uganda, we craft future‑ready products and experiences at the intersection of design, software development, and AI automation. We partner with bold teams across East Africa to turn ideas into lovable, scalable digital realities through expert web development and innovative software solutions.
             </motion.p>
           </div>
         </section>
@@ -138,10 +140,10 @@ export default function AboutPageClient() {
                 Our Story
               </Badge>
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Who We Are
+                Who We Are - Uganda's Premier Digital Innovation Studio
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Passionate innovators crafting digital experiences that transform businesses and inspire growth
+                Passionate innovators in Kampala, Uganda, crafting digital experiences through AI automation, web development, and software solutions that transform businesses across East Africa and inspire sustainable growth
               </p>
             </motion.div>
 
@@ -343,7 +345,7 @@ export default function AboutPageClient() {
                 <Lightbulb className="h-12 w-12 text-purple-600 mb-4" />
                 <h3 className="text-3xl font-bold text-gray-900 mb-4">Our Mission</h3>
                 <p className="text-lg text-gray-700">
-                  To empower businesses and organizations in Uganda and beyond with cutting-edge creative and digital solutions that inspire, engage, and drive results. We strive to be your trusted technology partner in achieving digital transformation.
+                  To empower businesses and organizations in Uganda and beyond with cutting-edge <Link href="/services" className="text-purple-600 hover:text-purple-800 underline">creative and digital solutions</Link> that inspire, engage, and drive results. We strive to be your trusted technology partner in achieving digital transformation. <Link href="/contact" className="text-purple-600 hover:text-purple-800 underline">Contact us</Link> to start your digital journey.
                 </p>
               </motion.div>
               <motion.div variants={itemVariants} className="flex flex-col items-start">
@@ -402,7 +404,7 @@ export default function AboutPageClient() {
               <Badge className="mb-4 bg-white/10 hover:bg-white/20 text-white" variant="outline">
                 Team
               </Badge>
-              <h2 className="text-4xl font-bold tracking-tight md:text-5xl mb-4">The Minds Behind the Magic</h2>
+              <h2 className="text-4xl font-bold tracking-tight md:text-5xl mb-4">Meet Our Expert Team - Software Developers & AI Specialists in Uganda</h2>
               <p className="mx-auto max-w-2xl text-lg text-white/70 mb-8">
                 Our diverse team brings together a wealth of experience, creativity, and technical expertise. Get to know the individuals who make Cave Motions thrive.
               </p>
@@ -421,6 +423,19 @@ export default function AboutPageClient() {
         </motion.section>
 
 
+
+        {/* Freshness Indicator */}
+        <section className="py-8 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="flex justify-center">
+              <FreshnessIndicator 
+                lastModified="2024-01-15T10:00:00Z" 
+                showUpdateBadge={true}
+                className="justify-center"
+              />
+            </div>
+          </div>
+        </section>
 
         {/* CTA Section */}
         <section className="relative overflow-hidden py-24 md:py-32 px-4 md:px-6 lg:px-8">

@@ -11,6 +11,8 @@ import { Mail, Phone, MapPin, Send, Facebook, Instagram, Linkedin, Twitter, Spar
 import { Badge } from "@/components/ui/badge"
 import { motion, useScroll, useTransform } from "framer-motion"
 import ParallaxText from "@/components/parallax-text"
+import FreshnessIndicator from "@/components/freshness-indicator"
+import Link from "next/link"
 
 export default function ContactPage() {
   const [scrollY, setScrollY] = useState(0)
@@ -149,7 +151,7 @@ export default function ContactPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Let's Create <span className="text-purple-400">Together</span>
+              Contact Cave Motions - <span className="text-purple-400">AI & Web Development</span> in Uganda
             </motion.h1>
 
             <motion.p
@@ -158,8 +160,8 @@ export default function ContactPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Whether you're ready for a digital makeover or simply want to explore what's possible, we'd love to hear
-              from you.
+              Whether you're ready for a digital makeover or simply want to explore <Link href="/services" className="text-purple-300 hover:text-purple-200 underline">our services</Link>, we'd love to hear
+              from you. <Link href="/about" className="text-purple-300 hover:text-purple-200 underline">Learn about our team</Link> and let's create something amazing together.
             </motion.p>
           </div>
         </div>
@@ -197,6 +199,19 @@ export default function ContactPage() {
         </div>
       </section>
 
+      {/* Freshness Indicator */}
+      <section className="py-8 bg-gray-900">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-center">
+            <FreshnessIndicator 
+              lastModified="2024-01-15T10:00:00Z" 
+              showUpdateBadge={true}
+              className="justify-center"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Contact Form and Info */}
       <section className="py-24 md:py-32 px-4 md:px-6 lg:px-8 relative overflow-hidden bg-gradient-to-b from-black to-purple-950">
         {/* Background elements */}
@@ -220,7 +235,7 @@ export default function ContactPage() {
 
               <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 md:p-10">
                 <h2 className="text-3xl font-bold mb-6 relative inline-block text-white">
-                  Get in Touch
+                  Get in Touch - Software Development Consultation
                   <motion.span
                     className="absolute -bottom-2 left-0 h-1 w-0 bg-gradient-to-r from-purple-400 to-violet-400"
                     initial={{ width: "0%" }}
@@ -333,7 +348,7 @@ export default function ContactPage() {
               transition={{ duration: 0.8 }}
             >
               <h2 className="text-3xl font-bold mb-6 relative inline-block text-white">
-                Contact Information
+                Contact Information - Cave Motions Uganda Office
                 <motion.span
                   className="absolute -bottom-2 left-0 h-1 w-0 bg-gradient-to-r from-purple-400 to-violet-400"
                   initial={{ width: "0%" }}
