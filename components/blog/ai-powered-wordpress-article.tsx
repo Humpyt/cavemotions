@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useMemo } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { 
   Calendar, 
@@ -322,12 +321,10 @@ export default function AIPoweredWordPressArticle({
           >
             {featuredImage && (
               <div className="absolute inset-0 z-0">
-                <Image
+                <img
                   src={featuredImage.source_url}
                   alt={featuredImage.alt_text || post.title.rendered}
                   className="w-full h-full object-cover opacity-30"
-                  width={1200}
-                  height={630}
                 />
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-900/80 to-indigo-900/80" />
               </div>
@@ -450,12 +447,10 @@ export default function AIPoweredWordPressArticle({
             {/* Featured Image */}
             {featuredImage && (
               <div className="mb-10 rounded-xl overflow-hidden shadow-lg">
-                <Image
+                <img
                   src={featuredImage.source_url}
                   alt={featuredImage.alt_text || post.title.rendered}
                   className="w-full h-auto object-cover"
-                  width={1200}
-                  height={630}
                 />
               </div>
             )}
@@ -526,12 +521,10 @@ export default function AIPoweredWordPressArticle({
             {author && components.showAuthorBio && (
               <div className="mt-12 p-6 bg-gray-100 dark:bg-gray-800 rounded-xl">
                 <div className="flex items-start gap-4">
-                  <Image
+                  <img
                     src={author.avatar_urls['96'] || '/placeholder.svg?height=64&width=64'}
                     alt={author.name}
                     className="w-16 h-16 rounded-full"
-                    width={64}
-                    height={64}
                   />
                   <div>
                     <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100">{author.name}</h3>
@@ -556,12 +549,10 @@ export default function AIPoweredWordPressArticle({
                       <Link key={relatedPost.slug} href={`/blog-wp/${relatedPost.slug}`} className="group block">
                         <div className="flex gap-3 items-start">
                           <div className="w-16 h-16 rounded-md overflow-hidden shrink-0">
-                            <Image
-                              src={relatedPost.coverImage || '/images/blog-default.svg'}
+                            <img
+                              src={relatedPost.coverImage}
                               alt={relatedPost.title}
                               className="w-full h-full object-cover transition-transform group-hover:scale-105"
-                              width={64}
-                              height={64}
                             />
                           </div>
                           <div className="flex-1 min-w-0">
