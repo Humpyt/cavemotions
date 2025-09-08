@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { WordPressErrorBoundary, WordPressBlogFallback } from '@/components/blog/wordpress-error-boundary'
+import { RetryButton } from '@/components/blog/retry-button'
 import { Search, Calendar, Clock, User, TrendingUp, ArrowRight, AlertTriangle } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -90,9 +91,7 @@ export default async function WordPressBlogPage() {
               <Button asChild size="lg">
                 <Link href="/blog">View Enhanced Blog</Link>
               </Button>
-              <Button asChild variant="outline" size="lg">
-                <Link href="/blog-wp" onClick={() => window.location.reload()}>Retry</Link>
-              </Button>
+              <RetryButton />
             </div>
           </div>
         </div>
